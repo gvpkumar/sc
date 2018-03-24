@@ -1,0 +1,83 @@
+<div fxLayoutAlign="center center" style="margin:30px 0px">
+    <mat-card fxFlex="70%" fxFlex.xs="98%">
+
+        <div class="header">Add Challan Details</div>
+        <div class="formex main-div">
+
+            <form>
+                <table style="width:100%">
+                    <tr>
+                        <td>Chalan Number</td>
+                        <td colspan="4"> <input type="text" name="challanNumber" placeholder="Challan Number" [(ngModel)]="model.challanNumber"></td>
+                    </tr>
+
+                    <tr>
+                        <td>gr Number</td>
+                        <td colspan="4"> <input type="text" name="grNumber" placeholder="gr Number" [(ngModel)]="model.grNumber">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Weight</td>
+                        <td colspan="4"> <input type="text" name="weight" placeholder="weight" [(ngModel)]="model.weight">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Description</td>
+                        <td colspan="4"> <input type="text" name="description" placeholder="Enter description" [(ngModel)]="model.description">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Consignor</td>
+                        <td colspan="4"> <input type="text" name="consignor" placeholder="consignor" [(ngModel)]="model.consignor">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Consignee</td>
+                        <td colspan="4"> <input type="text" name="consignee" placeholder="consignee" [(ngModel)]="model.consignee">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Date </td>
+                        <td colspan="4"> <input type="date" name="date" placeholder="Date " [(ngModel)]="model.date">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Truck Number</td>
+                        <td colspan="4"> <input type="text" name="truckNumber" placeholder="Truck Number" [(ngModel)]="model.truckNumber">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Truck Driver</td>
+                        <td colspan="4"> <input type="text" name="truckDriver" placeholder="Truck Driver" [(ngModel)]="model.truckDriver">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Remarks</td>
+                        <td colspan="4"> <input type="text" name="remark" placeholder="remark" [(ngModel)]="model.remark">
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td>To pay of</td>
+                        <td colspan="4"><input type="text" name="topayofgrNumber" placeholder="To pay of grNumber" [(ngModel)]="model.topayofgrNumber">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>From</td>
+                        <td colspan="4"> <input type="text" name="from" placeholder="from" [(ngModel)]="model.from">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>To</td>
+                        <td colspan="4"> <input type="text" name="to" placeholder="to" [(ngModel)]="model.to">
+                        </td>
+
+                    </tr>
+                </table>
+                <div style="text-align:right">
+                    <button mat-raised-button type="submit" (click)="submit()" color="primary" style="border-radius:4px">Submit</button>
+                </div>
+            </form>
+        </div>
+    </mat-card>
+</div>

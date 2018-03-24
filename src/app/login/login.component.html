@@ -1,0 +1,21 @@
+<!--mat-toolbar></mat-toolbar-->
+<div fxFlex="100%" class="login-container" style="background-image: url('assets/trucks.png');">
+
+    <div class="login-page">
+        <h2 style="text-align:center;color:#5f6064">SHAANN CARRIERS SYSTEM</h2>
+
+        <div class="form">
+
+            <form class="login-form" name="form" #f="ngForm" novalidate>
+                <input type="text" placeholder="username" name="userName" [(ngModel)]="model.userName" #username="ngModel" required/>
+                <div *ngIf="f.submitted && !username.valid" class="help-block">Username is required</div>
+
+                <input type="password" placeholder="password" name="password" [(ngModel)]="model.password" #password="ngModel" required/>
+                <div *ngIf="f.submitted && !password.valid" class="help-block">Password is required</div>
+
+                <button [disabled]="!f.valid" color="primary" (click)="login()">login</button>
+                <!--p class="message">Not registered? <a href="#">Create an account</a></p-->
+            </form>
+        </div>
+    </div>
+</div>

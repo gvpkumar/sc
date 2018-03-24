@@ -1,0 +1,107 @@
+<div fxLayoutAlign="center center" style="margin:30px 0px">
+    <mat-card fxFlex="85%" fxFlex.xs="98%">
+
+        <div class="header">Edit Dispatch Details</div>
+        <div class="formex main-div">
+
+            <form>
+                <table style="width:100%">
+                    <tr>
+                        <td>Order Id</td>
+                        <td colspan="4"> <input type="text" readonly name="dispatchOrderId" placeholder="Order Id" [(ngModel)]="getData.dispatchOrderId" value="{{getData.dispatchOrderId}}" required></td>
+                        &nbsp;
+                        <td>Delivery Note No</td>
+                        <td colspan="4"> <input type="text" readonly name="dispatchDeliveryNoteNumber " placeholder="Delivery Note Number " [(ngModel)]="getData.dispatchDeliveryNoteNumber" value="{{getData.dispatchDeliveryNoteNumber}}">
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td>Tonnage (Weight)</td>
+                        <td colspan="4"> <input type="text" pattern="^\d+$" readonly name="dispatchWeight " placeholder="Weight" [(ngModel)]="getData.dispatchWeight" value="{{getData.dispatchWeight}}" #dispatchWeight="ngModel" required>
+                        </td>
+                        &nbsp;
+                        <td>Date of Dispatch</td>
+                        <td colspan="4"> <input type="date" readonly name="dispatchDeliveryDate " placeholder="Date " [(ngModel)]="getData.dispatchDeliveryDate" value="{{getData.dispatchDeliveryDate}}">
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td>Consignor</td>
+                        <td colspan="4"> <input type="text" readonly name="dispatchConsignor " placeholder="consignor" [(ngModel)]="getData.dispatchConsignor" value="{{getData.dispatchConsignor}}">
+                        </td>
+                        &nbsp;
+                        <td>Consignee</td>
+                        <td colspan="4"> <input type="text" readonly name="dispatchConsignee " placeholder="consignee" [(ngModel)]="getData.dispatchConsignee" value="{{getData.dispatchConsignee}}">
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td>Truck Number</td>
+                        <td colspan="4"> <input type="text" readonly name="dispatchHorseNumber " placeholder="Truck Number" [(ngModel)]="getData.dispatchHorseNumber" value="{{getData.dispatchHorseNumber}}">
+                        </td>
+                        &nbsp;
+                        <td>Truck Driver</td>
+                        <td colspan="4"> <input type="text" readonly name="dispatchDriverFirstname  " placeholder="Truck Driver Firstname" [(ngModel)]="getData.dispatchDriverFirstname" value="{{getData.dispatchHorseNumber}}">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Description</td>
+                        <td colspan="4"> <input type="text" readonly name="dispatchDescription " placeholder="Enter description" [(ngModel)]="getData.dispatchDescription" value="{{getData.dispatchDescription}}">
+                        </td>
+                        &nbsp;
+                        <td>Remarks</td>
+                        <td colspan="4"> <input type="text" readonly name="dispatchRemarks " placeholder="Remarks" [(ngModel)]="getData.dispatchRemarks" value="{{getData.dispatchRemarks}}">
+                        </td>
+
+                    </tr>
+
+                    <!--tr>
+                            <td>To pay of</td>
+                            <td colspan="4"><input type="text" name="dispatchDeliveryNoteNumber " placeholder="To pay of " [(ngModel)]="getData.dispatchDeliveryNoteNumber ">
+                            </td>
+                        </tr-->
+                    <tr>
+                        <td>From</td>
+                        <td colspan="4"> <input type="text" readonly name="dispatchSource " placeholder="Source" [(ngModel)]="getData.dispatchSource" value="{{getData.dispatchSource}}">
+                        </td>
+                        &nbsp;
+                        <td>To</td>
+                        <td colspan="4"> <input type="text" readonly name="to" placeholder="Destination " [(ngModel)]="getData.dispatchDestination" value="{{getData.dispatchDestination}}">
+                        </td>
+
+                    </tr>
+                    <tr>
+                        <td>Date </td>
+                        <td colspan="4"> <input type="date" readonly name="dispatchDate " placeholder="Date " [(ngModel)]="getData.dispatchDate" value="{{getData.dispatchDate}}">
+                        </td>
+                        &nbsp;
+                        <!--td>Dispatch From Customer</td>
+                            <td colspan="3"> <input type="text" name="dispatchCustomerForm " placeholder="Dispatch From Customer" [(ngModel)]="getData.dispatchCustomerForm ">
+                            </td-->
+
+                    </tr>
+                    <tr>
+                        <td>Dispatch from Customer</td>
+                        <td colspan="2">
+                            <div class="fileUpload btn btn-primary">
+                                <span>Upload</span>
+                                <!--input type="file" name="document" class="upload" (change)=" changeListener(event)" accept="image/*,.pdf,.doc,.docx," /-->
+                                <input type="file" name="dispatchCustomerForm" class="upload" placeholder="Upload file..." accept="image/*" (change)="changeListener1($event)" />
+                            </div>
+
+
+                        </td>
+                        <td colspan="2">
+                            <div *ngIf="this.src1!=null">
+                                <img [src]="this.src1" width="100px" style="border:1px solid #ccc;padding:10px">
+                            </div>
+                        </td>
+                    </tr>
+                </table>
+                <div style="text-align:right ">
+                    <button mat-raised-button type="submit" (click)="update()" color="primary" style="border-radius:4px ">Update</button>
+                </div>
+            </form>
+        </div>
+    </mat-card>
+</div>

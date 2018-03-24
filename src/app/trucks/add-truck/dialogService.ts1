@@ -1,0 +1,25 @@
+import { Component, Inject } from '@angular/core';
+import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
+import {  UserService,  } from '../../_services/index';
+import { Router } from '@angular/router';
+
+@Component({
+  selector: 'dialog-content',
+  templateUrl: 'dialogService.html'
+})
+export class DialogAddTruckComponent {
+  constructor(
+    public dialogRef: MatDialogRef<DialogAddTruckComponent>,
+   ) {
+     
+  }
+    
+  onNoClick(): void {
+    this.dialogRef.close();
+   
+  }
+
+  
+  }
+
+

@@ -1,0 +1,122 @@
+<div fxLayoutAlign="center center" style="margin:30px 0px">
+    <mat-card fxFlex="80%" fxFlex.xs="98%">
+
+        <div class="header">Add Order Details</div>
+        <div class="formex main-div">
+
+            <form #addOrderForm='ngForm'>
+                <table style="width:100%">
+                    <tr>
+                        <td>Customer Name</td>
+                        <!-- <td colspan="6"> <input type="text" name="orderCustomerName" placeholder="Customer Name" [(ngModel)]="model.orderCustomerName">
+                        </td> -->
+                        <td colspan="3">
+                            <select placeholder="Customer Name" required name="orderCustomerName" [(ngModel)]="model.orderCustomerName" required value="{{model.orderCustomerName}}">
+                                <option [value]="undefined" selected="selected">Select Customer </option>
+                                <option *ngFor="let customer of customers" value="{{customer.customerName}}">{{customer.customerName}}</option>
+                            </select>
+                            <!-- <div *ngIf="orderCustomerName.invalid && (orderCustomerName.dirty || orderCustomerName.touched)" class="alert alert-danger" style="color:red">
+                                <div *ngIf="orderCustomerName.errors.required">
+                                    Trip cost is required.
+                                </div>
+                            </div> -->
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Start Date</td>
+                        <td colspan="3">
+                            <input required type="date" required name="orderStartDate" placeholder="Order Start Date" [(ngModel)]="model.orderStartDate">
+                        </td>
+
+                        <td>End Date</td>
+                        <td colspan="3">
+                            <input type="date" disabled name="orderEndDate" placeholder="Order End Date" [(ngModel)]="model.orderEndDate">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Truck</td>
+                        <td colspan="3">
+                            <select placeholder="Truck Number" name="truckId" [(ngModel)]="getData.truckId" required value="{{getData.truckId}}">
+                                <option [value]="undefined" selected="selected">Select Truck Id </option>
+                                <option *ngFor="let getData of trucksData" value="{{getData.truckId}}">{{getData.truckId}}(123-567)</option>
+                            </select>
+                        </td>
+
+                        <td>Drivers</td>
+                        <td colspan="3">
+                            <select placeholder="Trailer Number" name="orderDriverFirstName" [(ngModel)]="getData.driverFirstName" required value="{{getData.driverFirstName}}">
+                                <option [value]="undefined" selected="selected">Select Driver </option>
+                                <option *ngFor="let getData of driversData" value="{{getData.driverFirstName}}">{{getData.driverFirstName}}</option>
+                            </select>
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td>Consignor</td>
+                        <td colspan="3">
+                            <input type="text" readonly name="orderConsignor" placeholder="Consignor" [(ngModel)]="model.orderConsignor" value="{{model.orderConsignor}}">
+                        </td>
+                        <td>Consignee</td>
+                        <td colspan="3">
+                            <input required type="text" name="orderConsignee" placeholder="Consignee" [(ngModel)]="model.orderConsignee">
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td>Trip Cost </td>
+                        <td colspan="1">
+                            <select required placeholder="Currency" name="Currency" [(ngModel)]="model.orderCurrency" required value="{{model.orderCurrency}}">
+                                <option [value]="undefined" selected="selected">Currency </option>
+                                <option value="USD">USD</option>
+                                <option value="ZMW">ZMW</option>
+                            </select>
+                        </td>
+                        <td colspan="2">
+                            <input type="text" class="form-control" required name="orderTripCost" #orderTripCost="ngModel" placeholder="Order Trip Cost"
+                                pattern="^\d+$" [(ngModel)]="model.orderTripCost">
+                            <div *ngIf="orderTripCost.invalid && (orderTripCost.dirty || orderTripCost.touched)" class="alert alert-danger" style="color:red">
+                                <div *ngIf="orderTripCost.errors.required">
+                                    Trip cost is required.
+                                </div>
+                                <div *ngIf="orderTripCost.errors.pattern">
+                                    Please enter integer value
+                                </div>
+                            </div>
+                        </td>
+
+                        <td>Order Status </td>
+                        <td colspan="3">
+                            <select name="couponStatus" [(ngModel)]="model.orderStatus" placeholder="Select Status">
+                                <option [value]="undefined" selected="selected">Select Status </option>
+                                <option *ngFor="let orderStatus of status" [value]="orderStatus">{{orderStatus}}</option>
+                            </select>
+
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Source </td>
+                        <td colspan="3">
+                            <input type="text" required name="orderSource" placeholder="Source" [(ngModel)]="model.orderSource">
+                        </td>
+
+                        <td>Destination </td>
+                        <td colspan="3">
+                            <input type="text" required name="orderDestination" placeholder="Destination" [(ngModel)]="model.orderDestination">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Description</td>
+                        <td colspan="6">
+                            <textarea rows="5" cols="20" name="orderDescription" placeholder="Order Description" [(ngModel)]="model.orderDescription">
+                            </textarea>
+                        </td>
+
+                    </tr>
+                </table>
+                <div style="text-align:right">
+                    <button mat-raised-button type="submit" (click)="submit()" [disabled]="!addOrderForm.form.valid"color="primary" style="border-radius:4px">Submit</button>
+                </div>
+            </form>
+        </div>
+    </mat-card>
+</div>

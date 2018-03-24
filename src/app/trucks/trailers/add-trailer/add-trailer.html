@@ -1,0 +1,116 @@
+<div fxLayoutAlign="center center" style="margin:30px 0px">
+    <mat-card fxFlex="85%" fxFlex.xs="98%">
+
+        <div class="header">Add Trailer Details</div>
+        <div class="formex main-div">
+
+            <form #trailerForm="ngForm">
+                <table style="width:100%">
+                    <tr>
+                        <td>Trailer No</td>
+                        <td>
+                            <input type="text" name="trailerNumber" placeholder="Trailer Number" [(ngModel)]="model.trailerNumber" #trailerNumber="ngModel"
+                                required pattern="[a-zA-Z0-9]+">
+                            <div *ngIf="trailerNumber.invalid && (trailerNumber.dirty || trailerNumber.touched)" class="alert alert-danger" style="color:red">
+
+                                <div *ngIf="trailerNumber.errors.required">
+                                    Trailer Reference is required.
+                                </div>
+                                <div *ngIf="trailerNumber.errors.pattern">
+                                    Trailer Reference should be of Letters and Numbers.
+                                </div>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Fitness</td>
+                        <td>
+                            <input type="text" onfocus="(this.type='date')" onblur="(this.type='text')" name="fitness" placeholder="fitness" [(ngModel)]="model.fitness">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Road Tax</td>
+                        <td>
+                            <input type="text" onfocus="(this.type='date')" onblur="(this.type='text')" name="roadTax" placeholder="Road Tax" [(ngModel)]="model.roadTax">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Identity</td>
+                        <td>
+                            <input type="text" onfocus="(this.type='date')" onblur="(this.type='text')" name="identity" placeholder="Identity" [(ngModel)]="model.identity">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Insurance</td>
+                        <td>
+                            <input type="text" onfocus="(this.type='date')" onblur="(this.type='text')" name="insurance" placeholder="Insurance" [(ngModel)]="model.insurance">
+                        </td>
+                    </tr>
+                    <!-- <tr>
+                        <td>Cross Border(Country) </td>
+                        <td>
+                            <select placeholder="Cross Border" name="crossborderCountry" [(ngModel)]="model.crossborderCountry" required>
+                                <option >Select Country</option>
+                                <option value="Malavi">Malavi</option>
+                                <option value="Zimbambwe">Zimbambwe</option>
+                            </select>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Cross Border Expiry </td>
+                        <td> <input type="text" onfocus="(this.type='date')" onblur="(this.type='text')" name="crossborderExpiry" placeholder="Cross Border Expiry" [(ngModel)]="model.crossborderExpiry">
+                        </td>
+                    </tr> -->
+                    <tr>
+                        <td>Comesa</td>
+                        <td>
+                            <input type="text" onfocus="(this.type='date')" onblur="(this.type='text')" name="orderSource" placeholder="Source" [(ngModel)]="model.orderSource">
+                        </td>
+                    </tr>
+                </table>
+                <div style="text-align:right">
+                    <button mat-raised-button type="submit" (click)="addTrailerAccessories()" color="accent" style="border-radius:4px">Add Accessories +</button>
+                </div>
+                <div *ngFor="let data of this.trailerAccessories;let i=index">
+                    <table>
+                        <tr>
+                            <!--td>Tyre Positions</td-->
+                            <td>
+                                <span>Tyre Positions</span>
+                                <input type="text" name="tyrePositions-{{i}}" placeholder="Tyre Positions" [(ngModel)]="data.tyrePositions"> </td>
+
+                            <!--td>Make</td-->
+                            <td>
+                                <span>Make</span>
+                                <input type="text" name="make-{{i}}" placeholder="Make" [(ngModel)]="data.make">
+                            </td>
+
+                            <!--td>Number</td-->
+                            <td>
+                                <span>Number</span>
+                                <input type="text" name="number-{{i}}" placeholder="Number" [(ngModel)]="data.number">
+                            </td>
+
+                            <!--td>Size</td-->
+                            <td>
+                                <span>Size</span>
+                                <input type="text" name="size-{{i}}" placeholder="Size" [(ngModel)]="data.size">
+                            </td>
+
+                            <!--td>Date Fitted</td-->
+                            <td>
+                                <span>Date Fitted</span>
+                                <input onfocus="(this.type='date')" onblur="(this.type='text')" type="text" name="dateFitted-{{i}}" placeholder="Date Fitted"
+                                    [(ngModel)]="data.dateFitted">
+                            </td>
+
+                        </tr>
+                    </table>
+                </div>
+                <div style="text-align:right;margin-top:10px">
+                    <button mat-raised-button type="submit" [disabled]="!trailerForm.form.valid" (click)="submit()" color="primary" style="border-radius:4px">Submit</button>
+                </div>
+            </form>
+        </div>
+    </mat-card>
+</div>

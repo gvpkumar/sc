@@ -1,0 +1,192 @@
+<div fxLayoutAlign="center center" style="margin:30px 0px;">
+    <mat-card fxFlex="90%" fxFlex.xs="95%">
+
+        <div class="header">Generate Coupon</div>
+
+        <div class="formex main-div">
+
+            <form #couponForm="ngForm">
+                <table style="width:100%">
+                    <tr>
+                        <td>Dispatch Trip Number </td>
+                        <td colspan="6">
+                            <select placeholder="Dispatch Trip Number" name="dispatchTripNumber" [(ngModel)]="getData.dispatchTripNumber" required value="{{getData.dispatchTripNumber}}"
+                                (change)="getDispatchDatabyId(getData.dispatchTripNumber)">
+                                <option [value]="undefined" selected="selected">Select Dispatch Trip Number </option>
+                                <option *ngFor="let getData of dispatchData" value="{{getData.dispatchTripNumber}}">{{getData.dispatchTripNumber}}</option>
+                            </select>
+
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Filling Station </td>
+                        <td colspan="6">
+                            <select name="couponFillingStation" [(ngModel)]="model.couponFillingStation" placeholder="Select Filling Station">
+                                <option [value]="undefined" selected="selected">--Select-- </option>
+                                <option *ngFor="let couponFillingStation of stations" [value]="couponFillingStation">{{couponFillingStation}}</option>
+                            </select>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Start Location</td>
+                        <td colspan="6">
+                            <input type="text" id="source" name="couponStartLocation" placeholder="Start Location" [(ngModel)]="this.data.dispatchSource"
+                                required value="{{this.data.dispatchSource}}">
+                        </td>
+                    </tr>
+                    <span *ngIf="this.showError" style="color:red;font-size:12px">{{errorMessage1}}</span>
+                    <tr>
+                        <td>End Location</td>
+                        <td colspan="5">
+                            <input type="text" id="destination" name="couponEndLocation " placeholder="End Location" [(ngModel)]="this.data.dispatchDestination"
+                                required value="{{this.data.dispatchDestination}}">
+                            <button mat-raised-button type="submit" color="accent" class="route-btn" value="Get Route" onclick="get_rout()">Get Route</button>
+                        </td>
+                    </tr>
+                    <span *ngIf="this.showError" style="color:red;font-size:12px">{{errorMessage2}}</span>
+                    <tr>
+                        <td>Distance in Kms</td>
+
+                        <td colspan="3">
+                            <input type="text" value="" class="distance">
+
+                            <td>Mileage in (Kms)</td>
+                            <td colspan="3">
+
+                                <select name="couponMileage" [(ngModel)]="model.couponMileage" (change)="onChange($event)" placeholder="Mileage in Kms">
+                                    <option [value]="undefined" selected="selected">--Select-- </option>
+                                    <option *ngFor="let kms of distanceValues" [value]="kms">{{kms}}</option>
+                                </select>
+
+                            </td>
+                    </tr>
+
+                    <tr>
+                        <td>Coupon Value</td>
+
+                        <td colspan="3">
+                            <input type="text" name="couponValue" placeholder="Coupon Value" [(ngModel)]="model.couponValue" value="{{couponValue}}">
+                        </td>
+                        <td>Coupon Date</td>
+
+                        <td colspan="3">
+                            <input type="date" name="couponDate" placeholder="Coupon Date" [(ngModel)]="model.couponDate" value="{{couponDate}}">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Opening Meter</td>
+                        <td colspan="3">
+                            <input type="text" pattern="^\d+$" name="couponOpeningMeter" placeholder="Opening Meter" [(ngModel)]="model.couponOpeningMeter"
+                                required #couponOpeningMeter="ngModel">
+
+                        </td>
+
+                        <td>Closing Meter</td>
+                        <td colspan="3">
+                            <input type="text" pattern="^\d+$" name="couponClosingMeter" placeholder="Closing Meter" [(ngModel)]="model.couponClosingMeter"
+                                #couponClosingMeter="ngModel" required>
+
+                        </td>
+
+                    </tr>
+                    <tr>
+                        <td></td>
+                        <td colspan="3">
+                            <div *ngIf="couponOpeningMeter.invalid && (couponOpeningMeter.dirty || couponOpeningMeter.touched)" class="alert alert-danger"
+                                style="color:red;">
+
+                                <div *ngIf="couponOpeningMeter.errors.required">
+                                    Opening Meter is required.
+                                </div>
+                                <div *ngIf="couponOpeningMeter.errors.pattern">
+                                    Opening Meter should be number.
+                                </div>
+                            </div>
+                        </td>
+                        <td></td>
+                        <td colspan="3">
+                            <div *ngIf="couponClosingMeter.invalid && (couponClosingMeter.dirty || couponClosingMeter.touched)" class="alert alert-danger"
+                                style="color:red">
+
+                                <div *ngIf="couponClosingMeter.errors.required">
+                                    Closing Meter is required.
+                                </div>
+                                <div *ngIf="couponClosingMeter.errors.pattern">
+                                    Closing Meter should be number.
+                                </div>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Issued by</td>
+                        <td colspan="3">
+                            <input type="text" name="couponIssuedBy" readonly placeholder="Issed By" [(ngModel)]="model.couponIssuedBy" value="{{this.currentUserData}}">
+                        </td>
+
+                        <td>Requested by(Driver)</td>
+                        <td colspan="3">
+                            <input type="text" name="couponRequestedBy" placeholder="Requested By" [(ngModel)]="model.couponRequestedBy" readonly value="{{this.data.dispatchDriverFirstname}}">
+
+                    </tr>
+
+                    <tr>
+                        <td>Approved by</td>
+                        <td colspan="6">
+                            <input type="text" name="couponApprovedBy" placeholder="Approved By" [(ngModel)]="model.couponApprovedBy">
+
+                    </tr>
+                    <tr>
+                        <td>Select Truck Information</td>
+                        <td colspan="3">
+                            <input type="text" name="couponHorseNumber" placeholder="Issed By" [(ngModel)]="model.couponHorseNumber" readonly value="{{this.data.dispatchHorseNumber}}">
+                        </td>
+
+                        <td>Status</td>
+                        <td colspan="3">
+                            <select name="couponStatus" [(ngModel)]="model.couponStatus" placeholder="Select Status">
+                                <option [value]="undefined" selected="selected">Select Status </option>
+                                <option *ngFor="let couponStatus of status" [value]="couponStatus">{{couponStatus}}</option>
+                            </select>
+                        </td>
+
+                    </tr>
+                </table>
+                <div style="text-align:right">
+                    <button mat-raised-button type="submit" [disabled]="!couponForm.form.valid" (click)="submit()" color="primary" style="border-radius:4px">Generate</button>
+                </div>
+            </form>
+
+
+        </div>
+
+        <!--form class="form-inline" action="">
+                <div class="form-group">
+                    <label for="email">Source:</label>
+                    <input type="text" class="form-control" id="source" value="New Delhi, Delhi, India">
+                </div>
+                <div class="form-group">
+                    <label for="pwd">Destination:</label>
+                    <input type="text" class="form-control" id="destination" value="Delhi Cantt, New Delhi, Delhi, India">
+                </div>
+
+                <button type="button" value="Get Route" onclick="get_rout()">Get Rout & Distance</button>
+
+                <div class="form-group">
+                    <label for="pwd">Distance in km :</label>
+                    <input type="text" class="form-control distance" readonly>
+                </div>
+            </form-->
+
+        <div class="row">
+            <br />
+            <br />
+            <!--div class='col-md-6' id='maplocation' style="height: 450px;"></div>
+                <div class='col-md-6' id='panallocation' style="width: 500px; height: 500px"></div-->
+            <div style="height: 450px;" id='maplocation'></div>
+            <div id='panallocation'></div>
+
+        </div>
+
+    </mat-card>
+
+</div>

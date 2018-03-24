@@ -1,0 +1,62 @@
+.cargo-table .mat-header-row,
+.mat-row {
+    display: flex;
+    border-bottom-width: 1px;
+    border-bottom-style: solid;
+    align-items: center;
+    min-height: 48px;
+    padding: 0 10px;
+}
+
+.cargo-table .mat-cell {
+    font-size: 12px;
+}
+
+.example-container {
+    display: flex;
+    flex-direction: column;
+    min-width: 300px;
+}
+
+.mat-table {
+    overflow: auto;
+    max-height: 500px;
+}
+
+.icons-delete {
+    padding: 0px;
+    min-width: 40px;
+    background-color: #d9534f;
+    color: #fff;
+    .mat-icon {
+        font-size: 16px;
+        height: 18px;
+        width: 24px;
+    }
+}
+
+.icons-edit {
+    padding: 0px;
+    min-width: 40px;
+    background-color: #3F51B5;
+    color: #fff;
+    .mat-icon {
+        font-size: 16px;
+        height: 18px;
+        width: 24px;
+    }
+}
+
+a {
+    text-decoration: none;
+}
+
+select {
+        padding: 6px 15px;
+        margin: 4px 0;
+        margin-right: 5px;
+        display: inline-block;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        box-sizing: border-box;
+    }

@@ -1,0 +1,98 @@
+<div class="mat-elevation-z8" fxFlex="98%" fxFlex.xs="98%" style="margin:2em 10px">
+    <div align="end" style="padding:0px 10px;">
+            <select placeholder="" name="dispatchStatus" (change)="onStatusChange(dispatchStatus)" [(ngModel)]="dispatchStatus" required value="{{dispatchStatus}}">
+                <option *ngFor="let status of statusList" value="{{status}}">{{status}}</option>
+            </select>
+        <b>Search :</b>
+        <mat-form-field class="inputline">
+            <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Enter your text..">
+        </mat-form-field>
+    </div>
+    <mat-table #table [dataSource]="dataSource">
+
+        <!-- Position Column -->
+        <!--ng-container matColumnDef="position">
+            <mat-header-cell *matHeaderCellDef> No. </mat-header-cell>
+            <mat-cell *matCellDef="let element"> {{element.position}} </mat-cell>
+        </ng-container-->
+        <ng-container matColumnDef="customColumn1">
+            <mat-header-cell *matHeaderCellDef class="table-header">S.No </mat-header-cell>
+            <mat-cell *matCellDef="let row; let i = index;">
+                <div *ngIf="!pageEvent"> {{i+1}}</div>
+                <div *ngIf="pageEvent"> {{5*(pageEvent.pageIndex)+i+1}}</div>
+            </mat-cell>
+        </ng-container>
+        <!-- Name Column -->
+
+
+        <ng-container matColumnDef="dispatchTripNumber">
+            <mat-header-cell *matHeaderCellDef>Dispatch Id </mat-header-cell>
+            <mat-cell *matCellDef="let element"> {{element.dispatchTripNumber}} </mat-cell>
+        </ng-container>
+        <ng-container matColumnDef="dispatchDeliveryNoteNumber">
+            <mat-header-cell *matHeaderCellDef>Delivery No </mat-header-cell>
+            <mat-cell *matCellDef="let element"> {{element.dispatchDeliveryNoteNumber}} </mat-cell>
+        </ng-container>
+        <!-- Color Column -->
+        <ng-container matColumnDef="dispatchWeight">
+            <mat-header-cell *matHeaderCellDef> Weight </mat-header-cell>
+            <mat-cell *matCellDef="let element"> {{element.dispatchWeight}} </mat-cell>
+        </ng-container>
+        <ng-container matColumnDef="dispatchDate">
+            <mat-header-cell *matHeaderCellDef> Date </mat-header-cell>
+            <mat-cell *matCellDef="let element"> {{element.dispatchDate | date}} </mat-cell>
+        </ng-container>
+        <ng-container matColumnDef="dispatchOrderId">
+            <mat-header-cell *matHeaderCellDef> Order Id </mat-header-cell>
+            <mat-cell *matCellDef="let element"> {{element.dispatchOrderId}} </mat-cell>
+        </ng-container>
+        <!-- Color Column -->
+
+        <ng-container matColumnDef="dispatchConsignee">
+            <mat-header-cell *matHeaderCellDef> Consignee </mat-header-cell>
+            <mat-cell *matCellDef="let element"> {{element.dispatchConsignee}} </mat-cell>
+        </ng-container>
+        <ng-container matColumnDef="truckNumber">
+            <mat-header-cell *matHeaderCellDef> Truck Number </mat-header-cell>
+            <mat-cell *matCellDef="let element"> {{element.truckNumber}} </mat-cell>
+        </ng-container>
+        <!-- Color Column -->
+        <ng-container matColumnDef="dispatchDeliveryDate">
+            <mat-header-cell *matHeaderCellDef> Delivery Date </mat-header-cell>
+            <mat-cell *matCellDef="let element"> {{element.dispatchDeliveryDate | date}} </mat-cell>
+        </ng-container>
+        <ng-container matColumnDef="dispatchHorseNumber">
+            <mat-header-cell *matHeaderCellDef> Truck number </mat-header-cell>
+            <mat-cell *matCellDef="let element"> {{element.dispatchHorseNumber}} </mat-cell>
+        </ng-container>
+        <!-- Color Column -->
+        <ng-container matColumnDef="dispatchDriverFirstname">
+            <mat-header-cell *matHeaderCellDef> Driver Name </mat-header-cell>
+            <mat-cell *matCellDef="let element"> {{element.dispatchDriverFirstname}} </mat-cell>
+        </ng-container>
+        <ng-container matColumnDef="dispatchSource">
+            <mat-header-cell *matHeaderCellDef> From </mat-header-cell>
+            <mat-cell *matCellDef="let element"> {{element.dispatchSource}} </mat-cell>
+        </ng-container>
+        <!-- Color Column -->
+        <ng-container matColumnDef="dispatchDestination">
+            <mat-header-cell *matHeaderCellDef> To </mat-header-cell>
+            <mat-cell *matCellDef="let element"> {{element.dispatchDestination}} </mat-cell>
+        </ng-container>
+
+        <ng-container matColumnDef="edit">
+            <mat-header-cell *matHeaderCellDef> </mat-header-cell>
+            <mat-cell *matCellDef="let element">
+                <a [routerLink]="['/edit-dispatch-details',element.dispatchTripNumber]">
+                    <button mat-raised-button class="icons-edit"> <mat-icon class="icons"> mode_edit</mat-icon>
+                         </button> </a>
+                <button mat-raised-button class="icons-delete"> <mat-icon mat-light (click)="openDialog(element.dispatchTripNumber)" class="icons"> delete</mat-icon></button>
+            </mat-cell>
+        </ng-container>
+        <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+        <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+    </mat-table>
+
+    <mat-paginator #paginator (page)="pageEvent = $event" [pageSize]="5" [pageSizeOptions]="[5, 10, 20]">
+    </mat-paginator>
+</div>

@@ -1,0 +1,8 @@
+<div fxLayout="column">
+    <p>Do you want to delete Trailer Number : <span style="color:red">{{data.id}}</span> ?</p>
+    <span fxFlex></span>
+    <div fxLayout="row" fxLayoutGap="10px">
+        <button mat-raised-button style="background-color:#777;color:#fff" (click)="onNoClick()">Cancel</button>
+        <button mat-raised-button color="primary" (click)="closeDialog(data.id)">Ok</button>
+    </div>
+</div>

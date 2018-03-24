@@ -1,0 +1,99 @@
+.formex {
+  input[type=text],
+  textarea,
+  input[type=date] {
+    width: 100%;
+    padding: 6px 15px;
+    margin: 4px 0;
+    margin-right: 5px;
+    display: inline-block;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+  }
+  input[type=submit] {
+    width: 15%;
+    background-color: #074E72;
+    color: white;
+    padding: 8px 15px; //  margin: 8px 30px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+  input[type=submit]:hover {
+    background-color: #074E72;
+    width: 15%;
+  }
+}
+
+.main-div {
+  border-radius: 5px; // background-color: #f1f1f1;
+  padding: 20px;
+}
+
+.mat-card {
+  padding: 0px;
+}
+
+.header {
+  background-color: #676464;
+  padding: 10px 20px;
+  color: #fff;
+}
+
+.route-btn {
+  border-radius: 4px;
+  background-color: green;
+  min-width: 80px;
+  line-height: 30px;
+  padding: 0 8px;
+  font-size: 12px;
+}
+
+.print-btn {
+  min-width: 60px;
+  padding: 0 6px;
+  line-height: 25px;
+  background: rgb(6, 59, 158);
+  color: #fff;
+  font-size: 11px;
+  border-radius: 6px;
+}
+
+a {
+  text-decoration: none;
+}
+
+.icons-delete {
+  padding: 0px;
+  min-width: 40px;
+  background-color: #d9534f;
+  color: #fff;
+  .mat-icon {
+    font-size: 16px;
+    height: 18px;
+    width: 24px;
+  }
+}
+
+.icons-edit {
+  padding: 0px;
+  min-width: 40px;
+  background-color: #3F51B5;
+  color: #fff;
+  .mat-icon {
+    font-size: 16px;
+    height: 18px;
+    width: 24px;
+  }
+}
+
+select {
+    padding: 6px 15px;
+    margin: 4px 0;
+    margin-right: 5px;
+    display: inline-block;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+}

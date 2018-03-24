@@ -1,0 +1,90 @@
+<div fxLayoutAlign="center center" style="margin:30px 0px">
+    <mat-card fxFlex="80%" fxFlex.xs="98%">
+
+        <div class="header">Add Cargo Details</div>
+        <div class="formex main-div">
+
+            <form>
+                <table style="width:100%">
+                    <tr>
+                        <td>grNumber</td>
+                        <td colspan="3"> <input type="text" name="cargoGrnumber" placeholder="Cargo grNumber" [(ngModel)]="model.cargoGrnumber">
+                        </td>
+
+                        <td>Truck Number</td>
+                        <td colspan="3"> <input type="text" name="cargoTrucknumber" placeholder="Cargo Truck Number" [(ngModel)]="model.cargoTrucknumber">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Driver Name</td>
+                        <td colspan="3"> <input type="text" name="cargoDrivername" placeholder="Cargo Driver Name" [(ngModel)]="model.cargoDrivername">
+                        </td>
+
+                        <td>No. of Articles</td>
+                        <td colspan="3"> <input type="text" name="cargoNoofarticles" placeholder="Cargo No. of Articles" [(ngModel)]="model.cargoNoofarticles">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Description</td>
+                        <td colspan="6"> <textarea rows="5" cols="20" name="orderDescription" placeholder="Order Descrition" [(ngModel)]="model.orderDescription">
+                            </textarea>
+
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Weight</td>
+                        <td colspan="3"> <input type="text" name="cargoWeight" placeholder="Cargo Weight" [(ngModel)]="model.cargoWeight">
+                        </td>
+
+                        <td>Rate</td>
+                        <td colspan="3"> <input type="text" name="cargoRate" placeholder="Cargo Rate" [(ngModel)]="model.cargoRate">
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td>Consignor</td>
+                        <td colspan="3"> <input type="text" name="orderConsignor" placeholder="Cargo Consignor" [(ngModel)]="model.orderConsignor">
+                        </td>
+                        <td>Consignor Address</td>
+                        <td colspan="3"> <input type="text" name="cargoConsignoraddress" placeholder="consignee" [(ngModel)]="model.cargoConsignoraddress">
+                        </td>
+
+
+                    </tr>
+                    <tr>
+                        <td>Consignee</td>
+                        <td colspan="3"> <input type="text" name="orderConsignee" placeholder="consignee" [(ngModel)]="model.orderConsignee">
+                        </td>
+                        <td>Consignee Address</td>
+                        <td colspan="3"> <input type="text" name="cargoConsigneeaddress" placeholder="consignee" [(ngModel)]="model.cargoConsigneeaddress">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Place From </td>
+                        <td colspan="3"> <input type="text" name="cargoPlacefrom" placeholder="Cargo Place From" [(ngModel)]="model.cargoPlacefrom">
+                        </td>
+
+                        <td>To Place </td>
+                        <td colspan="3"> <input type="text" name="cargoToplace" placeholder="Cargo To Place" [(ngModel)]="model.cargoToplace">
+                        </td>
+                    </tr>
+
+                    <tr>
+
+                        <td>Date</td>
+                        <td colspan="3"> <input type="date" name="cargoTodaydate" placeholder="Cargo Todaydate" [(ngModel)]="model.cargoTodaydate">
+                        </td>
+
+                        <td> To Pay</td>
+                        <td colspan="3"> <input type="text" name="cargoTopay" placeholder="Cargo To Pay" [(ngModel)]="model.cargoTopay">
+                        </td>
+
+                    </tr>
+                </table>
+                <div style="text-align:right">
+                    <button mat-raised-button type="submit" (click)="submit()" color="primary" style="border-radius:4px">Submit</button>
+                </div>
+            </form>
+        </div>
+    </mat-card>
+</div>

@@ -1,0 +1,134 @@
+<div fxLayoutAlign="center center" style="margin:30px 0px">
+    <mat-card fxFlex="80%" fxFlex.xs="98%">
+
+        <div class="header">Edit Driver Details</div>
+        <div class="formex main-div">
+
+            <form>
+                <table style="width:100%">
+                    <tr>
+                        <td colspan="2">Driver Id</td>
+                        <td colspan="6"> <input type="text" pattern="[a-zA-Z0-9]+" name="driverId" readonly placeholder="Driver Details Id" [(ngModel)]="getData.driverId" value="{{getData.driverId}}"></td>
+                    </tr>
+                    <tr>
+                        <td colspan="2"> Firstname</td>
+                        <td colspan="2"> <input type="text" name="driverFirstName" placeholder="First Name" [(ngModel)]="getData.driverFirstName" value="{{getData.driverFirstName}}"></td>
+                        &nbsp;&nbsp;
+                        <td colspan="2">Last Name</td>
+                        <td colspan="2"> <input type="text" name="driverLastName" placeholder="Last Name" [(ngModel)]="getData.driverLastName" value="{{getData.driverLastName}}">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td colspan="2">NRC No</td>
+                        <td colspan="2"> <input type="text" name="driverNrcNumber" placeholder="NRC No" [(ngModel)]="getData.driverNrcNumber" style="margin-right:5px" value="{{getData.driverNrcNumber}}">
+                        </td>
+                        &nbsp;&nbsp;
+                        <td colspan="2">Passport</td>
+                        <td colspan="2"> <input type="text" name="driverPassport" placeholder="Passport" [(ngModel)]="getData.driverPassport" value="{{getData.driverPassport}}">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td colspan="2">Contact Number</td>
+                        <td colspan="2"> <input type="text" name="driverContactNumber" placeholder="Contact Number" [(ngModel)]="getData.driverContactNumber" value="{{getData.driverContactNumber}}">
+                        </td>
+                        &nbsp;&nbsp;
+                        <td colspan="2">Alter Native Phone Number</td>
+                        <td colspan="2"> <input type="text" name="driverAlternateContact" placeholder="Alter Native Phone Number" [(ngModel)]="getData.driverAlternateContact" value="{{getData.driverAlternateContact}}">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td colspan="2">License Number</td>
+                        <td colspan="2"> <input type="text" name="driverLicenseNumber" placeholder="License Number" [(ngModel)]="getData.driverLicenseNumber" value="{{getData.driverLicenseNumber}}">
+                        </td>
+                        &nbsp;&nbsp;
+                        <td colspan="2">License Expiry</td>
+                        <td colspan="2"> <input type="date" name="driverLicenseExpiry" placeholder="License Expiry" [(ngModel)]="getData.driverLicenseExpiry" value="{{getData.driverLicenseExpiry}}">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td colspan="2">Address</td>
+                        <td colspan="6"> <textarea type="text" rows="5" cols="30" name="driverAddress" placeholder="Address" [(ngModel)]="getData.driverAddress" value="{{getData.driverAddress}}"></textarea>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td colspan="2">Date of Joining</td>
+                        <td colspan="6"> <input type="date" name="driverDateOfJoining" placeholder="Date of Joining" [(ngModel)]="getData.driverDateOfJoining" value="{{getData.driverDateOfJoining}}">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td colspan="2">Accident History</td>
+                        <td colspan="6"> <input type="text" name="driverAccidentHistory" placeholder="Accident History" [(ngModel)]="getData.driverAccidentHistory" value="{{getData.driverAccidentHistory}}">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td colspan="2">Driver work suite</td>
+                        <td colspan="6"> <input type="date" name="driverWorksuiteDate" placeholder="Driver work suite" [(ngModel)]="getData.driverWorksuiteDate" value="{{getData.driverWorksuiteDate}}">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td colspan="2">Date of Birth</td>
+                        <td colspan="6"> <input type="date" name="driverDateOfBirth" placeholder="Date of Birth" [(ngModel)]="getData.driverDateOfBirth" value="{{getData.driverDateOfBirth}}">
+                        </td>
+                    </tr>
+
+                    <!--tr>
+                        <td colspan="2">Attachments</td>
+                        <td colspan="6">
+                            <div fxLayout="row">
+                                <div class="fileUpload btn btn-primary">
+                                    <span>Select File</span>
+                                    <input type="file" name="driverAttachments" class="upload" placeholder="Upload file..." accept="image/*" (change)="changeListener1($event)" value="{{getData.driverId}}" />
+                                </div>
+                                <span style="font-size:14px;padding-top:20px"> Choose file to upload</span>
+                                <span style="font-size:14px;padding-top:20px" *ngIf="this.filename1!=''">{{this.filename1}}</span>
+                            </div>
+                        </td>
+                    </tr-->
+                    <tr>
+                        <td colspan="2">Driver Attachment</td>
+                        <td colspan="3">
+
+                            <div>
+                                <div class="fileUpload btn btn-primary">
+                                    <span>Upload</span>
+                                    <input type="file" name="driverAttachments" class="upload" placeholder="Upload file..." accept="image/*" (change)="changeListener1($event)" />
+                                </div>
+
+                            </div>
+
+                        </td>
+                        <td colspan="3">
+                            <div>
+                                <img [src]="this.src1" width="150px" style="border:1px solid #ccc;padding:10px">
+                            </div>
+                        </td>
+
+                    </tr>
+                    <tr>
+                        <td colspan="2">Driver Photo</td>
+                        <td colspan="3">
+
+                            <div>
+                                <div class="fileUpload btn btn-primary">
+                                    <span>Upload</span>
+                                    <input type="file" name="driverPhoto" class="upload" placeholder="Upload file..." accept="image/*" (change)="changeListener2($event)" />
+                                </div>
+
+                            </div>
+
+                        </td>
+                        <td colspan="3">
+                            <div>
+                                <img [src]="this.src2" width="150px" style="border:1px solid #ccc;padding:10px">
+                            </div>
+                        </td>
+
+                    </tr>
+                </table>
+                <div style="text-align:right">
+                    <button mat-raised-button type="submit" (click)="update()" color="primary" style="border-radius:4px">Update</button>
+                </div>
+            </form>
+        </div>
+    </mat-card>
+</div>

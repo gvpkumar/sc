@@ -1,0 +1,1 @@
+﻿export {LoginDetails} from './user';

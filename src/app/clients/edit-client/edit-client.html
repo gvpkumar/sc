@@ -1,0 +1,44 @@
+<div fxLayoutAlign="center center" style="margin-top:30px;">
+    <mat-card fxFlex="70%" fxFlex.xs="98%">
+
+        <div class="header">Edit Customer Details</div>
+        <div class="formex main-div">
+
+            <form>
+                <table style="width:100%">
+
+                    <tr>
+                        <td>Customer Name</td>
+                        <td colspan="4"> <input type="text" readonly name="customerName" placeholder="Customer Name" [(ngModel)]="getData.customerName" value="{{getData.customerName}}">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Contact Number</td>
+                        <td colspan="4"> <input type="text" name="customerPhone" placeholder="Contact Number" [(ngModel)]="getData.customerPhone" value="{{getData.customerPhone}}">
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td>Address</td>
+                        <td colspan="4"> <textarea type="text" rows="5" cols="30" name="customerAddress" placeholder="Address" [(ngModel)]="getData.customerAddress" value="{{getData.customerAddress}}"></textarea>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Customer Type</td>
+                        <td colspan="4"> <input type="text" name="customerType" placeholder="Customer Type" [(ngModel)]="getData.customerType" value="{{getData.customerType}}">
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td>Contact Name</td>
+                        <td colspan="4"> <textarea type="text" rows="5" cols="30" name="customerContactName" placeholder="Contact Name" [(ngModel)]="getData.customerContactName" value="{{getData.customerContactName}}"></textarea>
+                        </td>
+                    </tr>
+                </table>
+                <div style="text-align:right">
+                    <button mat-raised-button type="submit" (click)="update()" color="primary" style="border-radius:4px">Update</button>
+                </div>
+            </form>
+        </div>
+    </mat-card>
+</div>

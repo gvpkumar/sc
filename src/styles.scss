@@ -1,0 +1,173 @@
+/* You can add global styles to this file, and also import other style files */
+
+@import '~@angular/material/prebuilt-themes/indigo-pink.css';
+* {
+    // font-family: 'PT Sans', sans-serif;
+    font-family: 'open sans', sans-serif;
+}
+
+//sidenav scrolllbar
+html,
+body {
+    min-height: 100%;
+    height: 100%;
+    //height: auto !important;
+    line-height: normal;
+    -webkit-tap-highlight-color: transparent;
+    -webkit-touch-callout: none;
+    -webkit-text-size-adjust: 100%;
+    -ms-text-size-adjust: 100%;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    margin: 0px;
+    padding: 0px;
+    font-size: 14px;
+}
+
+.icons-delete {
+    padding: 0px;
+    min-width: 40px;
+    background-color: #d9534f;
+    color: #fff;
+    .mat-icon {
+        font-size: 16px;
+        height: 18px;
+        width: 24px;
+    }
+}
+
+.icons-edit {
+    padding: 0px;
+    min-width: 40px;
+    background-color: #3F51B5;
+    color: #fff;
+    .mat-icon {
+        font-size: 16px;
+        height: 18px;
+        width: 24px;
+    }
+}
+
+mat-sidenav-container {
+    height: 100%;
+}
+
+mat-sidenav {
+    width: 15%;
+    background-color: #ccc;
+}
+
+.inputline .mat-form-field-placeholder {
+    font-size: 12px;
+}
+
+.inputline .mat-form-field-infix {
+    padding: 3px;
+}
+
+.conveters-card {
+    width: 94%;
+    height: auto;
+    margin: 0px 10px 5px 5px;
+    background: #fff;
+    padding: 0;
+    margin: auto;
+}
+
+.conveters-card-title {
+    font-size: 18px;
+    color: #4c4c4c;
+    font-weight: bold;
+    vertical-align: middle;
+    background-color: #eeeeee;
+}
+
+.header {
+    align-items: center;
+    padding: 10px;
+    font-size: 18px;
+}
+
+mat-dialog-container {
+    border-radius: 8px;
+}
+
+.toolbar {
+    background-color: #00838f;
+    color: #fff;
+    display: fixed;
+}
+
+:host {
+    display: block;
+}
+
+.login-header {
+    // background: #EF7D00;
+    background: #666666;
+    padding: 10px;
+    margin: auto;
+    h1 {
+        color: #fff;
+        font-size: 22px;
+        text-align: center;
+    }
+}
+
+.login-content {
+    padding: 20px;
+    mat-input-container {
+        width: 100%;
+        margin: 2px 0;
+    }
+    .extra-options {
+        // margin: 16px 0 32px;
+        .remember-me {
+            color: #777;
+        }
+    }
+    a {
+        text-decoration: none;
+        color: #2196F3;
+        &:hover {
+            text-decoration: underline;
+        }
+    }
+    .note {
+        color: #fff;
+        margin: 15px 0 20px;
+        text-align: center;
+        background-color: #000;
+    }
+}
+
+@media (min-width:300px) and (max-width:768px) {
+    mat-sidenav {
+        width: 60%;
+        background-color: #ccc;
+    }
+    .formex {
+        div {
+            margin: 10px 0px;
+        }
+        input[type=text] {
+            padding: 8px 20px;
+            margin: 6px 0;
+        }
+        select {
+            width: 40%;
+            padding: 10px auto;
+            margin: 8px 0;
+            display: inline-block;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
+        input[type=submit] {
+            padding: 14px 20px;
+        }
+        input[type=date] {
+            padding: 10px;
+        }
+    }
+}

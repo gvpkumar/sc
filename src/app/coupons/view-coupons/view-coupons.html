@@ -1,0 +1,80 @@
+<div class="mat-elevation-z8" fxFlex="99%" fxFlex.xs="99%" style="margin:2em 1px">
+    <div align="end" style="padding:0px 10px;">
+        <select placeholder="" name="couponStatus" (change)="onStatusChange(couponStatus)" [(ngModel)]="couponStatus" required
+            value="{{couponStatus}}">
+            <option *ngFor="let status of statusList" value="{{status}}">{{status}}</option>
+        </select>
+        <b>Search :</b>
+        <mat-form-field class="inputline">
+            <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Enter here..">
+        </mat-form-field>
+    </div>
+    <mat-table #table [dataSource]="dataSource">
+
+        <!-- Position Column -->
+        <!--ng-container matColumnDef="position">
+            <mat-header-cell *matHeaderCellDef> No. </mat-header-cell>
+            <mat-cell *matCellDef="let element"> {{element.position}} </mat-cell>
+        </ng-container-->
+        <ng-container matColumnDef="customColumn1">
+            <mat-header-cell *matHeaderCellDef class="table-header" fxFlex="5%">S.NO </mat-header-cell>
+            <mat-cell *matCellDef="let row; let i = index;" fxFlex="5%">
+                <div *ngIf="!pageEvent"> {{i+1}}</div>
+                <div *ngIf="pageEvent"> {{5*(pageEvent.pageIndex)+i+1}}</div>
+            </mat-cell>
+        </ng-container>
+        <!-- Name Column -->
+        <ng-container matColumnDef="dispatchTripNumber">
+            <mat-header-cell *matHeaderCellDef fxFlex="8%"> Dispatch No </mat-header-cell>
+            <mat-cell *matCellDef="let element" fxFlex="8%"> {{element.dispatchTripNumber}} </mat-cell>
+        </ng-container>
+        <ng-container matColumnDef="couponStartLocation">
+            <mat-header-cell *matHeaderCellDef fxFlex="15%"> Start Location </mat-header-cell>
+            <mat-cell *matCellDef="let element" fxFlex="15%"> {{element.couponStartLocation}} </mat-cell>
+        </ng-container>
+
+        <!-- Weight Column -->
+        <ng-container matColumnDef="couponEndLocation">
+            <mat-header-cell *matHeaderCellDef fxFlex="15%"> End Location </mat-header-cell>
+            <mat-cell *matCellDef="let element" fxFlex="15%"> {{element.couponEndLocation}} </mat-cell>
+        </ng-container>
+
+        <!-- Color Column -->
+        <ng-container matColumnDef="couponValue">
+            <mat-header-cell *matHeaderCellDef fxFlex="25%"> Coupon Value </mat-header-cell>
+            <mat-cell *matCellDef="let element" fxFlex="25%" style="padding-right:10px"> {{element.couponValue}} </mat-cell>
+        </ng-container>
+        <ng-container matColumnDef="couponRequestedBy">
+            <mat-header-cell *matHeaderCellDef fxFlex="12%">Requested By </mat-header-cell>
+            <mat-cell *matCellDef="let element" fxFlex="12%"> {{element.couponRequestedBy}} </mat-cell>
+        </ng-container>
+        <ng-container matColumnDef="couponApprovedBy">
+            <mat-header-cell *matHeaderCellDef fxFlex="12%">Approved By </mat-header-cell>
+            <mat-cell *matCellDef="let element" fxFlex="12%"> {{element.couponApprovedBy}} </mat-cell>
+        </ng-container>
+        <ng-container matColumnDef="couponIssuedBy">
+            <mat-header-cell *matHeaderCellDef fxFlex="10%">Issued By </mat-header-cell>
+            <mat-cell *matCellDef="let element" fxFlex="10%"> {{element.couponIssuedBy}} </mat-cell>
+        </ng-container>
+        <ng-container matColumnDef="couponOpeningMeter">
+            <mat-header-cell *matHeaderCellDef fxFlex="10%">Opening Meter </mat-header-cell>
+            <mat-cell *matCellDef="let element" fxFlex="10%"> {{element.couponOpeningMeter}} </mat-cell>
+        </ng-container>
+        <ng-container matColumnDef="couponClosingMeter">
+            <mat-header-cell *matHeaderCellDef fxFlex="10%">Closing meter </mat-header-cell>
+            <mat-cell *matCellDef="let element" fxFlex="10%"> {{element.couponClosingMeter}} </mat-cell>
+        </ng-container>
+        <ng-container matColumnDef="print">
+            <mat-header-cell *matHeaderCellDef fxFlex="7%"> </mat-header-cell>
+            <mat-cell *matCellDef="let element" fxFlex="7%">
+                <button (click)="print(element.couponId)" mat-raised-button class="print-btn">Print</button>
+                <!--button mat-raised-button class="icons-delete"> <mat-icon mat-light (click)="openDialog(element.couponId)" > delete</mat-icon></button-->
+            </mat-cell>
+        </ng-container>
+        <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+        <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+    </mat-table>
+
+    <mat-paginator #paginator (page)="pageEvent = $event" [pageSize]="5" [pageSizeOptions]="[5, 10, 20]">
+    </mat-paginator>
+</div>

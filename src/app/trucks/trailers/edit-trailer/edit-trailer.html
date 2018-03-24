@@ -1,0 +1,97 @@
+<div fxLayoutAlign="center center" style="margin:30px 0px">
+    <mat-card fxFlex="85%" fxFlex.xs="98%">
+
+        <div class="header">Edit Trailer Details</div>
+        <div class="formex main-div">
+
+            <form>
+                <table style="width:100%">
+                    <tr>
+                        <td>Trailer No</td>
+                        <td> <input type="text" name="trailerNumber" placeholder="Horse Number" [(ngModel)]="getData.trailerNumber" value="{{getData.trailerNumber}}" readonly>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Fitness</td>
+                        <td> <input type="date" name="fitness" placeholder="fitness" [(ngModel)]="getData.fitness" value="{{getData.fitness}}">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Road Tax</td>
+                        <td> <input type="date" name="roadTax" placeholder="Road Tax" [(ngModel)]="getData.roadTax" value="{{getData.roadTax}}">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Identity</td>
+                        <td> <input type="date" name="identity" placeholder="Identity" [(ngModel)]="getData.identity" value="{{getData.identity}}">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Insurance</td>
+                        <td> <input type="date" name="insurance" placeholder="Insurance" [(ngModel)]="getData.insurance" value="{{getData.insurance}}">
+                        </td>
+                    </tr>
+                    <!-- <tr>
+                        <td>Cross Border(Country) </td>
+                        <td>
+                            <select placeholder="Cross Border" name="crossborderCountry" [(ngModel)]="getData.crossborderCountry" required value="{{getData.crossborderCountry}}">
+                                <option value="Malavi">Malavi</option>
+                                <option value="Zimbambwe">Zimbambwe</option>
+                            </select>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Cross Border Expiry </td>
+                        <td> <input type="date" name="crossborderExpiry" placeholder="Cross Border Expiry" [(ngModel)]="getData.crossborderExpiry" value="{{getData.crossborderExpiry}}">
+                        </td>
+                    </tr> -->
+                    <tr>
+                        <td>Comesa</td>
+                        <td> <input type="date" name="comesa" placeholder="Source" [(ngModel)]="getData.comesa" value="{{getData.comesa}}">
+                        </td>
+                    </tr>
+                </table>
+                <div style="text-align:right">
+                    <button mat-raised-button type="submit" (click)="addTrailerAccessories()" color="accent" style="border-radius:4px">Add Accessories +</button>
+                </div>
+                <div *ngFor="let data of this.getData.trailerAccessories;let i=index">
+                    <table>
+                        <tr>
+                            <!--td>Date Fitted</td-->
+
+                            <td>
+                                <span>Tyre Positions</span>
+                                <input type="text" name="tyrePositions-{{i}}" placeholder="Tyre Positions" [(ngModel)]="data.tyrePositions"> </td>
+
+                            <!--td>Make</td-->
+                            <td>
+                                <span>Make</span>
+                                <input type="text" name="make-{{i}}" placeholder="Make" [(ngModel)]="data.make">
+                            </td>
+
+                            <!--td>Number</td-->
+                            <td>
+                                <span>Number</span>
+                                <input type="text" name="number-{{i}}" placeholder="Number" [(ngModel)]="data.number">
+                            </td>
+
+                            <!--td>Size</td-->
+                            <td>
+                                <span>Size</span>
+                                <input type="text" name="size-{{i}}" placeholder="Size" [(ngModel)]="data.size">
+                            </td>
+                            <td>
+                                <span>Date Fitted</span>
+                                <input onfocus="(this.type='date')" onblur="(this.type='text')" type="text" name="dateFitted-{{i}}" placeholder="Date Fitted" [(ngModel)]="data.dateFitted">
+                            </td>
+                            <!--td>Tyre Positions</td-->
+                        </tr>
+                    </table>
+                </div>
+                <div style="text-align:right;margin-top:10px">
+                    <button mat-raised-button type="submit" (click)="update()" color="primary" style="border-radius:4px">Update</button>
+                </div>
+            </form>
+        </div>
+    </mat-card>
+</div>

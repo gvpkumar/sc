@@ -1,0 +1,55 @@
+<div fxLayoutAlign="center center" style="margin-top:30px;">
+    <mat-card fxFlex="70%" fxFlex.xs="98%">
+
+        <div class="header">Add Customer Details</div>
+        <div class="formex main-div">
+
+            <form #customerForm="ngForm">
+                <table style="width:100%">
+
+                    <tr>
+                        <td>Custmer Name</td>
+                        <td colspan="4"> <input type="text" name="customerName" placeholder="Customer Name" [(ngModel)]="model.customerName" required>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Contact Number</td>
+                        <td colspan="4"> <input type="text" pattern="^\d+$" name="customerPhone" placeholder="Contact Number" [(ngModel)]="model.customerPhone" #customerPhone="ngModel">
+                            <div *ngIf="customerPhone.invalid && (customerPhone.dirty || customerPhone.touched)" class="alert alert-danger" style="color:red">
+
+                                <div *ngIf="customerPhone.errors.required">
+                                    Contact number is required.
+                                </div>
+                                <div *ngIf="customerPhone.errors.pattern">
+                                    Contact number should be number.
+                                </div>
+
+
+                            </div>
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td>Address</td>
+                        <td colspan="4"> <textarea type="text" rows="5" cols="30" name="customerAddress" placeholder="Address" [(ngModel)]="model.customerAddress"></textarea>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Customer Type</td>
+                        <td colspan="4"> <input type="text" name="customerType" placeholder="Customer Type" [(ngModel)]="model.customerType">
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td>Contact Name</td>
+                        <td colspan="4"> <textarea type="text" rows="5" cols="30" name="customerContactName" placeholder="Address" [(ngModel)]="model.customerContactName"></textarea>
+                        </td>
+                    </tr>
+                </table>
+                <div style="text-align:right">
+                    <button mat-raised-button type="submit" [disabled]="!customerForm.form.valid" (click)="submit()" color="primary" style="border-radius:4px">Submit</button>
+                </div>
+            </form>
+        </div>
+    </mat-card>
+</div>

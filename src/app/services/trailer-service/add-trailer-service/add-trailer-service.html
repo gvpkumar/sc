@@ -1,0 +1,64 @@
+<div fxLayoutAlign="center center" style="margin:30px 0px">
+    <mat-card fxFlex="80%" fxFlex.xs="98%">
+
+        <div class="header">Add Trailer Service Details</div>
+        <div class="formex main-div">
+
+            <form #trailerServiceForm="ngForm">
+                <table style="width:100%">
+                    <tr>
+                        <td>trailer No</td>
+                        <td> <input type="text" name="trailerNumber" placeholder="trailer Number" [(ngModel)]="model.trailerNumber" #trailerNumber="ngModel" required pattern="^\d+$">
+                            <div *ngIf="trailerNumber.invalid && (trailerNumber.dirty || trailerNumber.touched)" class="alert alert-danger" style="color:red">
+
+                                <div *ngIf="trailerNumber.errors.required">
+                                    Trailer Number is required.
+                                </div>
+                                <div *ngIf="trailerNumber.errors.pattern">
+                                    Trailer Number should be number.
+                                </div>
+
+
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Service Date</td>
+                        <td> <input type="text" onfocus="(this.type='date')" onblur="(this.type='text')" name="trailerServiceDate" placeholder="Service Date" [(ngModel)]="model.trailerServiceDate">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Next Service Due</td>
+                        <td> <input type="text" onfocus="(this.type='date')" onblur="(this.type='text')" name="trailerServiceNextDueDate" placeholder="Next Due Date" [(ngModel)]="model.trailerServiceNextDueDate">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Description</td>
+                        <td colspan="4"> <textarea type="text" rows="4" cols="30" name="trailerServiceDescription" placeholder="Description" [(ngModel)]="model.trailerServiceDescription"></textarea>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Comments</td>
+                        <td colspan="4"> <textarea type="text" rows="4" cols="30" name="trailerServiceComment" placeholder="Comment" [(ngModel)]="model.trailerServiceComment"></textarea>
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td>Serviced by </td>
+                        <td> <input type="text" name="trailerServiceServicedby" placeholder="Serviced By" [(ngModel)]="model.trailerServiceServicedby">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Requesed By</td>
+                        <td> <input type="text" placeholder="Requested By" name="trailerServiceRequestedBy" [(ngModel)]="model.trailerServiceRequestedBy">
+                        </td>
+                    </tr>
+                </table>
+
+                <div style="text-align:right;">
+                    <button mat-raised-button type="submit" [disabled]="!trailerServiceForm.form.valid" (click)="submit()" color="primary" style="border-radius:4px">Submit</button>
+                </div>
+            </form>
+        </div>
+    </mat-card>
+</div>

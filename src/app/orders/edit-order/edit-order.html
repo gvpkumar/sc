@@ -1,0 +1,81 @@
+<div fxLayoutAlign="center center" style="margin:30px 0px">
+    <mat-card fxFlex="80%" fxFlex.xs="98%">
+
+        <div class="header">Edit Order Details</div>
+        <div class="formex main-div">
+
+            <form>
+                <table style="width:100%">
+                    <tr>
+                        <td>Order Number</td>
+                        <td colspan="3"> <input type="text" name="orderId" placeholder="Order Number" [(ngModel)]="getData.orderId" readonly value="{{getData.orderId}}">
+                        </td>
+
+                        <td>Customer Name</td>
+                        <td colspan="3"> <input type="text" name="orderCustomerName" placeholder="Customer Name" [(ngModel)]="getData.orderCustomerName" value="{{getData.orderCustomerName}}">
+                        </td>
+                    </tr>
+
+
+                    <tr>
+                        <td>Start Date</td>
+                        <td colspan="3"> <input type="date" name="orderStartDate" placeholder="Order Start Date" [(ngModel)]="getData.orderStartDate" value="{{getData.orderStartDate}}">
+                        </td>
+
+                        <td>End Date</td>
+                        <td colspan="3"> <input type="date" name="orderEndDate" placeholder="Order End Date" [(ngModel)]="getData.orderEndDate" value="{{getData.orderEndDate}}">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Truck</td>
+                        <td colspan="3"> <input type="text" name="orderHorseDetails" placeholder="Order Horse Details" [(ngModel)]="getData.orderHorseDetails" value="{{getData.orderHorseDetails}}">
+                        </td>
+
+                        <td>Drivers</td>
+                        <td colspan="3"> <input type="text" name="orderDriverFirstName" placeholder="Order Driver FirstName" [(ngModel)]="getData.orderDriverFirstName" value="{{getData.orderDriverFirstName}}">
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td>Consignor</td>
+                        <td colspan="3"> <input type="text" name="orderConsignor" placeholder="Consignor" [(ngModel)]="getData.orderConsignor" readonly value="{{getData.orderConsignor}}">
+                        </td>
+                        <td>Consignee</td>
+                        <td colspan="3"> <input type="text" name="orderConsignee" placeholder="Consignee" [(ngModel)]="getData.orderConsignee" value="{{getData.orderConsignee}}">
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td>Trip Cost </td>
+                        <td colspan="3"> <input type="text" name="orderTripCost" placeholder="Order Trip Cost" [(ngModel)]="getData.orderTripCost" value="{{getData.orderTripCost}}">
+                        </td>
+
+                        <td>Order Status </td>
+                        <td colspan="3"> <input type="text" name="orderStatus" placeholder="Order Status" [(ngModel)]="getData.orderStatus" value="{{getData.orderStatus}}">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Source </td>
+                        <td colspan="3"> <input type="text" name="orderSource" placeholder="Source" [(ngModel)]="getData.orderSource" value="{{getData.orderSource}}">
+                        </td>
+
+                        <td>Destination </td>
+                        <td colspan="3"> <input type="text" name="orderDestination" placeholder="Destination" [(ngModel)]="getData.orderDestination" value="{{getData.orderDestination}}">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Description</td>
+                        <td colspan="6"> <textarea rows="5" cols="20" name="orderDescription" placeholder="Order Description" [(ngModel)]="getData.orderDescription" value="{{getData.orderDescription}}">
+                            </textarea>
+
+                        </td>
+
+                    </tr>
+                </table>
+                <div style="text-align:right">
+                    <button mat-raised-button type="submit" (click)="update()" color="primary" style="border-radius:4px">Update</button>
+                </div>
+            </form>
+        </div>
+    </mat-card>
+</div>

@@ -1,0 +1,66 @@
+<div fxLayout="column" style="margin:2em 10px" fxLayoutGap="10px">
+
+    <div style="text-align:right">
+        <a [routerLink]="['/add-customer']"><button mat-raised-button color="primary">Add</button></a>
+    </div>
+    <div class="mat-elevation-z8" fxFlex="90%" fxFlex.xs="98%" style="margin-top:10px">
+        <div align="end" style="padding:0px 10px;">
+            <b>Search :</b>
+            <mat-form-field class="inputline">
+                <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Enter your text..">
+            </mat-form-field>
+        </div>
+        <mat-table #table [dataSource]="dataSource">
+
+            <!-- Position Column -->
+            <!--ng-container matColumnDef="position">
+            <mat-header-cell *matHeaderCellDef> No. </mat-header-cell>
+            <mat-cell *matCellDef="let element"> {{element.position}} </mat-cell>
+        </ng-container-->
+            <ng-container matColumnDef="customColumn1">
+                <mat-header-cell *matHeaderCellDef class="table-header">S.NO </mat-header-cell>
+                <mat-cell *matCellDef="let row; let i = index;">
+                    <div *ngIf="!pageEvent"> {{i+1}}</div>
+                    <div *ngIf="pageEvent"> {{5*(pageEvent.pageIndex)+i+1}}</div>
+                </mat-cell>
+            </ng-container>
+            <!-- Name Column -->
+            <ng-container matColumnDef="customerName">
+                <mat-header-cell *matHeaderCellDef> Name </mat-header-cell>
+                <mat-cell *matCellDef="let element"> {{element.customerName}} </mat-cell>
+            </ng-container>
+
+            <!-- Weight Column -->
+            <ng-container matColumnDef="customerAddress">
+                <mat-header-cell *matHeaderCellDef> Address </mat-header-cell>
+                <mat-cell *matCellDef="let element"> {{element.customerAddress}} </mat-cell>
+            </ng-container>
+
+            <!-- Color Column -->
+            <ng-container matColumnDef="customerPhone">
+                <mat-header-cell *matHeaderCellDef> Phone </mat-header-cell>
+                <mat-cell *matCellDef="let element"> {{element.customerPhone}} </mat-cell>
+            </ng-container>
+            <!-- Weight Column -->
+            <ng-container matColumnDef="customerType">
+                <mat-header-cell *matHeaderCellDef> Type </mat-header-cell>
+                <mat-cell *matCellDef="let element"> {{element.customerType}} </mat-cell>
+            </ng-container>
+
+            <ng-container matColumnDef="edit">
+                <mat-header-cell *matHeaderCellDef> </mat-header-cell>
+                <mat-cell *matCellDef="let element">
+                    <a [routerLink]="['/edit-customer-details',element.customerName]">
+                        <button mat-raised-button class="icons-edit"> <mat-icon > mode_edit</mat-icon>
+                         </button> </a>
+                    <button mat-raised-button class="icons-delete"> <mat-icon mat-light (click)="openDialog(element.customerName)" > delete</mat-icon></button>
+                </mat-cell>
+            </ng-container>
+            <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+            <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+        </mat-table>
+
+        <mat-paginator #paginator (page)="pageEvent = $event" [pageSize]="5" [pageSizeOptions]="[5, 10, 20]">
+        </mat-paginator>
+    </div>
+</div>

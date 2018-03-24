@@ -1,0 +1,53 @@
+<div fxLayoutAlign="center center" style="margin:30px 0px">
+    <mat-card fxFlex="80%" fxFlex.xs="98%">
+
+        <div class="header">Edit Trailer Service Details</div>
+        <div class="formex main-div">
+
+            <form>
+                <table style="width:100%">
+                    <tr>
+                        <td>Trailer No</td>
+                        <td> <input type="text" name="trailerNumber" readonly placeholder="trailer Number" [(ngModel)]="this.getData.trailerNumber" value="{{getData.crossborderExpiry}}">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Service Date</td>
+                        <td> <input type="text" onfocus="(this.type='date')" onblur="(this.type='text')" name="trailerServiceDate" placeholder="Service Date" [(ngModel)]="getData.trailerServiceDate" value="{{getData.trailerServiceDate}}">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Next Service Due</td>
+                        <td> <input type="text" onfocus="(this.type='date')" onblur="(this.type='text')" name="trailerServiceNextDueDate" placeholder="Next Due Date" [(ngModel)]="getData.trailerServiceNextDueDate" value="{{getData.trailerServiceNextDueDate}}">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Description</td>
+                        <td colspan="4"> <textarea type="text" rows="4" cols="30" name="trailerServiceDescription" placeholder="Description" [(ngModel)]="getData.trailerServiceDescription" value="{{getData.trailerServiceDescription}}"></textarea>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Comments</td>
+                        <td colspan="4"> <textarea type="text" rows="4" cols="30" name="trailerServiceComment" placeholder="Comment" [(ngModel)]="getData.trailerServiceComment" value="{{getData.trailerServiceComment}}"></textarea>
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td>Serviced by </td>
+                        <td> <input type="text" name="trailerServiceServicedby" placeholder="Serviced By" [(ngModel)]="getData.trailerServiceServicedby" value="{{getData.trailerServiceServicedby}}">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Requesed By</td>
+                        <td> <input type="text" placeholder="Requested By" name="trailerServiceRequestedBy" [(ngModel)]="getData.trailerServiceRequestedBy" value="{{getData.trailerServiceRequestedBy}}">
+                        </td>
+                    </tr>
+                </table>
+
+                <div style="text-align:right;">
+                    <button mat-raised-button type="submit" (click)="update()" color="primary" style="border-radius:4px">Update</button>
+                </div>
+            </form>
+        </div>
+    </mat-card>
+</div>

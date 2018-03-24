@@ -1,0 +1,53 @@
+<div fxLayout="column" style="margin:2em 10px" fxLayoutGap="10px">
+    <div style="text-align:right">
+        <a [routerLink]="['/add-truck']"><button mat-raised-button color="primary">Add</button></a>
+    </div>
+    <div class="mat-elevation-z8" fxFlex="98W%" fxFlex.xs="98%">
+        <div align="end" style="padding:0px 10px;">
+            <b>Search :</b>
+            <mat-form-field class="inputline">
+                <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Enter your text..">
+            </mat-form-field>
+        </div>
+        <mat-table #table [dataSource]="dataSource" class="horse-table">
+
+            <ng-container matColumnDef="customColumn1">
+                <mat-header-cell *matHeaderCellDef class="table-header">S.NO </mat-header-cell>
+                <mat-cell *matCellDef="let row; let i = index;">
+                    <div *ngIf="!pageEvent"> {{i+1}}</div>
+                    <div *ngIf="pageEvent"> {{5*(pageEvent.pageIndex)+i+1}}</div>
+                </mat-cell>
+            </ng-container>
+            <!--ng-container matColumnDef="truckId">
+                <mat-header-cell *matHeaderCellDef> Truck Id</mat-header-cell>
+                <mat-cell *matCellDef="let element"> {{element.truckId}} </mat-cell>
+            </ng-container-->
+            <ng-container matColumnDef="truckId">
+                <mat-header-cell *matHeaderCellDef> Truck Id </mat-header-cell>
+                <mat-cell *matCellDef="let element"> {{element.truckId}} </mat-cell>
+            </ng-container>
+            <ng-container matColumnDef="horseNumber">
+                <mat-header-cell *matHeaderCellDef> Horse Number </mat-header-cell>
+                <mat-cell *matCellDef="let element"> {{element.horseNumber}} </mat-cell>
+            </ng-container>
+            <!-- Weight Column -->
+            <ng-container matColumnDef="trailerNumber">
+                <mat-header-cell *matHeaderCellDef> Trailer Number </mat-header-cell>
+                <mat-cell *matCellDef="let element"> {{element.trailerNumber}} </mat-cell>
+            </ng-container>
+
+            <ng-container matColumnDef="edit">
+                <mat-header-cell *matHeaderCellDef> </mat-header-cell>
+                <mat-cell *matCellDef="let element">
+
+                    <button mat-raised-button class="icons-delete"> <mat-icon mat-light (click)="openDialog(element.truckId)" > delete</mat-icon></button>
+                </mat-cell>
+            </ng-container>
+            <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+            <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+        </mat-table>
+
+        <mat-paginator #paginator (page)="pageEvent = $event" [pageSize]="5" [pageSizeOptions]="[5, 10, 20]">
+        </mat-paginator>
+    </div>
+</div>

@@ -1,0 +1,119 @@
+<div fxLayoutAlign="center center" style="margin:30px 0px">
+    <mat-card fxFlex="80%" fxFlex.xs="98%">
+
+        <div class="header">Add Dispatch Details</div>
+        <div class="formex main-div">
+
+            <form #dispatchForm="ngForm">
+                <table style="width:100%">
+                    <!--tr>
+                        <td>Trip No</td>
+                        <td colspan="3"> <input type="text" name="dispatchOrderId " placeholder="Order Id" [(ngModel)]="model.dispatchOrderId "></td>
+                        &nbsp; &nbsp;
+                        <td>Delivery Note No</td>
+                        <td colspan="3"> <input type="text" name="dispatchDeliveryNoteNumber " placeholder="Delivery Note Number " [(ngModel)]="model.dispatchDeliveryNoteNumber ">
+                        </td>
+                    </tr-->
+                    <tr>
+                        <td>Order Number</td>
+                        <td colspan="3"> <input type="text" name="dispatchOrderId" readonly placeholder="Order Id" [(ngModel)]=" this.dispatchData.orderId" value="{{this.dispatchData.orderId}}" required>
+                        </td>
+
+                        &nbsp; &nbsp;
+                        <td>Delivery Note No</td>
+                        <td colspan="3"> <input type="text" name="dispatchDeliveryNoteNumber " placeholder="Delivery Note Number " [(ngModel)]="model.dispatchDeliveryNoteNumber ">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Tonnage (Weight)</td>
+                        <td colspan="3"> <input type="text" pattern="^\d+$" name="dispatchWeight " placeholder="Weight" [(ngModel)]="model.dispatchWeight" #dispatchWeight="ngModel" required>
+                        </td>
+                        &nbsp; &nbsp;
+                        <td>Date of Dispatch</td>
+                        <td colspan="3"> <input type="date" name="dispatchDeliveryDate " placeholder="Date " [(ngModel)]="model.dispatchDeliveryDate ">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td></td>
+
+                        <td colspan="3">
+                            <div *ngIf="dispatchWeight.invalid && (dispatchWeight.dirty || dispatchWeight.touched)" class="alert alert-danger" style="color:red">
+
+                                <div *ngIf="dispatchWeight.errors.required">
+                                    Tonnage is required.
+                                </div>
+                                <div *ngIf="dispatchWeight.errors.pattern">
+                                    Tonnage should be number.
+                                </div>
+
+
+                            </div>
+
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Consignor</td>
+                        <td colspan="3"> <input type="text" readonly name="dispatchConsignor " placeholder="consignor" [(ngModel)]="this.dispatchData.orderConsignor ">
+                        </td>
+                        &nbsp; &nbsp;
+                        <td>Consignee</td>
+                        <td colspan="3"> <input type="text" name="dispatchConsignee" placeholder="consignee" readonly [(ngModel)]=" this.dispatchData.orderConsignee" value="{{this.dispatchData.orderConsignee}}">
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td>Truck Number</td>
+                        <td colspan="3"> <input type="text" name="dispatchHorseNumber" placeholder="Truck Number" readonly [(ngModel)]=" this.dispatchData.orderHorseDetails" value="{{this.dispatchData.orderHorseDetails}}">
+                        </td>
+                        &nbsp; &nbsp;
+                        <td>Truck Driver</td>
+                        <td colspan="3"> <input type="text" name="dispatchDriverFirstname" placeholder="Truck Driver Firstname" readonly [(ngModel)]="this.dispatchData.orderDriverFirstName" value="{{this.dispatchData.orderDriverFirstName}}">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Description</td>
+                        <td colspan="3"> <input type="text" name="dispatchDescription " placeholder="Enter description" [(ngModel)]="model.dispatchDescription ">
+                        </td>
+                        &nbsp; &nbsp;
+                        <td>Remarks</td>
+                        <td colspan="3"> <input type="text" name="dispatchRemarks " placeholder="Remarks" [(ngModel)]="model.dispatchRemarks ">
+                        </td>
+
+                    </tr>
+
+                    <!--tr>
+                        <td>To pay of</td>
+                        <td colspan="4"><input type="text" name="dispatchDeliveryNoteNumber " placeholder="To pay of " [(ngModel)]="model.dispatchDeliveryNoteNumber ">
+                        </td>
+                    </tr-->
+                    <tr>
+                        <td>From</td>
+                        <td colspan="3"> <input type="text" name="dispatchSource" placeholder="Source" readonly [(ngModel)]=" this.dispatchData.orderSource" value="{{this.dispatchData.orderSource}}">
+                        </td>
+                        &nbsp; &nbsp;
+                        <td>To</td>
+                        <td colspan="3"> <input type="text" name="to" placeholder="dispatchDestination" readonly [(ngModel)]=" this.dispatchData.orderDestination" value="{{this.dispatchData.orderDestination}}">
+                        </td>
+
+                    </tr>
+                    <tr>
+                        <td>Date </td>
+                        <td colspan="3"> <input type="date" name="dispatchDate" placeholder="Date " [(ngModel)]="dispatchData.orderStartDate" value="{{this.dispatchData.orderStartDate}}">
+                        </td>
+                        &nbsp; &nbsp;
+                        <td>Status
+                            </td>
+                            <td><select name="dispatchStatus" [(ngModel)]="model.dispatchStatus" placeholder="Select Status">
+                                <option [value]="undefined" selected="selected">Select Status </option>
+                                 <option *ngFor="let dispatchStatus of status" [value]="dispatchStatus">{{dispatchStatus}}</option>
+                               </select></td>
+
+                    </tr>
+                </table>
+                <div style="text-align:right">
+                    <button mat-raised-button type="submit" [disabled]="!dispatchForm.form.valid" (click)="submit()" color="primary" style="border-radius:4px">Submit</button>
+                </div>
+            </form>
+        </div>
+    </mat-card>
+</div>

@@ -1,0 +1,106 @@
+<div fxLayout="column" style="margin:2em 10px" fxLayoutGap="10px">
+
+    <div style="text-align:right">
+        <a [routerLink]="['/add-order']"><button mat-raised-button color="primary">Add</button></a>
+    </div>
+    
+    <div class="mat-elevation-z8" fxFlex="98W%" fxFlex.xs="98%" style="margin-top:10px">
+        
+        <div align="end" style="padding:0px 10px;">
+                <select placeholder="" name="orderStatus" (change)="onStatusChange(orderStatus)" [(ngModel)]="orderStatus" required value="{{orderStatus}}">
+                        <option *ngFor="let status of statusList" value="{{status}}">{{status}}</option>
+                    </select>
+            <b>Search :</b>
+            <mat-form-field class="inputline">
+                <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Enter your text..">
+            </mat-form-field>
+        </div>
+        <mat-table #table [dataSource]="dataSource" class="cargo-table">
+
+            <!-- Position Column -->
+            <!--ng-container matColumnDef="position">
+            <mat-header-cell *matHeaderCellDef> No. </mat-header-cell>
+            <mat-cell *matCellDef="let element"> {{element.position}} </mat-cell>
+        </ng-container-->
+            <ng-container matColumnDef="customColumn1">
+                <mat-header-cell *matHeaderCellDef class="table-header">S.No </mat-header-cell>
+                <mat-cell *matCellDef="let row; let i = index;">
+                    <div *ngIf="!pageEvent"> {{i+1}}</div>
+                    <div *ngIf="pageEvent"> {{5*(pageEvent.pageIndex)+i+1}}</div>
+                </mat-cell>
+            </ng-container>
+            <!-- Name Column -->
+            <!--ng-container matColumnDef="cargoGrnumber">
+            <mat-header-cell *matHeaderCellDef> Name </mat-header-cell>
+            <mat-cell *matCellDef="let element"> {{element.cargoGrnumber}} </mat-cell>
+        </ng-container-->
+
+            <!-- Weight Column -->
+            <!--ng-container matColumnDef="orderId">
+                <mat-header-cell *matHeaderCellDef> Order Id </mat-header-cell>
+                <mat-cell *matCellDef="let element"> {{element.orderId}} </mat-cell>
+            </ng-container-->
+            <ng-container matColumnDef="orderCustomerName">
+                <mat-header-cell *matHeaderCellDef> Customer Name </mat-header-cell>
+                <mat-cell *matCellDef="let element"> {{element.orderCustomerName}} </mat-cell>
+            </ng-container>
+            <!-- Color Column -->
+            <ng-container matColumnDef="orderConsignee">
+                <mat-header-cell *matHeaderCellDef> Consignee </mat-header-cell>
+                <mat-cell *matCellDef="let element"> {{element.orderConsignee}} </mat-cell>
+            </ng-container>
+
+
+
+
+            <ng-container matColumnDef="orderSource">
+                <mat-header-cell *matHeaderCellDef> Source </mat-header-cell>
+                <mat-cell *matCellDef="let element"> {{element.orderSource}} </mat-cell>
+            </ng-container>
+            <ng-container matColumnDef="orderDestination">
+                <mat-header-cell *matHeaderCellDef> Destination </mat-header-cell>
+                <mat-cell *matCellDef="let element"> {{element.orderDestination}} </mat-cell>
+            </ng-container>
+            <ng-container matColumnDef="orderStartDate">
+                <mat-header-cell *matHeaderCellDef> Satrt Date </mat-header-cell>
+                <mat-cell *matCellDef="let element"> {{element.orderStartDate | date}} </mat-cell>
+            </ng-container>
+            <ng-container matColumnDef="orderEndDate">
+                <mat-header-cell *matHeaderCellDef> End Date </mat-header-cell>
+                <mat-cell *matCellDef="let element"> {{element.orderEndDate | date}} </mat-cell>
+            </ng-container>
+            <ng-container matColumnDef="orderDriverFirstName">
+                <mat-header-cell *matHeaderCellDef> Driver Name </mat-header-cell>
+                <mat-cell *matCellDef="let element"> {{element.orderDriverFirstName}} </mat-cell>
+            </ng-container>
+            <ng-container matColumnDef="orderHorseDetails">
+                <mat-header-cell *matHeaderCellDef> Horse </mat-header-cell>
+                <mat-cell *matCellDef="let element"> {{element.orderHorseDetails}} </mat-cell>
+            </ng-container>
+
+            <ng-container matColumnDef="orderStatus">
+                <mat-header-cell *matHeaderCellDef> Status </mat-header-cell>
+                <mat-cell *matCellDef="let element"> {{element.orderStatus}} </mat-cell>
+            </ng-container>
+            <ng-container matColumnDef="orderTripCost">
+                <mat-header-cell *matHeaderCellDef> Trip Cost </mat-header-cell>
+                <mat-cell *matCellDef="let element"> {{element.orderTripCost}} </mat-cell>
+            </ng-container>
+
+            <ng-container matColumnDef="edit">
+                <mat-header-cell *matHeaderCellDef> </mat-header-cell>
+                <mat-cell *matCellDef="let element">
+                    <a [routerLink]="['/edit-order-details',element.orderId]">
+                        <button mat-raised-button class="icons-edit"> <mat-icon > mode_edit</mat-icon>
+                                 </button> </a>
+                    <button mat-raised-button class="icons-delete"> <mat-icon mat-light (click)="openDialog(element.orderId)" > delete</mat-icon></button>
+                </mat-cell>
+            </ng-container>
+            <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+            <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+        </mat-table>
+
+        <mat-paginator #paginator (page)="pageEvent = $event" [pageSize]="5" [pageSizeOptions]="[5, 10, 20]">
+        </mat-paginator>
+    </div>
+</div>

@@ -1,0 +1,65 @@
+<div fxLayoutAlign="center center" style="margin:30px 0px">
+    <mat-card fxFlex="80%" fxFlex.xs="98%">
+
+        <div class="header">Add Horse Service Details</div>
+        <div class="formex main-div">
+
+            <form #horseServiceForm="ngForm">
+                <table style="width:100%">
+                    <tr>
+                        <td>Horse No</td>
+                        <!-- pattern="^\d+$" -->
+                        <td> <input type="text" name="horseNumber"  placeholder="Horse Number" [(ngModel)]="model.horseNumber" #horseNumber="ngModel" required>
+                            <div *ngIf="horseNumber.invalid && (horseNumber.dirty || horseNumber.touched)" class="alert alert-danger" style="color:red">
+
+                                <div *ngIf="horseNumber.errors.required">
+                                    Horse Number is required.
+                                </div>
+                                <div *ngIf="horseNumber.errors.pattern">
+                                    Horse Number should be number.
+                                </div>
+
+
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Service Date</td>
+                        <td> <input type="text" onfocus="(this.type='date')" onblur="(this.type='text')" name="horseServiceDate" placeholder="Service Date" [(ngModel)]="model.horseServiceDate">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Next Service Due</td>
+                        <td> <input type="text" onfocus="(this.type='date')" onblur="(this.type='text')" name="horseServiceNextDueDate" placeholder="Next Due Date" [(ngModel)]="model.horseServiceNextDueDate">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Description</td>
+                        <td colspan="4"> <textarea type="text" rows="4" cols="30" name="horseServiceDescription" placeholder="Description" [(ngModel)]="model.horseServiceDescription"></textarea>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Comments</td>
+                        <td colspan="4"> <textarea type="text" rows="4" cols="30" name="horseServiceComment" placeholder="Comment" [(ngModel)]="model.horseServiceComment"></textarea>
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td>Serviced by </td>
+                        <td> <input type="text" name="horseServiceServicedby" placeholder="Serviced By" [(ngModel)]="model.horseServiceServicedby">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Requesed By</td>
+                        <td> <input type="text" placeholder="Requested By" name="horseServiceRequestedBy" [(ngModel)]="model.horseServiceRequestedBy">
+                        </td>
+                    </tr>
+                </table>
+
+                <div style="text-align:right;">
+                    <button mat-raised-button type="submit" [disabled]="!horseServiceForm.form.valid" (click)="submit()" color="primary" style="border-radius:4px">Submit</button>
+                </div>
+            </form>
+        </div>
+    </mat-card>
+</div>

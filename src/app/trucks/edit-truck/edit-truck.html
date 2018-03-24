@@ -1,0 +1,35 @@
+<div fxLayoutAlign="center center" style="margin:30px 0px">
+    <mat-card fxFlex="80%" fxFlex.xs="98%">
+        <div class="header">Edit Truck Details</div>
+        <div class="formex main-div">
+            <form>
+                <table style="width:100%">
+                    <tr>
+                        <td>Truck Id</td>
+                        <td> <input type="text" name="truckId" readonly placeholder="Truck Id" [(ngModel)]="getData.truckId" value="{{getData.truckId}}">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Horse Number </td>
+                        <td>
+                            <select placeholder="Horse Number" name="horseNumber" [(ngModel)]="getData.horseNumber" required value="{{getData.horseNumber}}">
+                                    <option  *ngFor="let getData of horseData" value="{{getData.horseNumber}}">{{getData.horseNumber}}</option>
+                                </select>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Trailer Number </td>
+                        <td>
+                            <select placeholder="Trailer Number" name="trailerNumber" [(ngModel)]="getData.trailerNumber" required value="{{getData.trailerNumber}}">
+                                    <option  *ngFor="let getData of trailerData" value="{{getData.trailerNumber}}">{{getData.trailerNumber}}</option>
+                            </select>
+                        </td>
+                    </tr>
+                </table>
+                <div style="text-align:right;margin-top:10px">
+                    <button mat-raised-button type="submit" (click)="update()" color="primary" style="border-radius:4px">Update</button>
+                </div>
+            </form>
+        </div>
+    </mat-card>
+</div>

@@ -1,0 +1,53 @@
+<div fxLayoutAlign="center center" style="margin:30px 0px">
+    <mat-card fxFlex="80%" fxFlex.xs="98%">
+
+        <div class="header">Edit Horse Service Details</div>
+        <div class="formex main-div">
+
+            <form>
+                <table style="width:100%">
+                    <tr>
+                        <td>Horse No</td>
+                        <td> <input type="text" readonly name="horseNumber" placeholder="Horse Number" [(ngModel)]="this.getData.horseNumber" value="{{getData.crossborderExpiry}}">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Service Date</td>
+                        <td> <input type="text" onfocus="(this.type='date')" onblur="(this.type='text')" name="horseServiceDate" placeholder="Service Date" [(ngModel)]="getData.horseServiceDate" value="{{getData.horseServiceDate}}">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Next Service Due</td>
+                        <td> <input type="text" onfocus="(this.type='date')" onblur="(this.type='text')" name="horseServiceNextDueDate" placeholder="Next Due Date" [(ngModel)]="getData.horseServiceNextDueDate" value="{{getData.horseServiceNextDueDate}}">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Description</td>
+                        <td colspan="4"> <textarea type="text" rows="4" cols="30" name="horseServiceDescription" placeholder="Description" [(ngModel)]="getData.horseServiceDescription" value="{{getData.horseServiceDescription}}"></textarea>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Comments</td>
+                        <td colspan="4"> <textarea type="text" rows="4" cols="30" name="horseServiceComment" placeholder="Comment" [(ngModel)]="getData.horseServiceComment" value="{{getData.horseServiceComment}}"></textarea>
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td>Serviced by </td>
+                        <td> <input type="text" name="horseServiceServicedby" placeholder="Serviced By" [(ngModel)]="getData.horseServiceServicedby" value="{{getData.horseServiceServicedby}}">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Requesed By</td>
+                        <td> <input type="text" placeholder="Requested By" name="horseServiceRequestedBy" [(ngModel)]="getData.horseServiceRequestedBy" value="{{getData.horseServiceRequestedBy}}">
+                        </td>
+                    </tr>
+                </table>
+
+                <div style="text-align:right;">
+                    <button mat-raised-button type="submit" (click)="update()" color="primary" style="border-radius:4px">Update</button>
+                </div>
+            </form>
+        </div>
+    </mat-card>
+</div>
