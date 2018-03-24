@@ -12,7 +12,6 @@ import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
   templateUrl: 'add-horse.html',
 })
 export class AddHorseComponent {
-
   comesaCountries = [
     { id: 1, country: 'Burundi', isSelected: false, expiry: '', visibility: 'hidden' },
     { id: 2, country: 'Comoros', isSelected: false, expiry: '', visibility: 'hidden' },
@@ -69,10 +68,14 @@ export class AddHorseComponent {
     obj.value = comesa.expiry;
   }
   submit() {
-    this.model.comesaCountries = this.comesaCountries.filter(comesa => {
+    const selectedComesaCountries = this.comesaCountries.filter(comesa => {
       if (comesa.expiry) {
         return comesa;
       }
+    });
+    this.model.crossBorder = {};
+    selectedComesaCountries.forEach(scc => {
+      this.model.crossBorder[scc.country] = scc.expiry;
     });
     this.loggerService.log(this.model, 'model');
     this.model.horseAccessories = this.horseAccessories;

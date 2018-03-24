@@ -1,7 +1,9 @@
 <div fxLayout="column" style="margin:2em 10px" fxLayoutGap="10px">
 
     <div style="text-align:right">
-        <a [routerLink]="['/add-horse']"><button mat-raised-button color="primary">Add</button></a>
+        <a [routerLink]="['/add-horse']">
+            <button mat-raised-button color="primary">Add</button>
+        </a>
     </div>
 
     <div class="mat-elevation-z8" fxFlex="98%" fxFlex.xs="98%">
@@ -32,6 +34,7 @@
         </ng-container-->
 
             <!-- Weight Column -->
+            {{element}}
             <ng-container matColumnDef="horseNumber">
                 <mat-header-cell *matHeaderCellDef> Horse No </mat-header-cell>
                 <mat-cell *matCellDef="let element"> {{element.horseNumber}} </mat-cell>
@@ -57,7 +60,7 @@
 
             <ng-container matColumnDef="crossborderCountry">
                 <mat-header-cell *matHeaderCellDef> Cross Border(Country) </mat-header-cell>
-                <mat-cell *matCellDef="let element"> {{element.crossborderCountry}} </mat-cell>
+                <mat-cell *matCellDef="let element"> {{element.crossborder | json}} </mat-cell>
             </ng-container>
             <ng-container matColumnDef="crossborderExpiry">
                 <mat-header-cell *matHeaderCellDef> Cross Border Expiry </mat-header-cell>
@@ -71,9 +74,13 @@
                 <mat-header-cell *matHeaderCellDef> </mat-header-cell>
                 <mat-cell *matCellDef="let element">
                     <a [routerLink]="['/edit-horse-details',element.horseNumber]">
-                        <button mat-raised-button class="icons-edit"> <mat-icon > mode_edit</mat-icon>
-                         </button> </a>
-                    <button mat-raised-button class="icons-delete"> <mat-icon mat-light (click)="openDialog(element.horseNumber)" > delete</mat-icon></button>
+                        <button mat-raised-button class="icons-edit">
+                            <mat-icon> mode_edit</mat-icon>
+                        </button>
+                    </a>
+                    <button mat-raised-button class="icons-delete">
+                        <mat-icon mat-light (click)="openDialog(element.horseNumber)"> delete</mat-icon>
+                    </button>
                 </mat-cell>
             </ng-container>
 

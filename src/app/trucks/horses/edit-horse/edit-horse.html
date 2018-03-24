@@ -8,30 +8,36 @@
                 <table style="width:100%">
                     <tr>
                         <td>Horse No</td>
-                        <td> <input type="text" name="horseNumber" placeholder="Horse Number" [(ngModel)]="getData.horseNumber" value="{{getData.horseNumber}}" readonly>
+                        <td>
+                            <input type="text" name="horseNumber" placeholder="Horse Number" [(ngModel)]="getData.horseNumber"
+                                value="{{getData.horseNumber}}" readonly>
                         </td>
                     </tr>
                     <tr>
                         <td>Fitness</td>
-                        <td> <input type="date" name="fitness" placeholder="fitness" [(ngModel)]="getData.fitness" value="{{getData.fitness}}">
+                        <td>
+                            <input type="date" name="fitness" placeholder="fitness" [(ngModel)]="getData.fitness" value="{{getData.fitness}}">
                         </td>
                     </tr>
                     <tr>
                         <td>Road Tax</td>
-                        <td> <input type="date" name="roadTax" placeholder="Road Tax" [(ngModel)]="getData.roadTax" value="{{getData.roadTax}}">
+                        <td>
+                            <input type="date" name="roadTax" placeholder="Road Tax" [(ngModel)]="getData.roadTax" value="{{getData.roadTax}}">
                         </td>
                     </tr>
                     <tr>
                         <td>Identity</td>
-                        <td> <input type="date" name="identity" placeholder="Identity" [(ngModel)]="getData.identity" value="{{getData.identity}}">
+                        <td>
+                            <input type="date" name="identity" placeholder="Identity" [(ngModel)]="getData.identity" value="{{getData.identity}}">
                         </td>
                     </tr>
                     <tr>
                         <td>Insurance</td>
-                        <td> <input type="date" name="insurance" placeholder="Insurance" [(ngModel)]="getData.insurance" value="{{getData.insurance}}">
+                        <td>
+                            <input type="date" name="insurance" placeholder="Insurance" [(ngModel)]="getData.insurance" value="{{getData.insurance}}">
                         </td>
                     </tr>
-                    <tr>
+                    <!-- <tr>
                         <td>Cross Border(Country) </td>
                         <td>
                             <select placeholder="Cross Border" name="crossborderCountry" [(ngModel)]="getData.crossborderCountry" required value="{{getData.crossborderCountry}}">
@@ -44,13 +50,33 @@
                         <td>Cross Border Expiry </td>
                         <td> <input type="date" name="crossborderExpiry" placeholder="Cross Border Expiry" [(ngModel)]="getData.crossborderExpiry" value="{{getData.crossborderExpiry}}">
                         </td>
-                    </tr>
+                    </tr> -->
                     <tr>
                         <td>Comesa</td>
-                        <td> <input type="date" name="comesa" placeholder="Source" [(ngModel)]="getData.comesa" value="{{getData.comesa}}">
+                        <td>
+                            <input type="date" name="comesa" placeholder="Source" [(ngModel)]="getData.comesa" value="{{getData.comesa}}">
                         </td>
                     </tr>
                 </table>
+
+                <div class='comesaContries'>
+                    <hr>
+
+                    <span>Cross Border Countries and Expiries</span>
+                    <ul>
+                        <li *ngFor='let comesa of comesaCountries'>
+                            <div class='contry_expiry_Unit'>
+                                <div class="comesaCountry" [ngClass]="{'comesaSelected':comesa.isSelected}" (click)="comesa.isSelected = !comesa.isSelected;comesa.visibility = comesa.isSelected ? 'visible' : 'hidden'">{{comesa.country}}</div>
+                                <div [ngStyle]="{'visibility': comesa.visibility}">
+                                    <input type="text" value="{comesa.expiry}" required onfocus="(this.type='date')" (blur)="onFocus(this,comesa)" name="crossborderExpiry"
+                                        placeholder="Cross Border Expiry" [(ngModel)]="comesa.expiry">
+                                </div>
+                            </div>
+                        </li>
+                    </ul>
+
+                </div>
+                <hr>
                 <div style="text-align:right">
                     <button mat-raised-button type="submit" (click)="addHorseAccessories()" color="accent" style="border-radius:4px">Add Accessories +</button>
                 </div>
@@ -59,7 +85,8 @@
                         <tr>
                             <!--td>Date Fitted</td-->
 
-                            <td><span>Tyre Positions</span>
+                            <td>
+                                <span>Tyre Positions</span>
                                 <input type="text" name="tyrePositions-{{i}}" placeholder="Tyre Positions" [(ngModel)]="data.tyrePositions"> </td>
 
                             <!--td>Make</td-->
@@ -81,7 +108,8 @@
                             </td>
                             <td>
                                 <span>Date Fitted</span>
-                                <input onfocus="(this.type='date')" onblur="(this.type='text')" type="text" name="dateFitted-{{i}}" placeholder="Date Fitted" [(ngModel)]="data.dateFitted">
+                                <input onfocus="(this.type='date')" onblur="(this.type='text')" type="text" name="dateFitted-{{i}}" placeholder="Date Fitted"
+                                    [(ngModel)]="data.dateFitted">
                             </td>
                             <!--td>Tyre Positions</td-->
                         </tr>
