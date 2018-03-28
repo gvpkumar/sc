@@ -20,7 +20,7 @@ import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
 })
 export class DispatchComponent implements OnInit {
   dispatchStatus = 'All';
-  statusList = ['All', 'Open', 'Closed', 'Pending', 'In Progress'];
+  statusList = ['All', 'Open', 'Closed', 'Pending', 'In Progress', 'Cancel'];
 
   isLoggedIn = false;
   getData;

@@ -51,11 +51,15 @@ export class HorsesComponent {
     this.authService.loginDetails = JSON.parse(currentUser);
     this.gethorseData();
   }
+  
+  keys(element) {
+    return Object.keys(element.crossBorder);
+  }
+
   applyFilter(filterValue: string) {
     filterValue = filterValue.trim(); // Remove whitespace
     filterValue = filterValue.toLowerCase(); // MatTableDataSource defaults to lowercase matches
     this.dataSource.filter = filterValue;
-
   }
   openDialog(id): void {
     console.log(id);
@@ -102,8 +106,9 @@ export class HorsesComponent {
 
   }
 
- 
+
 }
+
 
 export interface customUrlInfo {
   name: string;

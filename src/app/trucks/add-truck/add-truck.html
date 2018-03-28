@@ -2,30 +2,29 @@
     <mat-card fxFlex="80%" fxFlex.xs="98%">
         <div class="header">Add Truck Details</div>
         <div class="formex main-div">
-            <form>
+            <form #addTruck='ngForm'>
                 <table style="width:100%">
-                       
                     <tr>
                         <td>Horse Number </td>
                         <td>
                             <select placeholder="Horse Number" name="horseNumber" [(ngModel)]="model.horseNumber" required>
-                                   <option>Select Horse Number</option>
-                                    <option  *ngFor="let data of horseData" value="{{data.horseNumber}}">{{data.horseNumber}}</option>
-                                </select>
+                                <option>Select Horse Number</option>
+                                <option *ngFor="let data of horseData" value="{{data.horseNumber}}">{{data.horseNumber}}</option>
+                            </select>
                         </td>
                     </tr>
                     <tr>
                         <td>Trailer Number </td>
                         <td>
                             <select placeholder="Trailer Number" name="trailerNumber" [(ngModel)]="model.trailerNumber" required>
-                                    <option>Select Trailer Number</option>
-                                    <option  *ngFor="let data of trailerData" value="{{data.trailerNumber}}">{{data.trailerNumber}}</option>
+                                <option>Select Trailer Number</option>
+                                <option *ngFor="let data of trailerData" value="{{data.trailerNumber}}">{{data.trailerNumber}}</option>
                             </select>
                         </td>
                     </tr>
                 </table>
                 <div style="text-align:right;margin-top:10px">
-                    <button mat-raised-button type="submit" (click)="submit()" color="primary" style="border-radius:4px">Submit</button>
+                    <button mat-raised-button type="submit" [disabled]="!addTruck.form.valid" (click)="submit()" color="primary" style="border-radius:4px">Submit</button>
                 </div>
             </form>
         </div>

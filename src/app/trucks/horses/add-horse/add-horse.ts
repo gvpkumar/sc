@@ -13,25 +13,25 @@ import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
 })
 export class AddHorseComponent {
   comesaCountries = [
-    { id: 1, country: 'Burundi', isSelected: false, expiry: '', visibility: 'hidden' },
-    { id: 2, country: 'Comoros', isSelected: false, expiry: '', visibility: 'hidden' },
-    { id: 3, country: 'D.R. Congo', isSelected: false, expiry: '', visibility: 'hidden' },
-    { id: 4, country: 'Djibouti', isSelected: false, expiry: '', visibility: 'hidden' },
-    { id: 5, country: 'Egypt', isSelected: false, expiry: '', visibility: 'hidden' },
-    { id: 6, country: 'Eritrea', isSelected: false, expiry: '', visibility: 'hidden' },
-    { id: 7, country: 'Ethiopia', isSelected: false, expiry: '', visibility: 'hidden' },
-    { id: 8, country: 'Kenya', isSelected: false, expiry: '', visibility: 'hidden' },
-    { id: 9, country: 'Libya', isSelected: false, expiry: '', visibility: 'hidden' },
-    { id: 10, country: 'Madagascar', isSelected: false, expiry: '', visibility: 'hidden' },
-    { id: 11, country: 'Malawi', isSelected: false, expiry: '', visibility: 'hidden' },
-    { id: 12, country: 'Mauritius', isSelected: false, expiry: '', visibility: 'hidden' },
-    { id: 13, country: 'Rwanda', isSelected: false, expiry: '', visibility: 'hidden' },
-    { id: 14, country: 'Seychelles', isSelected: false, expiry: '', visibility: 'hidden' },
-    { id: 15, country: 'Sudan', isSelected: false, expiry: '', visibility: 'hidden' },
-    { id: 16, country: 'Swaziland', isSelected: false, expiry: '', visibility: 'hidden' },
-    { id: 17, country: 'Uganda', isSelected: false, expiry: '', visibility: 'hidden' },
-    { id: 18, country: 'Zambia', isSelected: false, expiry: '', visibility: 'hidden' },
-    { id: 19, country: 'Zimbabwe', isSelected: false, expiry: '', visibility: 'hidden' }
+    { id: 1, country: 'BURUNDI', isSelected: false, expiry: '', visibility: 'hidden' },
+    { id: 2, country: 'COMOROS', isSelected: false, expiry: '', visibility: 'hidden' },
+    { id: 3, country: 'D.R.CONGO', isSelected: false, expiry: '', visibility: 'hidden' },
+    { id: 4, country: 'DJIBOUTI', isSelected: false, expiry: '', visibility: 'hidden' },
+    { id: 5, country: 'EGYPT', isSelected: false, expiry: '', visibility: 'hidden' },
+    { id: 6, country: 'ERITREA', isSelected: false, expiry: '', visibility: 'hidden' },
+    { id: 7, country: 'ETHIOPIA', isSelected: false, expiry: '', visibility: 'hidden' },
+    { id: 8, country: 'KENYA', isSelected: false, expiry: '', visibility: 'hidden' },
+    { id: 9, country: 'LIBYA', isSelected: false, expiry: '', visibility: 'hidden' },
+    { id: 10, country: 'MADAGASCAR', isSelected: false, expiry: '', visibility: 'hidden' },
+    { id: 11, country: 'MALAWI', isSelected: false, expiry: '', visibility: 'hidden' },
+    { id: 12, country: 'MAURTIUS', isSelected: false, expiry: '', visibility: 'hidden' },
+    { id: 13, country: 'RWANDA', isSelected: false, expiry: '', visibility: 'hidden' },
+    { id: 14, country: 'SEYCHELLES', isSelected: false, expiry: '', visibility: 'hidden' },
+    { id: 15, country: 'SUDAN', isSelected: false, expiry: '', visibility: 'hidden' },
+    { id: 16, country: 'SWAZILAND', isSelected: false, expiry: '', visibility: 'hidden' },
+    { id: 17, country: 'UGANDA', isSelected: false, expiry: '', visibility: 'hidden' },
+    { id: 18, country: 'ZAMBIA', isSelected: false, expiry: '', visibility: 'hidden' },
+    { id: 19, country: 'ZIMBABWE', isSelected: false, expiry: '', visibility: 'hidden' }
   ];
   model: any = {};
   data = [];

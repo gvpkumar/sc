@@ -1,4 +1,4 @@
-import { Component, ViewChild,OnInit } from '@angular/core';
+import { Component, ViewChild, OnInit } from '@angular/core';
 import { MatPaginator, MatTableDataSource, PageEvent } from '@angular/material';
 import { HttpClient } from '@angular/common/http';
 import { Router } from '@angular/router';
@@ -26,7 +26,7 @@ export class TrucksComponent implements OnInit {
   getData;
   pageEvent: PageEvent;
 
-  displayedColumns = ['customColumn1','truckId','horseNumber','trailerNumber','edit'];
+  displayedColumns = ['customColumn1', 'truckId', 'horseNumber', 'trailerNumber', 'edit'];
   exampleDatabase: ExampleHttpDao | null;
   dataSource = new MatTableDataSource();
 
@@ -41,55 +41,54 @@ export class TrucksComponent implements OnInit {
     private authenticationService: AuthenticationService,
     private userService: UserService,
     public loggerService: LoggerService,
-    public dialog:MatDialog) {
- 
-   }
-   
-/*ngAfterViewInit()
-{
-  this.expiery = localStorage.getItem('expiery');
-  
-  this.check();
-//  this.initInterval();
-}
-  /*initInterval() {
-    setInterval(() => {
-      this.check();
-    }, CHECK_INTERVAL);
-  }*
+    public dialog: MatDialog) {
 
-  check() {
-    const now = Date.now();
-    console.log("present timestamp",now,this.expiery);
-  //let  timeleft=2000;
-    const diff =  this.expiery - now;
-    const isTimeout = diff <0;
-    console.log("isTimeout",isTimeout);
-    if (isTimeout) {
-      console.log("Timed out");
-     this.authenticationService.logout();
-    }
-  }*/
+  }
+
+  /*ngAfterViewInit()
+  {
+    this.expiery = localStorage.getItem('expiery');
+    
+    this.check();
+  //  this.initInterval();
+  }
+    /*initInterval() {
+      setInterval(() => {
+        this.check();
+      }, CHECK_INTERVAL);
+    }*
+  
+    check() {
+      const now = Date.now();
+      console.log("present timestamp",now,this.expiery);
+    //let  timeleft=2000;
+      const diff =  this.expiery - now;
+      const isTimeout = diff <0;
+      console.log("isTimeout",isTimeout);
+      if (isTimeout) {
+        console.log("Timed out");
+       this.authenticationService.logout();
+      }
+    }*/
   /**
    * Set the paginator after the view init since this component will
    * be able to query its view for the initialized paginator.
    */
   ngOnInit() {
     this.isLoadingResults = true;
-    let currentUser = localStorage.getItem('currentUser'); 
-    console.log("currentUser",currentUser);
-    if(currentUser!=null)  
-    {
+    let currentUser = localStorage.getItem('currentUser');
+    console.log("currentUser", currentUser);
+    if (currentUser != null) {
       this.getTruckData();
       this.loggerService.log(currentUser, "currentUser");
       this.authenticationService.loginDetails = JSON.parse(currentUser);
       this.router.navigate(['/trucks']);
     }
-    else{
+    else {
       this.router.navigate(['/']);
     }
- 
-   
+
+
   }
   applyFilter(filterValue: string) {
     filterValue = filterValue.trim(); // Remove whitespace
@@ -98,16 +97,14 @@ export class TrucksComponent implements OnInit {
   }
   openDialog(id): void {
     console.log(id);
-    let dialogRef = this.dialog.open(DialogTruckComponent, {
+    const dialogRef = this.dialog.open(DialogTruckComponent, {
       width: '400px',
       height: '160px',
       data: { id: id }
     });
 
     dialogRef.afterClosed().subscribe(result => {
-      setTimeout(() => {
         this.getTruckData();
-      });
     });
   }
   getTruckData() {
@@ -141,7 +138,7 @@ export class TrucksComponent implements OnInit {
 
   }
 
- 
+
 }
 
 export interface customUrlInfo {

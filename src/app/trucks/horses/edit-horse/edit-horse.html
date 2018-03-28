@@ -4,7 +4,7 @@
         <div class="header">Edit Horse Details</div>
         <div class="formex main-div">
 
-            <form>
+            <form #editHorse="ngForm">
                 <table style="width:100%">
                     <tr>
                         <td>Horse No</td>
@@ -117,7 +117,7 @@
                 </div>
 
                 <div style="text-align:right;margin-top:10px">
-                    <button mat-raised-button type="submit" (click)="update()" color="primary" style="border-radius:4px">Update</button>
+                    <button mat-raised-button type="submit" [disabled]="!editHorse.form.valid" (click)="update()" color="primary" style="border-radius:4px">Update</button>
                 </div>
             </form>
         </div>

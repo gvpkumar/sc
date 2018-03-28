@@ -34,7 +34,6 @@
         </ng-container-->
 
             <!-- Weight Column -->
-            {{element}}
             <ng-container matColumnDef="horseNumber">
                 <mat-header-cell *matHeaderCellDef> Horse No </mat-header-cell>
                 <mat-cell *matCellDef="let element"> {{element.horseNumber}} </mat-cell>
@@ -60,11 +59,11 @@
 
             <ng-container matColumnDef="crossborderCountry">
                 <mat-header-cell *matHeaderCellDef> Cross Border(Country) </mat-header-cell>
-                <mat-cell *matCellDef="let element"> {{element.crossborder | json}} </mat-cell>
+                <mat-cell *matCellDef="let element"><div *ngFor="let key of keys(element)">{{key}}</div> </mat-cell>
             </ng-container>
             <ng-container matColumnDef="crossborderExpiry">
                 <mat-header-cell *matHeaderCellDef> Cross Border Expiry </mat-header-cell>
-                <mat-cell *matCellDef="let element"> {{element.crossborderExpiry|date}} </mat-cell>
+                <mat-cell *matCellDef="let element"><div *ngFor="let key of keys(element)">{{element.crossBorder[key] | date}}</div> </mat-cell>
             </ng-container>
             <ng-container matColumnDef="comesa">
                 <mat-header-cell *matHeaderCellDef> Comesa </mat-header-cell>

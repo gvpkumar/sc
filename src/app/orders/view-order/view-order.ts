@@ -21,7 +21,7 @@ export class OrderComponent {
 
   orderStatus= 'All';
   isLoggedIn: boolean = false;
-  statusList = ['All', 'Open', 'Closed', 'Pending'];
+  statusList = ['All', 'Open', 'Closed', 'Pending', 'Cancel'];
   getData;
   pageEvent: PageEvent;
 

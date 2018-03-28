@@ -11,7 +11,7 @@
                         <!-- <td colspan="6"> <input type="text" name="orderCustomerName" placeholder="Customer Name" [(ngModel)]="model.orderCustomerName">
                         </td> -->
                         <td colspan="3">
-                            <select placeholder="Customer Name" required name="orderCustomerName" [(ngModel)]="model.orderCustomerName" required value="{{model.orderCustomerName}}">
+                            <select placeholder="Customer Name" name="orderCustomerName" [(ngModel)]="model.orderCustomerName" required value="{{model.orderCustomerName}}">
                                 <option [value]="undefined" selected="selected">Select Customer </option>
                                 <option *ngFor="let customer of customers" value="{{customer.customerName}}">{{customer.customerName}}</option>
                             </select>
