@@ -14,7 +14,7 @@
                     </tr>
                     <tr>
                         <td>Contact Number</td>
-                        <td colspan="4"> <input type="text" pattern="^\d+$" name="customerPhone" placeholder="Contact Number" [(ngModel)]="model.customerPhone" #customerPhone="ngModel">
+                        <td colspan="4"> <input type="text"  maxlength="10" pattern="\d+$" name="customerPhone" placeholder="Contact Number" [(ngModel)]="model.customerPhone" #customerPhone="ngModel">
                             <div *ngIf="customerPhone.invalid && (customerPhone.dirty || customerPhone.touched)" class="alert alert-danger" style="color:red">
 
                                 <div *ngIf="customerPhone.errors.required">

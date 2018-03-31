@@ -20,15 +20,15 @@
                     </tr>
                     <tr>
                         <td colspan="2">NRC No</td>
-                        <td colspan="2"> <input type="text" name="driverNrcNumber" placeholder="NRC No" [(ngModel)]="model.driverNrcNumber" style="margin-right:5px">
+                        <td colspan="2"> <input type="text" pattern="[a-zA-Z0-9]+" name="driverNrcNumber" placeholder="NRC No" [(ngModel)]="model.driverNrcNumber" style="margin-right:5px">
                         </td>
 
                         <td colspan="2">Passport</td>
-                        <td colspan="2"> <input type="text" name="driverPassport" placeholder="Passport" [(ngModel)]="model.driverPassport">
+                        <td colspan="2"> <input type="text" pattern="[a-zA-Z0-9]+" name="driverPassport" placeholder="Passport" [(ngModel)]="model.driverPassport">
                         </td>
                     </tr>
                     <tr>
-                        <td colspan="2">Contact Number<span style="color:red;font-size:18px;">*</span></td>
+                        <td colspan="2">Contact Number</td>
                         <td colspan="2"> <input type="text" name="driverContactNumber" placeholder="Contact Number" [(ngModel)]="model.driverContactNumber" #driverContactNumber="ngModel" class="form-control" pattern="^\d+$" required>
                             <div *ngIf="driverContactNumber.invalid && (driverContactNumber.dirty || driverContactNumber.touched)" class="alert alert-danger" style="color:red">
 
@@ -43,7 +43,7 @@
                             </div>
                         </td>
                         <td colspan="2">Alter Native Phone Number</td>
-                        <td colspan="2"> <input type="text" name="driverAlternateContact" placeholder="Alter Native Phone Number" [(ngModel)]="model.driverAlternateContact" #driverAlternateContact="ngModel" class="form-control" pattern="^\d+$">
+                        <td colspan="2"> <input maxlength="11" type="text" name="driverAlternateContact" placeholder="Alter Native Phone Number" [(ngModel)]="model.driverAlternateContact" #driverAlternateContact="ngModel" class="form-control" pattern="^\d+$">
                             <div *ngIf="driverAlternateContact.invalid && (driverAlternateContact.dirty || driverAlternateContact.touched)" class="alert alert-danger" style="color:red">
 
                                 <div *ngIf="driverAlternateContact.errors.pattern">

@@ -1,8 +1,8 @@
 import { Injectable } from '@angular/core';
-import { SidenavItem } from "./sidenav-item/sidenav-item.model";
-import { BehaviorSubject, Observable } from "rxjs";
+import { SidenavItem } from './sidenav-item/sidenav-item.model';
+import { BehaviorSubject, Observable } from 'rxjs';
 import * as _ from 'lodash';
-import {MatSnackBar, MatSnackBarConfig} from "@angular/material";
+import {MatSnackBar, MatSnackBarConfig} from '@angular/material';
 
 @Injectable()
 export class SidenavService {
@@ -20,44 +20,46 @@ export class SidenavService {
   constructor(
     snackbar: MatSnackBar
   ) {
-    let menu = this;
+    const menu = this;
 
-    //let dashboard = menu.addItem('Dashboard', 'dashboard', '/', 1);
+    // let dashboard = menu.addItem('Dashboard', 'dashboard', '/', 1);
 
-   
-
-    let trucks =  menu.addItem('Trucks', 'local_shipping', null, 1);
+    const trucks =  menu.addItem('Trucks', 'local_shipping', null, 1);
     menu.addSubItem(trucks, 'View Trucks', '/trucks', 1);
     menu.addSubItem(trucks, 'Horses', '/horses', 2);
     menu.addSubItem(trucks, 'Trailers', '/trailers', 3);
 
-    let Drivers =  menu.addItem('Drivers', 'account_box', null, 2);
+    const Drivers =  menu.addItem('Drivers', 'account_box', null, 2);
     menu.addSubItem(Drivers, 'Add', '/add-driver', 1);
     menu.addSubItem(Drivers, 'View All', '/drivers', 2);
-    
-    let Customers =  menu.addItem('Customers', 'account_circle', null, 3);
+
+    const Customers =  menu.addItem('Customers', 'account_circle', null, 3);
     menu.addSubItem(Customers, 'Add', '/add-customer', 1);
     menu.addSubItem(Customers, 'View All', '/customers', 2);
 
-    let Coupons =  menu.addItem('Coupons', 'credit_card', null, 4);
+    const Coupons =  menu.addItem('Coupons', 'credit_card', null, 4);
     menu.addSubItem(Coupons, 'Add', '/add-coupon', 1);
     menu.addSubItem(Coupons, 'View All', '/coupons', 2);
 
-    let Dispatch =  menu.addItem('Dispatch', 'layers', null, 5);
+    const Dispatch =  menu.addItem('Dispatch', 'layers', null, 5);
     menu.addSubItem(Dispatch, 'Add', '/add-dispatch', 1);
     menu.addSubItem(Dispatch, 'View All', '/dispatch', 2);
 
-    
-    let Orders =  menu.addItem('Orders', 'layers', null, 6);
+    const Orders =  menu.addItem('Orders', 'layers', null, 6);
     menu.addSubItem(Orders, 'Add', '/add-order', 1);
     menu.addSubItem(Orders, 'View All', '/orders', 2);
 
-    let ServiceInformation =  menu.addItem('Services', 'layers', null, 7);
+    const ServiceInformation =  menu.addItem('Services', 'layers', null, 7);
     menu.addSubItem(ServiceInformation, 'Horse Service', '/horse-services', 1);
     menu.addSubItem(ServiceInformation, 'Trailer Service', '/trailer-services', 2);
-    let dynamicMenuFunctionDemo = () => {
-      let dynamicFunction = () => {
-        let snackbarRef = snackbar.open('This menu item got added dynamically!', 'Remove item', <MatSnackBarConfig>{
+
+    const JobCard  = menu.addItem('Job Card', 'layers', null, 8);
+    menu.addSubItem(JobCard, 'JobCard', '/add-jobcard', 1);
+    menu.addSubItem(JobCard, 'View JobCards', '/view-jobcards', 2);
+
+    const dynamicMenuFunctionDemo = () => {
+      const dynamicFunction = () => {
+        const snackbarRef = snackbar.open('This menu item got added dynamically!', 'Remove item', <MatSnackBarConfig>{
           duration: 5000
         });
 
@@ -66,14 +68,14 @@ export class SidenavService {
         });
       };
 
-      let dynamicMenu = menu.addItem('Dynamic Menu Item', 'extension', dynamicFunction, 12);
+      const dynamicMenu = menu.addItem('Dynamic Menu Item', 'extension', dynamicFunction, 12);
     };
 
    // let addMenu = menu.addItem('Add Menu Item', 'add', dynamicMenuFunctionDemo, 99, null, null, 'add-dynamic-menu');
   }
 
   addItem(name: string, icon: string, route: any, position: number, badge?: string, badgeColor?: string, customClass?: string) {
-    let item = new SidenavItem({
+    const item = new SidenavItem({
       name: name,
       icon: icon,
       route: route,
@@ -91,7 +93,7 @@ export class SidenavService {
   }
 
   addSubItem(parent: SidenavItem, name: string, route: any, position: number) {
-    let item = new SidenavItem({
+    const item = new SidenavItem({
       name: name,
       route: route,
       parent: parent,
@@ -106,7 +108,7 @@ export class SidenavService {
   }
 
   removeItem(item: SidenavItem) {
-    let index = this._items.indexOf(item);
+    const index = this._items.indexOf(item);
     if (index > -1) {
       this._items.splice(index, 1);
     }
@@ -115,7 +117,7 @@ export class SidenavService {
   }
 
   isOpen(item: SidenavItem) {
-    return (this._currentlyOpen.indexOf(item) != -1);
+    return (this._currentlyOpen.indexOf(item) !== -1);
   }
 
   toggleCurrentlyOpen(item: SidenavItem) {
@@ -153,7 +155,7 @@ export class SidenavService {
   nextCurrentlyOpenByRoute(route: string) {
     let currentlyOpen = [ ];
 
-    let item = this.findByRouteRecursive(route, this._items);
+    const item = this.findByRouteRecursive(route, this._items);
 
     if (item && item.hasParent()) {
       currentlyOpen = this.getAllParents(item);
@@ -170,7 +172,7 @@ export class SidenavService {
     if (!result) {
       _.each(collection, (item) => {
         if (item.hasSubItems()) {
-          let found = this.findByRouteRecursive(route, item.subItems);
+          const found = this.findByRouteRecursive(route, item.subItems);
 
           if (found) {
             result = found;

@@ -5,57 +5,62 @@ import { AdminComponent } from './core/admin/admin.component';
 
 
 
-//drivers
+// drivers
 import { DriversComponent } from './drivers/view-drivers/view-drivers';
 import { AddDriverComponent } from './drivers/add-drivers/add-driver.component';
 import { EditDriverComponent } from './drivers/edit-drivers/edit-driver.component';
 
-//customers
+// customers
 import { ClientsComponent } from './clients/view-clients/view-clients';
 import { AddCustomerComponent } from './clients/add-client/add-client';
 import { EditCustomerComponent } from './clients/edit-client/edit-client';
 import { LoginComponent } from './login/login.component';
 
-//Coupons
+// Coupons
 import { AddCouponComponent } from './coupons/add-coupon/add-coupon';
 import { CouponsComponent } from './coupons/view-coupons/view-coupons';
 import { AddCouponStep3Component } from './coupons/add-coupon-step3/add-coupon-step3';
 
-//Dispatch
+// Dispatch
 import { AddDispatchComponent } from './dispatch/add-dispatch/add-dispatch';
 import { DispatchComponent } from './dispatch/view-dispatch/view-dispatch';
 import { EditDispatchComponent } from './dispatch/edit-dispatch/edit-dispatch';
 import { AddDispatchStep2Component } from './dispatch/add-dispatch-step2/add-dispatch-step2';
 
-//Cargo
+// Cargo
 import { OrderComponent } from './orders/view-order/view-order';
 import { AddOrderComponent } from './orders/add-order/add-order';
 import { EditOrderComponent } from './orders/edit-order/edit-order';
 
-//Horses
+// Horses
 import { HorsesComponent } from './trucks/horses/view-horses/view-horses';
 import { AddHorseComponent } from './trucks/horses/add-horse/add-horse';
 import { EditHorseComponent } from './trucks/horses/edit-horse/edit-horse';
 
-//trailers
+// trailers
 import { TrailersComponent } from './trucks/trailers/view-trailers/view-trailers';
 import { AddTrailerComponent } from './trucks/trailers/add-trailer/add-trailer';
 import { EditTrailerComponent } from './trucks/trailers/edit-trailer/edit-trailer';
 
-//trucks
+// trucks
 import { TrucksComponent } from './trucks/view-trucks/view-trucks';
 import { AddTruckComponent } from './trucks/add-truck/add-truck';
 import { EditTruckComponent } from './trucks/edit-truck/edit-truck';
 
-//Horse-service
+// Horse-service
 import { HorseServicesComponent } from './services/horse-service/view-horse-services/view-horse-services';
 import { AddHorseServiceComponent } from './services/horse-service/add-horse-service/add-horse-service';
 import { EditHorseServiceComponent } from './services/horse-service/edit-horse-service/edit-horse-service';
 
-//Trailer-service
+// Trailer-service
 import { TrailerServicesComponent } from './services/trailer-service/view-trailer-services/view-trailer-services';
 import { AddTrailerServiceComponent } from './services/trailer-service/add-trailer-service/add-trailer-service';
 import { EditTrailerServiceComponent } from './services/trailer-service/edit-trailer-service/edit-trailer-service';
+
+// jobcard
+import { AddJobcardComponent } from './jobcard/add-jobcard/add-jobcard';
+import { ViewJobcardsComponent } from './jobcard/view-jobcards/view-jobcards';
+
 
 
 const routes: Routes = [
@@ -68,12 +73,6 @@ const routes: Routes = [
     path: '',
     component: AdminComponent,
     children: [
-      /*{
-        path: '',
-        component: HomeComponent,
-        pathMatch: 'full'
-      },*/
-
       {
         path: 'drivers',
         component: DriversComponent,
@@ -82,7 +81,6 @@ const routes: Routes = [
         path: 'add-driver',
         component: AddDriverComponent,
       },
-
       {
         path: 'edit-driver-details/:id',
         component: EditDriverComponent,
@@ -200,11 +198,16 @@ const routes: Routes = [
         path: 'add-horse-service',
         component: AddHorseServiceComponent,
       },
+      {
+        path: 'add-jobcard',
+        component: AddJobcardComponent
+      },
+      {
+        path: 'view-jobcards',
+        component: ViewJobcardsComponent
+      }
     ]
   }
-
-
-
 ];
 
 
