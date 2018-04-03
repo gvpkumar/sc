@@ -35,7 +35,7 @@
             <!-- Color Column -->
             <ng-container matColumnDef="driverDateOfJoining">
                 <mat-header-cell *matHeaderCellDef> DOJ </mat-header-cell>
-                <mat-cell *matCellDef="let element"> {{element.driverDateOfJoining | date}} </mat-cell>
+                <mat-cell *matCellDef="let element"> {{element.driverDateOfJoining | date : 'dd/MM/yyyy'}} </mat-cell>
             </ng-container>
             <ng-container matColumnDef="driverLicenseNumber">
                 <mat-header-cell *matHeaderCellDef> Licence Number </mat-header-cell>
@@ -43,7 +43,7 @@
             </ng-container>
             <ng-container matColumnDef="driverLicenseExpiry">
                 <mat-header-cell *matHeaderCellDef> Expiry </mat-header-cell>
-                <mat-cell *matCellDef="let element"> {{element.driverLicenseExpiry | date}} </mat-cell>
+                <mat-cell *matCellDef="let element"> {{element.driverLicenseExpiry | date : 'dd/MM/yyyy'}} </mat-cell>
             </ng-container>
             <ng-container matColumnDef="driverNrcNumber">
                 <mat-header-cell *matHeaderCellDef> NRC </mat-header-cell>
@@ -55,7 +55,7 @@
             </ng-container>
             <ng-container matColumnDef="driverWorksuiteDate">
                 <mat-header-cell *matHeaderCellDef> Work Suite Date </mat-header-cell>
-                <mat-cell *matCellDef="let element"> {{element.driverWorksuiteDate |date}} </mat-cell>
+                <mat-cell *matCellDef="let element"> {{element.driverWorksuiteDate |date : 'dd/MM/yyyyy'}} </mat-cell>
             </ng-container>
 
             <ng-container matColumnDef="edit">

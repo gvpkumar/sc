@@ -1,0 +1,118 @@
+<div fxLayoutAlign="center center" style="margin:30px 0px">
+  <mat-card fxFlex="85%" fxFlex.xs="98%">
+
+    <div class="header">Job Card</div>
+    <div class="formex main-div">
+
+      <form #jobForm="ngForm">
+        <div style="text-align:right;margin-top:10px">
+          <!--  -->
+          <a mat-raised-button class="mat-raised-button mat-accent" download="Jobcard" href="{{downloadUrl}}user/jobCard/formatDownload">
+
+            <!-- <button mat-raised-button color="primary" style="border-radius:4px"> -->
+            <i class="material-icons">file_download</i>Download Jobcard
+            <!-- </button> -->
+          </a>
+        </div>
+        <table style="width:100%">
+          <tr>
+            <td>Job Number</td>
+            <td colspan="3">
+              <input pattern="[0-9]+" type="text" name="jobNumber" placeholder="Job Number" [(ngModel)]="model.jobNo" #jobNumber="ngModel"
+                required>
+
+              <div *ngIf="jobNumber.invalid && (jobNumber.dirty || jobNumber.touched)" class="alert alert-danger" style="color:red">
+                <div *ngIf="jobNumber.errors.required">
+                  Jobcard Number is required.
+                </div>
+                <div *ngIf="jobNumber.errors.pattern">
+                  Jobcard Number should be of Numbers only.
+                </div>
+              </div>
+            </td>
+          </tr>
+          <tr>
+            <td>Date</td>
+            <td colspan="3">
+              <input type="text" onfocus="(this.type='date')" onblur="(this.type='text')" name="date" placeholder="Date" [(ngModel)]="model.jobDate">
+            </td>
+          </tr>
+          <tr>
+            <td>Truck Reg No</td>
+            <td colspan="3">
+              <select placeholder="Truck Reg No" name="truckNo" [(ngModel)]="model.truckNo" required value="{{model.truckNo}}">
+                <option [value]="undefined" selected="selected">Select Truck Reg No </option>
+                <option *ngFor="let truck of trucks" value="{{truck.truckId}}">{{truck.truckId}}</option>
+              </select>
+            </td>
+          </tr>
+          <tr>
+            <!-- <td>Driver Name</td>
+            <td colspan="3">
+              <input type="text" name="driverName" placeholder="Drive Name" [(ngModel)]="model.driver_name" value="{{model.driver_name}}">
+            </td> -->
+            <td>Driver Name</td>
+            <td colspan="3">
+              <select placeholder="Trailer Number" name="orderDriverFirstName" [(ngModel)]="model.driver_name" required value="{{model.driver_name}}">
+                <option [value]="undefined" selected="selected">Select Driver </option>
+                <option *ngFor="let driver of drivers" value="{{driver.driverFirstName}}">{{driver.driverFirstName}}</option>
+              </select>
+            </td>
+          </tr>
+          <tr>
+            <td>Arrival From</td>
+            <td colspan="3">
+              <input type="text" name="arrivalFrom" placeholder="Arrival From" [(ngModel)]="model.arrivalFrom" value="{{model.arrivalFrom}}">
+            </td>
+          </tr>
+          <tr>
+            <td>Work Shops</td>
+            <td colspan="3">
+              <input type="text" name="workShops" placeholder="Work Shops" [(ngModel)]="model.workShops" value="{{model.workShops}}">
+            </td>
+          </tr>
+          <tr>
+            <td>Mechanic Name</td>
+            <td colspan="3">
+              <input type="text" name="mechanicName" placeholder="Mechanic Name" [(ngModel)]="model.mechanicName" value="{{model.mechanicName}}">
+            </td>
+          </tr>
+          <tr>
+            <td>Total Spares Cost </td>
+            <td colspan="1">
+              <select required placeholder="Currency" name="Currency" [(ngModel)]="model.currency" required value="{{model.currency}}">
+                <option [value]="undefined" selected="selected">Currency </option>
+                <option value="USD">USD</option>
+                <option value="ZMW">ZMW</option>
+              </select>
+            </td>
+            <td colspan="2">
+              <input type="text" class="form-control" required name="totalSparesCost" #totalSparesCost="ngModel" placeholder="Total Spares Cost"
+                pattern="^\d+$" [(ngModel)]="model.totalSparesCost">
+              <div *ngIf="totalSparesCost.invalid && (totalSparesCost.dirty || totalSparesCost.touched)" class="alert alert-danger" style="color:red">
+                <div *ngIf="totalSparesCost.errors.required">
+                  Total Spares Cost is required.
+                </div>
+                <div *ngIf="totalSparesCost.errors.pattern">
+                  Please enter numeric value
+                </div>
+              </div>
+            </td>
+            <tr>
+              <td>Date Closed</td>
+              <td colspan="3">
+                <input type="text" onfocus="(this.type='date')" onblur="(this.type='text')" name="dateClosed" placeholder="Date Closed" [(ngModel)]="model.dateClosed">
+              </td>
+            </tr>
+        </table>
+
+        <div style="text-align:right;margin-top:10px">
+          <input mat-raised-button type="file" id="myFile" required (change)=readFile($event) [disabled]="allowUpload">
+
+          <button mat-raised-button type="submit" [disabled]="!allowUpload" (click)="getBase64()" color="primary" style="border-radius:4px">Upload Jobcard</button>
+          <button mat-raised-button type="submit" [disabled]="!jobForm.form.valid" (click)="submit()" color="primary" style="border-radius:4px">Submit</button>
+        </div>
+      </form>
+    </div>
+  </mat-card>
+</div>

@@ -26,7 +26,7 @@ export class DispatchComponent implements OnInit {
   getData;
   pageEvent: PageEvent;
   // tslint:disable-next-line:max-line-length
-  displayedColumns = ['customColumn1', 'dispatchDeliveryNoteNumber', 'dispatchWeight', 'dispatchDate', 'dispatchOrderId', 'dispatchConsignee', 'dispatchDeliveryDate', 'dispatchHorseNumber', 'dispatchDriverFirstname', 'dispatchSource', 'dispatchDestination', 'edit'];
+  displayedColumns = [/* 'customColumn1', */'dispatchTripNumber', 'dispatchDeliveryNoteNumber', 'dispatchWeight', 'dispatchDate', 'dispatchOrderId', 'dispatchConsignee', 'dispatchDeliveryDate', 'dispatchHorseNumber', 'dispatchDriverFirstname', 'dispatchSource', 'dispatchDestination', 'edit'];
   exampleDatabase: ExampleHttpDao | null;
   dataSource = new MatTableDataSource();
 
@@ -49,13 +49,13 @@ export class DispatchComponent implements OnInit {
    */
   ngOnInit() {
     this.isLoadingResults = true;
-    let currentUser = localStorage.getItem('currentUser');
-    this.loggerService.log(currentUser, "currentUser");
+    const currentUser = localStorage.getItem('currentUser');
+    this.loggerService.log(currentUser, 'currentUser');
     this.authenticationService.loginDetails = JSON.parse(currentUser);
     this.getDispatchData(this.dispatchStatus);
   }
 
-  onStatusChange(status){
+  onStatusChange(status) {
     this.dispatchStatus = status;
     this.getDispatchData(status);
   }
@@ -67,7 +67,7 @@ export class DispatchComponent implements OnInit {
   }
   openDialog(id): void {
     console.log(id);
-    let dialogRef = this.dialog.open(DialogDispatchComponent, {
+    const dialogRef = this.dialog.open(DialogDispatchComponent, {
       width: '400px',
       height: '160px',
       data: { id: id }
@@ -79,9 +79,9 @@ export class DispatchComponent implements OnInit {
       });
     });
   }
+
   getDispatchData(status) {
     this.exampleDatabase = new ExampleHttpDao(this.http, this.authenticationService, this.userService);
-
     Observable.merge()
       .startWith(null)
       .switchMap(() => {
@@ -107,43 +107,30 @@ export class DispatchComponent implements OnInit {
         this.dataSource.paginator = this.paginator;
         //  this.loggerService.log("Received Data: ",JSON.stringify(data));
       });
-
   }
-
 }
 
-export interface customUrlInfo {
+export interface CustomUrlInfo {
   name: string;
   position: number;
   address: string;
   phone: string;
 }
 
-
-
 /** An example database that the data source uses to retrieve data for the table. */
 export class ExampleHttpDao {
 
   model: any = {
   };
-  urldetails: customUrlInfo[];
-
+  urldetails: CustomUrlInfo[];
   constructor(private http: HttpClient,
     public authenticationService: AuthenticationService,
     private userService: UserService, ) {
-
   }
 
-
-
-  //Api call to Fetch all the created url Links.
-
-  getCustomUrlsCreatedList(status): Observable<customUrlInfo[]> {
+  // Api call to Fetch all the created url Links.
+  getCustomUrlsCreatedList(status): Observable<CustomUrlInfo[]> {
     // this.model.userId = "sravanthi@smartrobos.com";
-
     return this.userService.getDispatchData(status);
-
   }
-
-
 }

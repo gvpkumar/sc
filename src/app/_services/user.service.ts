@@ -38,8 +38,6 @@ export class UserService {
             return headers;
         };
     }
-    ngOnInit() {
-    }
 
     getCustomers(): Observable<any> {
         const options = new RequestOptions({ headers: this.headers });
@@ -60,7 +58,7 @@ export class UserService {
             if (loginResponse) {
             }
 
-            if (loginResponse.Error == true) {
+            if (loginResponse.Error === true) {
                 // Debug : this.loggerService.log(loginResponse.Error);
                 throw new Error('Error');
             }
@@ -79,7 +77,7 @@ export class UserService {
                 return loginResponse;
             }
 
-            if (loginResponse.Error == true) {
+            if (loginResponse.Error === true) {
                 // Debug : this.loggerService.log(loginResponse.Error);
                 throw new Error('Error');
             }
@@ -98,7 +96,7 @@ export class UserService {
                 return loginResponse;
             }
 
-            /*if (loginResponse.Error == true) {
+            /*if (loginResponse.Error === true) {
                 // Debug : this.loggerService.log(loginResponse.Error);
                 throw new Error('Error');
             }*/
@@ -108,7 +106,7 @@ export class UserService {
     /** API to get Coupon Data */
     getCouponData(status): Observable<any> {
         let globalMainUrl = '';
-        if (status == 'All' || status == '') {
+        if (status === 'All' || status === '') {
             status = '';
         }
         const options = new RequestOptions({ headers: this.headers });
@@ -126,7 +124,7 @@ export class UserService {
                 return this.customersData;
             }
 
-            if (loginResponse.Error == true) {
+            if (loginResponse.Error === true) {
                 // Debug : this.loggerService.log(loginResponse.Error);
                 throw new Error('Error');
             }
@@ -146,7 +144,7 @@ export class UserService {
                 return loginResponse;
             }
 
-            if (loginResponse.Error == true) {
+            if (loginResponse.Error === true) {
                 // Debug : this.loggerService.log(loginResponse.Error);
                 throw new Error('Error');
             }
@@ -157,7 +155,7 @@ export class UserService {
 
         const options = new RequestOptions({ headers: this.headers });
         const globalMainUrl = this.mainUrl + '/user/orderDetail/';
-        // let globalMainUrl = "http://localhost:3000/api/users";
+        // const globalMainUrl = "http://localhost:3000/api/users";
         const postUrl = globalMainUrl;
         return this.http.put(postUrl, model, options).map((response: Response) => {
 
@@ -168,7 +166,7 @@ export class UserService {
                 return this.customersData;
             }
 
-            if (loginResponse.Error == true) {
+            if (loginResponse.Error === true) {
                 // Debug : this.loggerService.log(loginResponse.Error);
                 throw new Error('Error');
             }
@@ -200,7 +198,7 @@ export class UserService {
         const options = new RequestOptions({ headers: this.headers });
 
         const globalMainUrl = this.mainUrl + '/user/orderDetail/';
-        // let globalMainUrl = "http://localhost:3000/api/users";
+        // const globalMainUrl = "http://localhost:3000/api/users";
         const postUrl = globalMainUrl + id;
         return this.http.get(postUrl, options)
             .map((response: Response) => {
@@ -297,7 +295,7 @@ export class UserService {
     getHorseServiceDetails(id): Observable<any> {
         const options = new RequestOptions({ headers: this.headers });
         const globalMainUrl = this.mainUrl + '/horseService/';
-        // let globalMainUrl = "http://localhost:3000/api/users";
+        // const globalMainUrl = "http://localhost:3000/api/users";
         const postUrl = globalMainUrl + id;
         return this.http.get(postUrl, options)
             .map((response: Response) => {
@@ -312,7 +310,7 @@ export class UserService {
         console.log(getData, 'getdata');
         const options = new RequestOptions({ headers: this.headers });
         const globalMainUrl = this.mainUrl + '/horseService';
-        // let globalMainUrl = "http://localhost:3000/api/users";
+        // const globalMainUrl = "http://localhost:3000/api/users";
         const postUrl = globalMainUrl;
         return this.http.put(postUrl, getData, options).map((response: Response) => {
 
@@ -382,7 +380,7 @@ export class UserService {
     getTrailerServiceDetails(id): Observable<any> {
         const options = new RequestOptions({ headers: this.headers });
         const globalMainUrl = this.mainUrl + '/trailerService/';
-        // let globalMainUrl = "http://localhost:3000/api/users";
+        // const globalMainUrl = "http://localhost:3000/api/users";
         const postUrl = globalMainUrl + id;
         return this.http.get(postUrl, options)
             .map((response: Response) => {
@@ -397,7 +395,7 @@ export class UserService {
         const options = new RequestOptions({ headers: this.headers });
 
         const globalMainUrl = this.mainUrl + '/trailerService';
-        // let globalMainUrl = "http://localhost:3000/api/users";
+        // const globalMainUrl = "http://localhost:3000/api/users";
         const postUrl = globalMainUrl;
         return this.http.put(postUrl, getData, options).map((response: Response) => {
 
@@ -428,7 +426,7 @@ export class UserService {
                 return loginResponse;
             }
 
-            if (loginResponse.Error == true) {
+            if (loginResponse.Error === true) {
                 // Debug : this.loggerService.log(loginResponse.Error);
                 throw new Error('Error');
             }
@@ -442,16 +440,16 @@ export class UserService {
     }
     /** Api To add cargo Details */
     addCargo(model: any): Observable<any> {
-        let options = new RequestOptions({ headers: this.headers });
-        let globalMainUrl = this.mainUrl + 'user/cargoDetail';
+        const options = new RequestOptions({ headers: this.headers });
+        const globalMainUrl = this.mainUrl + 'user/cargoDetail';
         return this.http.post(globalMainUrl, model, options).map((response: Response) => {
-            let loginResponse = response.json();
+            const loginResponse = response.json();
             this.loggerService.log('create response', loginResponse);
 
             if (loginResponse) {
             }
 
-            if (loginResponse.Error == true) {
+            if (loginResponse.Error === true) {
                 // Debug : this.loggerService.log(loginResponse.Error);
                 throw new Error('Error');
             }
@@ -463,17 +461,17 @@ export class UserService {
 
     /** Api To delete Driver Details */
     deleteDriverDetails(id: any): Observable<any> {
-        let options = new RequestOptions({ headers: this.headers });
-        let postUrl = this.mainUrl + '/user/driverDetail/';
-        let globalMainUrl = postUrl + id;
+        const options = new RequestOptions({ headers: this.headers });
+        const postUrl = this.mainUrl + '/user/driverDetail/';
+        const globalMainUrl = postUrl + id;
         return this.http.delete(globalMainUrl, options).map((response: Response) => {
             this.loggerService.log('create response', response);
-            let loginResponse = response.json();
+            const loginResponse = response.json();
             if (loginResponse) {
                 return loginResponse;
             }
 
-            /*if (loginResponse.Error == true) {
+            /*if (loginResponse.Error === true) {
                 // Debug : this.loggerService.log(loginResponse.Error);
                 throw new Error('Error');
             }*/
@@ -482,17 +480,17 @@ export class UserService {
     }
     /** Api To delete Truck Details */
     deleteTruckDetails(id: any): Observable<any> {
-        let options = new RequestOptions({ headers: this.headers });
-        let postUrl = this.mainUrl + '/user/truck/';
-        let globalMainUrl = postUrl + id;
+        const options = new RequestOptions({ headers: this.headers });
+        const postUrl = this.mainUrl + '/user/truck/';
+        const globalMainUrl = postUrl + id;
         return this.http.delete(globalMainUrl, options).map((response: Response) => {
             this.loggerService.log('create response', response);
-            let loginResponse = response.json();
+            const loginResponse = response.json();
             if (loginResponse) {
                 return loginResponse;
             }
 
-            /*if (loginResponse.Error == true) {
+            /*if (loginResponse.Error === true) {
                 // Debug : this.loggerService.log(loginResponse.Error);
                 throw new Error('Error');
             }*/
@@ -501,17 +499,17 @@ export class UserService {
     }
     /** Api To delete Driver Details */
     deleteCustomerDetails(id: any): Observable<any> {
-        let options = new RequestOptions({ headers: this.headers });
-        let postUrl = this.mainUrl + '/user/customerDetail/';
-        let globalMainUrl = postUrl + id;
+        const options = new RequestOptions({ headers: this.headers });
+        const postUrl = this.mainUrl + '/user/customerDetail/';
+        const globalMainUrl = postUrl + id;
         return this.http.delete(globalMainUrl, options).map((response: Response) => {
             this.loggerService.log('create response', response);
-            let loginResponse = response.json();
+            const loginResponse = response.json();
             if (loginResponse) {
                 return loginResponse;
             }
 
-            if (loginResponse.Error == true) {
+            if (loginResponse.Error === true) {
                 // Debug : this.loggerService.log(loginResponse.Error);
                 throw new Error('Error');
             }
@@ -522,13 +520,13 @@ export class UserService {
 
     /**API to add horse data */
     addHorseData(model): Observable<any> {
-        let options = new RequestOptions({ headers: this.headers });
-        let globalMainUrl = this.mainUrl + '/horseDetail';
+        const options = new RequestOptions({ headers: this.headers });
+        const globalMainUrl = this.mainUrl + '/horseDetail';
         return this.http.post(globalMainUrl, model, options)
             .map((response: Response) => {
-                let loginResponse = response.json();
+                const loginResponse = response.json();
                 this.statusCode = response.headers.get('Status Code');
-                console.log("Status code", this.statusCode);
+                console.log('Status code', this.statusCode);
 
                 this.loggerService.log(loginResponse);
                 return loginResponse;
@@ -543,23 +541,23 @@ export class UserService {
     }
     /**API to get horse data */
     getHorseData(): Observable<any> {
-        let options = new RequestOptions({ headers: this.headers });
-        let globalMainUrl = this.mainUrl + '/horseDetails';
+        const options = new RequestOptions({ headers: this.headers });
+        const globalMainUrl = this.mainUrl + '/horseDetails';
         return this.http.get(globalMainUrl, options)
             .map((response: Response) => {
-                let loginResponse = response.json();
+                const loginResponse = response.json();
                 this.loggerService.log(loginResponse);
                 return loginResponse;
             });
     }
     /** Api To delete horse Details */
     deleteHorseDetails(id: any): Observable<any> {
-        let options = new RequestOptions({ headers: this.headers });
-        let postUrl = this.mainUrl + '/horseDetail/';
-        let globalMainUrl = postUrl + id;
+        const options = new RequestOptions({ headers: this.headers });
+        const postUrl = this.mainUrl + '/horseDetail/';
+        const globalMainUrl = postUrl + id;
         return this.http.delete(globalMainUrl, options).map((response: Response) => {
             this.loggerService.log('create response', response);
-            let loginResponse = response.json();
+            const loginResponse = response.json();
             if (loginResponse) {
                 return loginResponse;
             }
@@ -568,38 +566,36 @@ export class UserService {
     }
     /**API to get horse details */
     getHorseDetails(id): Observable<any> {
-        let options = new RequestOptions({ headers: this.headers });
+        const options = new RequestOptions({ headers: this.headers });
 
-        let globalMainUrl = this.mainUrl + '/horseDetail/';
-        // let globalMainUrl = "http://localhost:3000/api/users";
-        let postUrl = globalMainUrl + id;
+        const globalMainUrl = this.mainUrl + '/horseDetail/';
+        // const globalMainUrl = "http://localhost:3000/api/users";
+        const postUrl = globalMainUrl + id;
         return this.http.get(postUrl, options)
             .map((response: Response) => {
-                let loginResponse = response.json();
-                let n = loginResponse.length
+                const loginResponse = response.json();
+                const n = loginResponse.length;
                 this.loggerService.log(loginResponse);
                 return loginResponse;
-
-
             });
 
     }
     /** API to update horse details */
     updateHorseDetails(getData): Observable<any> {
-        console.log(getData, "getdata");
-        let options = new RequestOptions({ headers: this.headers });
-        let globalMainUrl = this.mainUrl + '/horseDetail';
-        // let globalMainUrl = "http://localhost:3000/api/users";
-        let postUrl = globalMainUrl;
+        console.log(getData, 'getdata');
+        const options = new RequestOptions({ headers: this.headers });
+        const globalMainUrl = this.mainUrl + '/horseDetail';
+        // const globalMainUrl = "http://localhost:3000/api/users";
+        const postUrl = globalMainUrl;
         return this.http.put(postUrl, getData, options).map((response: Response) => {
 
-            let loginResponse = response.json();
+            const loginResponse = response.json();
             console.log('create response', loginResponse);
             if (loginResponse) {
-                this.customersData = loginResponse
+                this.customersData = loginResponse;
                 return this.customersData;
             }
-            if (loginResponse.Error == true) {
+            if (loginResponse.Error === true) {
                 // Debug : this.loggerService.log(loginResponse.Error);
                 throw new Error('Error');
             }
@@ -609,12 +605,12 @@ export class UserService {
     }
     /**API to add horse data */
     addTrailerData(model): Observable<any> {
-        let options = new RequestOptions({ headers: this.headers });
+        const options = new RequestOptions({ headers: this.headers });
 
-        let globalMainUrl = this.mainUrl + '/trailerDetail';
+        const globalMainUrl = this.mainUrl + '/trailerDetail';
         return this.http.post(globalMainUrl, model, options)
             .map((response: Response) => {
-                let loginResponse = response.json();
+                const loginResponse = response.json();
                 this.loggerService.log(loginResponse);
                 return loginResponse;
             }).catch((error: any) => {
@@ -626,24 +622,24 @@ export class UserService {
     }
     /**API to get horse data */
     getTrailerData(): Observable<any> {
-        let options = new RequestOptions({ headers: this.headers });
+        const options = new RequestOptions({ headers: this.headers });
 
-        let globalMainUrl = this.mainUrl + '/trailerDetails';
+        const globalMainUrl = this.mainUrl + '/trailerDetails';
         return this.http.get(globalMainUrl, options)
             .map((response: Response) => {
-                let loginResponse = response.json();
+                const loginResponse = response.json();
                 this.loggerService.log(loginResponse);
                 return loginResponse;
             });
     }
     /** Api To delete horse Details */
     deleteTrailerDetails(id: any): Observable<any> {
-        let options = new RequestOptions({ headers: this.headers });
-        let postUrl = this.mainUrl + '/trailerDetail/';
-        let globalMainUrl = postUrl + id;
+        const options = new RequestOptions({ headers: this.headers });
+        const postUrl = this.mainUrl + '/trailerDetail/';
+        const globalMainUrl = postUrl + id;
         return this.http.delete(globalMainUrl, options).map((response: Response) => {
             this.loggerService.log('create response', response);
-            let loginResponse = response.json();
+            const loginResponse = response.json();
             if (loginResponse) {
                 return loginResponse;
             }
@@ -652,39 +648,33 @@ export class UserService {
     }
     /**API to get horse details */
     getTrailerDetails(id): Observable<any> {
-
-        let options = new RequestOptions({ headers: this.headers });
-
-        let globalMainUrl = this.mainUrl + '/trailerDetail/';
-        // let globalMainUrl = "http://localhost:3000/api/users";
-        let postUrl = globalMainUrl + id;
+        const options = new RequestOptions({ headers: this.headers });
+        const globalMainUrl = this.mainUrl + '/trailerDetail/';
+        // const globalMainUrl = "http://localhost:3000/api/users";
+        const postUrl = globalMainUrl + id;
         return this.http.get(postUrl, options)
             .map((response: Response) => {
-                let loginResponse = response.json();
-                let n = loginResponse.length
+                const loginResponse = response.json();
                 this.loggerService.log(loginResponse);
                 return loginResponse;
-
-
             });
-
     }
     /** API to update trailer details */
     updateTrailerDetails(model): Observable<any> {
 
-        let options = new RequestOptions({ headers: this.headers });
-        let globalMainUrl = this.mainUrl + '/trailerDetail';
-        // let globalMainUrl = "http://localhost:3000/api/users";
-        let postUrl = globalMainUrl;
+        const options = new RequestOptions({ headers: this.headers });
+        const globalMainUrl = this.mainUrl + '/trailerDetail';
+        // const globalMainUrl = "http://localhost:3000/api/users";
+        const postUrl = globalMainUrl;
         return this.http.put(postUrl, model, options).map((response: Response) => {
 
-            let loginResponse = response.json();
+            const loginResponse = response.json();
             this.loggerService.log('create response', loginResponse);
             if (loginResponse) {
-                this.customersData = loginResponse
+                this.customersData = loginResponse;
                 return this.customersData;
             }
-            if (loginResponse.Error == true) {
+            if (loginResponse.Error === true) {
                 // Debug : this.loggerService.log(loginResponse.Error);
                 throw new Error('Error');
             }
@@ -694,12 +684,12 @@ export class UserService {
     }
     /**API to add truck data */
     addTruckData(model): Observable<any> {
-        let options = new RequestOptions({ headers: this.headers });
+        const options = new RequestOptions({ headers: this.headers });
 
-        let globalMainUrl = this.mainUrl + '/user/truck';
+        const globalMainUrl = this.mainUrl + '/user/truck';
         return this.http.post(globalMainUrl, model, options)
             .map((response: Response) => {
-                let loginResponse = response.json();
+                const loginResponse = response.json();
                 this.loggerService.log(loginResponse);
                 return loginResponse;
             }).catch((error: any) => {
@@ -707,54 +697,39 @@ export class UserService {
                     return Observable.throw(new Error(error.status));
                 }
 
-            })
+            });
     }
     /**API to get customer details */
     getCustomerDetails(id): Observable<any> {
-        let options = new RequestOptions({ headers: this.headers });
+        const options = new RequestOptions({ headers: this.headers });
 
-        let globalMainUrl = this.mainUrl + '/user/customerDetail/';
-        // let globalMainUrl = "http://localhost:3000/api/users";
-        let postUrl = globalMainUrl + id;
+        const globalMainUrl = this.mainUrl + '/user/customerDetail/';
+        // const globalMainUrl = "http://localhost:3000/api/users";
+        const postUrl = globalMainUrl + id;
         return this.http.get(postUrl, options)
             .map((response: Response) => {
-
-                let loginResponse = response.json();
-                let n = loginResponse.length
+                const loginResponse = response.json();
                 this.loggerService.log(loginResponse);
-
                 return loginResponse;
-
-                // this.isLoggedIn = true;
-                /*let currentUser = localStorage.getItem('currentUser');
-     
-                             // store user details and jwt token in local storage to keep user logged in between page refreshes
-                   localStorage.getItem('currentUser');
-                  this.loggerService.log(this.items.length,"items");
-                    return  this.items;*/
-
-                //return true;
-
             });
-
     }
     /** API to update customer details */
     updateCustomerDetails(model): Observable<any> {
 
-        let options = new RequestOptions({ headers: this.headers });
-        let globalMainUrl = this.mainUrl + '/user/customerDetail/';
-        // let globalMainUrl = "http://localhost:3000/api/users";
-        let postUrl = globalMainUrl;
+        const options = new RequestOptions({ headers: this.headers });
+        const globalMainUrl = this.mainUrl + '/user/customerDetail/';
+        // const globalMainUrl = "http://localhost:3000/api/users";
+        const postUrl = globalMainUrl;
         return this.http.put(postUrl, model, options).map((response: Response) => {
 
-            let loginResponse = response.json();
+            const loginResponse = response.json();
             this.loggerService.log('create response', loginResponse);
             if (loginResponse) {
-                this.customersData = loginResponse
+                this.customersData = loginResponse;
                 return this.customersData;
             }
 
-            if (loginResponse.Error == true) {
+            if (loginResponse.Error === true) {
                 // Debug : this.loggerService.log(loginResponse.Error);
                 throw new Error('Error');
             }
@@ -764,21 +739,21 @@ export class UserService {
     }
     /** API to update customer details */
     updateDispatchDetails(data, id): Observable<any> {
-        let model = { attachment: data, id: id };
-        let options = new RequestOptions({ headers: this.headers });
-        let globalMainUrl = this.mainUrl + '/dispatchDetails/dispatch/';
-        // let globalMainUrl = "http://localhost:3000/api/users";
-        let postUrl = globalMainUrl + id;
+        const model = { attachment: data, id: id };
+        const options = new RequestOptions({ headers: this.headers });
+        const globalMainUrl = this.mainUrl + '/dispatchDetails/dispatch/';
+        // const globalMainUrl = "http://localhost:3000/api/users";
+        const postUrl = globalMainUrl + id;
         return this.http.post(postUrl, data, options).map((response: Response) => {
 
-            let loginResponse = response.json();
+            const loginResponse = response.json();
             this.loggerService.log('create response', loginResponse);
             if (loginResponse) {
-                this.customersData = loginResponse
+                this.customersData = loginResponse;
                 return this.customersData;
             }
 
-            if (loginResponse.Error == true) {
+            if (loginResponse.Error === true) {
                 // Debug : this.loggerService.log(loginResponse.Error);
                 throw new Error('Error');
             }
@@ -789,70 +764,53 @@ export class UserService {
 
     /**API to get driver details */
     getDriverDetails(id): Observable<any> {
-        let options = new RequestOptions({ headers: this.headers });
-
-        let globalMainUrl = this.mainUrl + '/user/driverDetails/';
-        // let globalMainUrl = "http://localhost:3000/api/users";
-        let postUrl = globalMainUrl + id;
+        const options = new RequestOptions({ headers: this.headers });
+        const globalMainUrl = this.mainUrl + '/user/driverDetails/';
+        // const globalMainUrl = "http://localhost:3000/api/users";
+        const postUrl = globalMainUrl + id;
         return this.http.get(postUrl, options)
             .map((response: Response) => {
-
-                let loginResponse = response.json();
-                let n = loginResponse.length
+                const loginResponse = response.json();
                 this.loggerService.log(loginResponse);
                 return loginResponse;
-
-
             });
 
     }
     /**API to get document details */
     getDocument(id): Observable<any> {
-        let options = new RequestOptions({ headers: this.headers });
-
-        let globalMainUrl = this.mainUrl + '/user/document/';
-        // let globalMainUrl = "http://localhost:3000/api/users";
-        let postUrl = globalMainUrl + id;
+        const options = new RequestOptions({ headers: this.headers });
+        const globalMainUrl = this.mainUrl + '/user/document/';
+        // const globalMainUrl = "http://localhost:3000/api/users";
+        const postUrl = globalMainUrl + id;
         return this.http.get(postUrl, options)
             .map((response: Response) => {
-
-                let loginResponse = response.json();
-                let n = loginResponse.length
+                const loginResponse = response.json();
                 this.loggerService.log(loginResponse);
                 return loginResponse;
             });
-
     }
     addDocument(model): Observable<any> {
-        let options = new RequestOptions({ headers: this.headers });
-
-        let globalMainUrl = this.mainUrl + '/user/document/';
-        // let globalMainUrl = "http://localhost:3000/api/users";
-        let postUrl = globalMainUrl;
+        const options = new RequestOptions({ headers: this.headers });
+        const globalMainUrl = this.mainUrl + '/user/document/';
+        // const globalMainUrl = "http://localhost:3000/api/users";
+        const postUrl = globalMainUrl;
         return this.http.post(postUrl, model, options)
             .map((response: Response) => {
-
-                let loginResponse = response.json();
-                let n = loginResponse.length
+                const loginResponse = response.json();
                 this.loggerService.log(loginResponse);
                 return loginResponse;
-
             });
 
     }
     /**API to get dispatch details */
     getDispatchDetails(id): Observable<any> {
-        let options = new RequestOptions({ headers: this.headers });
-
-
-        let globalMainUrl = this.mainUrl + '/dispatchDetails/dispatch/';
-        // let globalMainUrl = "http://localhost:3000/api/users";
-        let postUrl = globalMainUrl + id;
+        const options = new RequestOptions({ headers: this.headers });
+        const globalMainUrl = this.mainUrl + '/dispatchDetails/dispatch/';
+        // const globalMainUrl = "http://localhost:3000/api/users";
+        const postUrl = globalMainUrl + id;
         return this.http.get(postUrl, options)
             .map((response: Response) => {
-
-                let loginResponse = response.json();
-                let n = loginResponse.length
+                const loginResponse = response.json();
                 this.loggerService.log(loginResponse);
                 return loginResponse;
             });
@@ -860,21 +818,18 @@ export class UserService {
     }
     /** API to update driver details */
     updateDriverDetails(model): Observable<any> {
-
-        let options = new RequestOptions({ headers: this.headers });
-        let globalMainUrl = this.mainUrl + '/user/driverDetail/';
-        // let globalMainUrl = "http://localhost:3000/api/users";
-        let postUrl = globalMainUrl;
+        const options = new RequestOptions({ headers: this.headers });
+        const globalMainUrl = this.mainUrl + '/user/driverDetail/';
+        // const globalMainUrl = "http://localhost:3000/api/users";
+        const postUrl = globalMainUrl;
         return this.http.put(postUrl, model, options).map((response: Response) => {
-
-            let loginResponse = response.json();
+            const loginResponse = response.json();
             this.loggerService.log('create response', loginResponse);
             if (loginResponse) {
-                this.driversData = loginResponse
+                this.driversData = loginResponse;
                 return this.driversData;
             }
-
-            if (loginResponse.Error == true) {
+            if (loginResponse.Error === true) {
                 // Debug : this.loggerService.log(loginResponse.Error);
                 throw new Error('Error');
             }
@@ -884,16 +839,15 @@ export class UserService {
     }
     /**API to get driver details */
     getTruckDetails(id): Observable<any> {
-        let options = new RequestOptions({ headers: this.headers });
+        const options = new RequestOptions({ headers: this.headers });
 
-        let globalMainUrl = this.mainUrl + '/user/truck/';
-        // let globalMainUrl = "http://localhost:3000/api/users";
-        let postUrl = globalMainUrl + id;
+        const globalMainUrl = this.mainUrl + '/user/truck/';
+        // const globalMainUrl = "http://localhost:3000/api/users";
+        const postUrl = globalMainUrl + id;
         return this.http.get(postUrl, options)
             .map((response: Response) => {
 
-                let loginResponse = response.json();
-                let n = loginResponse.length
+                const loginResponse = response.json();
                 this.loggerService.log(loginResponse);
                 return loginResponse;
             });
@@ -902,7 +856,6 @@ export class UserService {
     /** API to update truck details */
     getAllTrucks(): Observable<any> {
         const options = new RequestOptions({ headers: this.headers });
-
         const globalMainUrl = this.mainUrl + '/user/trucks/';
         const postUrl = globalMainUrl;
         return this.http.get(postUrl, options)
@@ -917,7 +870,7 @@ export class UserService {
 
         const options = new RequestOptions({ headers: this.headers });
         const globalMainUrl = this.mainUrl + '/user/truck/';
-        // let globalMainUrl = "http://localhost:3000/api/users";
+        // const globalMainUrl = "http://localhost:3000/api/users";
         return this.http.put(globalMainUrl, model, options).map((response: Response) => {
 
             const loginResponse = response.json();
@@ -927,7 +880,7 @@ export class UserService {
                 return this.driversData;
             }
 
-            if (loginResponse.Error == true) {
+            if (loginResponse.Error === true) {
                 // Debug : this.loggerService.log(loginResponse.Error);
                 throw new Error('Error');
             }
@@ -937,30 +890,25 @@ export class UserService {
     }
     /** API to get Clients Data */
     getCustomerData(): Observable<any> {
-        let options = new RequestOptions({ headers: this.headers });
-        let globalMainUrl = this.mainUrl + '/user/customerDetails';
+        const options = new RequestOptions({ headers: this.headers });
+        const globalMainUrl = this.mainUrl + '/user/customerDetails';
         return this.http.get(globalMainUrl, options).map((response: Response) => {
-
-            let loginResponse = response.json();
+            const loginResponse = response.json();
             this.loggerService.log('create response', loginResponse);
             if (loginResponse) {
-                this.customersData = loginResponse
+                this.customersData = loginResponse;
                 return this.customersData;
             }
-
-            if (loginResponse.Error == true) {
+            if (loginResponse.Error === true) {
                 // Debug : this.loggerService.log(loginResponse.Error);
                 throw new Error('Error');
             }
-
         }).catch(this.handleErrorObservable);
-
-
     }
 
     /** API to  get Challan  Data */
     getDispatchData(status): Observable<any> {
-        if (status == 'All' || status == '') {
+        if (status === 'All' || status === '') {
             status = '';
         }
         let globalMainUrl = '';
@@ -971,149 +919,132 @@ export class UserService {
             globalMainUrl = this.mainUrl + '/dispatchDetails/dispatch/status?status=' + status;
         }
         return this.http.get(globalMainUrl, options).map((response: Response) => {
-
             const loginResponse = response.json();
             this.loggerService.log('create response', loginResponse);
             if (loginResponse) {
-                this.customersData = loginResponse
+                this.customersData = loginResponse;
                 return this.customersData;
             }
-
-            if (loginResponse.Error == true) {
+            if (loginResponse.Error === true) {
                 // Debug : this.loggerService.log(loginResponse.Error);
                 throw new Error('Error');
             }
-
         }).catch(this.handleErrorObservable);
-
-
     }
 
 
     /** API to get Cargo-Challan Data */
     getChallanCargoDataassociated(id): Observable<any> {
-        let options = new RequestOptions({ headers: this.headers });
-        let globalMainUrl = this.mainUrl + '/user/challancargoDetail/';
-        let postUrl = globalMainUrl + id;
+        const options = new RequestOptions({ headers: this.headers });
+        const globalMainUrl = this.mainUrl + '/user/challancargoDetail/';
+        const postUrl = globalMainUrl + id;
         return this.http.get(postUrl, options).map((response: Response) => {
-
-            let loginResponse = response.json();
+            const loginResponse = response.json();
             this.loggerService.log('create response', loginResponse);
             if (loginResponse) {
-                this.customersData = loginResponse
+                this.customersData = loginResponse;
                 return this.customersData;
             }
 
-            if (loginResponse.Error == true) {
+            if (loginResponse.Error === true) {
                 // Debug : this.loggerService.log(loginResponse.Error);
                 throw new Error('Error');
             }
-
         }).catch(this.handleErrorObservable);
-
-
     }
     updatechallanCargoDetails(model, id): Observable<any> {
-        let options = new RequestOptions({ headers: this.headers });
-        let globalMainUrl = this.mainUrl + '/user/challancargoDetail/';
-        let postUrl = globalMainUrl + id;
+        const options = new RequestOptions({ headers: this.headers });
+        const globalMainUrl = this.mainUrl + '/user/challancargoDetail/';
+        const postUrl = globalMainUrl + id;
         return this.http.put(postUrl, model, options).map((response: Response) => {
-
-            let loginResponse = response.json();
+            const loginResponse = response.json();
             this.loggerService.log('create response', loginResponse);
             if (loginResponse) {
-                this.customersData = loginResponse
+                this.customersData = loginResponse;
                 return this.customersData;
             }
 
-            if (loginResponse.Error == true) {
+            if (loginResponse.Error === true) {
                 // Debug : this.loggerService.log(loginResponse.Error);
                 throw new Error('Error');
             }
-
         }).catch(this.handleErrorObservable);
 
 
     }
     /** Api To add Dispatch Details */
     addDispatchData(model: any): Observable<any> {
-        let options = new RequestOptions({ headers: this.headers });
-        let globalMainUrl = this.mainUrl + '/dispatchDetails/dispatch';
+        const options = new RequestOptions({ headers: this.headers });
+        const globalMainUrl = this.mainUrl + '/dispatchDetails/dispatch';
         return this.http.post(globalMainUrl, model, options).map((response: Response) => {
-            let loginResponse = response.json();
+            const loginResponse = response.json();
             this.loggerService.log('create response', loginResponse);
-
             if (loginResponse) {
                 return loginResponse;
             }
 
-            if (loginResponse.Error == true) {
+            if (loginResponse.Error === true) {
                 // Debug : this.loggerService.log(loginResponse.Error);
                 throw new Error('Error');
             }
-
         }).catch(this.handleErrorObservable);
 
 
     }
     /** Api To delete Dispatch Details */
     deleteDispatchDetails(id: any): Observable<any> {
-        let options = new RequestOptions({ headers: this.headers });
-        let postUrl = this.mainUrl + '/dispatchDetails/dispatch//';
-        let globalMainUrl = postUrl + id;
+        const options = new RequestOptions({ headers: this.headers });
+        const postUrl = this.mainUrl + '/dispatchDetails/dispatch//';
+        const globalMainUrl = postUrl + id;
         return this.http.delete(globalMainUrl, options).map((response: Response) => {
             this.loggerService.log('create response', response);
-            let loginResponse = response.json();
+            const loginResponse = response.json();
             if (loginResponse) {
                 return loginResponse;
             }
 
-            if (loginResponse.Error == true) {
+            if (loginResponse.Error === true) {
                 // Debug : this.loggerService.log(loginResponse.Error);
                 throw new Error('Error');
             }
-
         }).catch(this.handleErrorObservable);
     }
     /** API to get Cargo-Challan Data */
     getDispatchCargoData(): Observable<any> {
-        let options = new RequestOptions({ headers: this.headers });
-        let globalMainUrl = this.mainUrl + '/dispatchDetails/dispatch/';
-        //let postUrl= globalMainUrl + id;
+        const options = new RequestOptions({ headers: this.headers });
+        const globalMainUrl = this.mainUrl + '/dispatchDetails/dispatch/';
+        // const postUrl= globalMainUrl + id;
         return this.http.get(globalMainUrl, options).map((response: Response) => {
-
-            let loginResponse = response.json();
+            const loginResponse = response.json();
             this.loggerService.log('create response', loginResponse);
             if (loginResponse) {
-                this.customersData = loginResponse
+                this.customersData = loginResponse;
                 return this.customersData;
             }
 
-            if (loginResponse.Error == true) {
+            if (loginResponse.Error === true) {
                 // Debug : this.loggerService.log(loginResponse.Error);
                 throw new Error('Error');
             }
-
         }).catch(this.handleErrorObservable);
 
 
     }
     /** API to get trucks Data */
     getTrucksData(): Observable<any> {
-        let headers = new Headers({ 'Content-Type': 'application/json' });
+        const headers = new Headers({ 'Content-Type': 'application/json' });
         headers.append('access_token', localStorage.getItem('access_token'));
         headers.append('expiery', localStorage.getItem('expiery'));
-
-        let options = new RequestOptions({ headers: headers });
-        let globalMainUrl = this.mainUrl + '/user/trucks';
+        const options = new RequestOptions({ headers: headers });
+        const globalMainUrl = this.mainUrl + '/user/trucks';
         return this.http.get(globalMainUrl, options).map((response: Response) => {
-            let loginResponse = response.json();
+            const loginResponse = response.json();
             this.loggerService.log('create response', loginResponse);
             if (loginResponse) {
-                this.trucksData = loginResponse
+                this.trucksData = loginResponse;
                 return this.trucksData;
             }
-            if (loginResponse.Error == true) {
+            if (loginResponse.Error === true) {
                 // Debug : this.loggerService.log(loginResponse.Error);
                 throw new Error('Error');
             }
@@ -1123,40 +1054,36 @@ export class UserService {
     }
     /** API to get drivers Data */
     getDriversData(): Observable<any> {
-        let options = new RequestOptions({ headers: this.headers });
-        let globalMainUrl = this.mainUrl + '/user/driverDetails';
+        const options = new RequestOptions({ headers: this.headers });
+        const globalMainUrl = this.mainUrl + '/user/driverDetails';
         return this.http.get(globalMainUrl, options).map((response: Response) => {
-            let loginResponse = response.json();
+            const loginResponse = response.json();
             this.loggerService.log('create response', loginResponse);
             if (loginResponse) {
-                this.driversData = loginResponse
+                this.driversData = loginResponse;
                 return this.driversData;
             }
 
-            if (loginResponse.Error == true) {
+            if (loginResponse.Error === true) {
                 // Debug : this.loggerService.log(loginResponse.Error);
                 throw new Error('Error');
             }
-
         }).catch(this.handleErrorObservable);
     }
 
     postJobcard(model: any): Observable<any> {
-        let options = new RequestOptions({ headers: this.headers });
-        let globalMainUrl = this.mainUrl + '/user/jobCard';
+        const options = new RequestOptions({ headers: this.headers });
+        const globalMainUrl = this.mainUrl + '/user/jobCard';
         return this.http.post(globalMainUrl, model, options).map((response: Response) => {
-            let resp = response.json();
+            const resp = response.json();
             this.loggerService.log('create response', resp);
-
             if (resp) {
                 return resp;
             }
-
-            if (resp.Error == true) {
+            if (resp.Error === true) {
                 // Debug : this.loggerService.log(loginResponse.Error);
                 throw new Error('Error');
             }
-
         }).catch(this.handleErrorObservable);
     }
 
@@ -1175,16 +1102,14 @@ export class UserService {
                 // Debug : this.loggerService.log(loginResponse.Error);
                 throw new Error('Error');
             }
-
         }).catch(this.handleErrorObservable);
     }
 
     private jwt() {
         // create authorization header with jwt token
-        let currentUser = JSON.parse(localStorage.getItem('currentUser'));
-
+        const currentUser = JSON.parse(localStorage.getItem('currentUser'));
         if (currentUser && currentUser.token) {
-            let headers = new Headers({ 'Authorization': 'Bearer ' + currentUser.token });
+            const headers = new Headers({ 'Authorization': 'Bearer ' + currentUser.token });
             return new RequestOptions({ headers: headers });
         }
     }
@@ -1193,5 +1118,4 @@ export class UserService {
         console.error(error.message || error);
         return Observable.throw(error.message || error);
     }
-
 }

@@ -1,4 +1,4 @@
-import { Component, ViewChild, NgModule } from '@angular/core';
+import { Component, ViewChild, NgModule, OnInit } from '@angular/core';
 import { MatPaginator, MatTableDataSource } from '@angular/material';
 import { AuthenticationService, UserService, LoggerService } from '../../_services/index';
 import { Router, ActivatedRoute, Params } from '@angular/router';
@@ -13,8 +13,9 @@ import { AfterViewInit } from '@angular/core/src/metadata/lifecycle_hooks';
   styleUrls: ['edit-driver.component.scss'],
   templateUrl: 'edit-driver.component.html',
 })
-export class EditDriverComponent  {
+export class EditDriverComponent implements OnInit {
   getData: any = {};
+  today;
   userId: String;
   output;
   driverDetailsId;
@@ -33,77 +34,95 @@ export class EditDriverComponent  {
     private route: ActivatedRoute,
     public router: Router,
     public loggerService: LoggerService,
-    public domSanitizer:DomSanitizer) {
-      this.route.params.subscribe((params: Params) => {
-        this.userId = params['id'];
-        this.loggerService.log(this.userId);
-      });
-      this.editDetails(this.userId);
+    public domSanitizer: DomSanitizer) {
+    this.route.params.subscribe((params: Params) => {
+      this.userId = params['id'];
+      this.loggerService.log(this.userId);
+    });
+    this.editDetails(this.userId);
   }
- 
+
+  ngOnInit() {
+    this.today = this.formatDate(new Date());
+  }
+
+  formatDate(date) {
+    const d = new Date(date), year = d.getFullYear();
+    let month = '' + (d.getMonth() + 1),
+      day = '' + d.getDate();
+    if (month.length < 2) { month = '0' + month; }
+    if (day.length < 2) { day = '0' + day; }
+    return [year, month, day].join('-');
+  }
   getDocument(Id): any {
     this.userService.getDocument(Id)
       .subscribe(
-      data => {
-        this.getDocumentData = data;
-        this.loggerService.log(this.getDocument, "getdata");
-      
-        this.src1 = this.domSanitizer.bypassSecurityTrustResourceUrl('data:image/png/jpg;base64,' 
-        + this.getDocumentData.documentDetail);             
+        data => {
+          this.getDocumentData = data;
+          this.loggerService.log(this.getDocument, "getdata");
 
-        // this.router.navigate(['/Apartment-table']);
-      },
-      error => {
-        this.router.navigate(['/']);
-        //  this.alertService.error("Username or Password is Incorrect");
+          this.src1 = this.domSanitizer.bypassSecurityTrustResourceUrl('data:image/png/jpg;base64,'
+            + this.getDocumentData.documentDetail);
 
-      });
+          // this.router.navigate(['/Apartment-table']);
+        },
+        error => {
+          this.router.navigate(['/']);
+          //  this.alertService.error("Username or Password is Incorrect");
+
+        });
   }
   addDocument(): any {
-   this.model.documentDetail=this.getDocumentData.documentDetail;
-   this.model.id=this.getDocumentData.id;
-   this.model.documentType=this.getDocumentData.documentType;
-   this.model={ documentDetail: this.model.documentDetail,documentType:this.model.documentType,id:this.model.id,}
+    this.model.documentDetail = this.getDocumentData.documentDetail;
+    this.model.id = this.getDocumentData.id;
+    this.model.documentType = this.getDocumentData.documentType;
+    this.model = { documentDetail: this.model.documentDetail, documentType: this.model.documentType, id: this.model.id, }
     this.userService.addDocument(this.model)
       .subscribe(
-      data => {
+        data => {
 
-        this.getDocumentData = data;
+          this.getDocumentData = data;
 
-        this.loggerService.log(this.getData, "getdata");
-        this.src1 = this.domSanitizer.bypassSecurityTrustResourceUrl('data:image/png/jpg;base64,' 
-        + this.getDocumentData.documentDetail);             
+          this.loggerService.log(this.getData, "getdata");
+          this.src1 = this.domSanitizer.bypassSecurityTrustResourceUrl('data:image/png/jpg;base64,'
+            + this.getDocumentData.documentDetail);
 
-        // this.router.navigate(['/Apartment-table']);
-      },
-      error => {
-        this.router.navigate(['/']);
-        //  this.alertService.error("Username or Password is Incorrect");
+          // this.router.navigate(['/Apartment-table']);
+        },
+        error => {
+          this.router.navigate(['/']);
+          //  this.alertService.error("Username or Password is Incorrect");
 
-      });
+        });
   }
   editDetails(id: String): any {
 
     this.userService.getDriverDetails(id)
       .subscribe(
-      data => {
+        data => {
 
-        this.getData = data;
-        
-       this.getDocument( this.getData.driverAttachmentId);
-        console.log( this.getData ,"data");
-        this.loggerService.log(this.getData, "getdata");
-        this.driverDetailsId = this.getData.driverDetailsId;
-        this.src2 = this.domSanitizer.bypassSecurityTrustResourceUrl('data:image/png/jpg;base64,' 
-        + this.getData.driverPhoto);              
+          this.getData = data;
+          this.getData.phoneNumber = data.driverContactNumber ? data.driverContactNumber.slice(-10) : '';
+          this.getData.countryCode = data.driverContactNumber && this.getData.phoneNumber ?
+            data.driverContactNumber.split(this.getData.phoneNumber)[0] : '';
+          this.getData.altphoneNumber = data.driverAlternateContact ? data.driverAlternateContact.slice(-10) : '';
+          this.getData.altcountryCode = data.driverAlternateContact && this.getData.altphoneNumber ?
+            data.driverAlternateContact.split(this.getData.altphoneNumber)[0] : '';
 
-        // this.router.navigate(['/Apartment-table']);
-      },
-      error => {
-        this.router.navigate(['/']);
-        //  this.alertService.error("Username or Password is Incorrect");
+          this.getDocument(this.getData.driverAttachmentId);
+          console.log(this.getData, "data");
+          this.loggerService.log(this.getData, "getdata");
+          this.driverDetailsId = this.getData.driverDetailsId;
+          this.src2 = this.domSanitizer.bypassSecurityTrustResourceUrl('data:image/png/jpg;base64,'
+            + this.getData.driverPhoto);
 
-      });
+          // this.router.navigate(['/Apartment-table']);
+        },
+        error => {
+          this.router.navigate(['/']);
+          //  this.alertService.error("Username or Password is Incorrect");
+
+        });
   }
   changeListener1(event) {
     this.files = event.target.files;
@@ -141,29 +160,36 @@ export class EditDriverComponent  {
   _handleReaderLoaded2(readerEvt) {
     var binaryString = readerEvt.target.result;
     this.getData.driverPhoto = btoa(binaryString);
-    this.src2 = this.domSanitizer.bypassSecurityTrustResourceUrl('data:image/png/jpg;base64,' 
-    + this.getData.driverPhoto);   
+    this.src2 = this.domSanitizer.bypassSecurityTrustResourceUrl('data:image/png/jpg;base64,'
+      + this.getData.driverPhoto);
   }
   update(): any {
-   // this.addDocument();
-   this.getData.driverAttachments= this.getDocumentData.driverAttachments; 
-        this.userService.updateDriverDetails(this.getData)
+    // this.addDocument();
+    this.model.driverContactNumber = this.model.countryCode = this.model.phoneNumber;
+    this.model.driverAlternateContact = this.model.altcountryCode = this.model.altphoneNumber;
+    delete this.model.countryCode;
+    delete this.model.altcountryCode;
+    delete this.model.phoneNumber;
+    delete this.model.altphoneNumber;
+
+    this.getData.driverAttachments = this.getDocumentData.driverAttachments;
+    this.userService.updateDriverDetails(this.getData)
       .subscribe(
-      data => {
-        this.success = true;
+        data => {
+          this.success = true;
 
-        this.getData = JSON.parse(JSON.stringify(data));
-        
+          this.getData = JSON.parse(JSON.stringify(data));
 
-        this.loggerService.log(this.getData, "getdata");
 
-        this.router.navigate(['/drivers']);
-      },
-      error => {
-        this.router.navigate(['/']);
-        //  this.alertService.error("Username or Password is Incorrect");
+          this.loggerService.log(this.getData, "getdata");
 
-      });
+          this.router.navigate(['/drivers']);
+        },
+        error => {
+          this.router.navigate(['/']);
+          //  this.alertService.error("Username or Password is Incorrect");
+
+        });
   }
 }
 

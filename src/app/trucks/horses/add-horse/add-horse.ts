@@ -11,7 +11,8 @@ import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
   styleUrls: ['add-horse.scss'],
   templateUrl: 'add-horse.html',
 })
-export class AddHorseComponent {
+export class AddHorseComponent implements OnInit {
+  today;
   comesaCountries = [
     { id: 1, country: 'BURUNDI', isSelected: false, expiry: '', visibility: 'hidden' },
     { id: 2, country: 'COMOROS', isSelected: false, expiry: '', visibility: 'hidden' },
@@ -45,6 +46,19 @@ export class AddHorseComponent {
     this.model.crossborderCountry = 'Select Country';
   }
 
+  ngOnInit() {
+    this.today = this.formatDate(new Date());
+  }
+
+  formatDate(date) {
+    const d = new Date(date), year = d.getFullYear();
+    let month = '' + (d.getMonth() + 1),
+      day = '' + d.getDate();
+    if (month.length < 2) { month = '0' + month; }
+    if (day.length < 2) { day = '0' + day; }
+    return [year, month, day].join('-');
+  }
+
   valueCjanged() {
     console.log(this.comesaCountries);
   }
@@ -63,6 +77,12 @@ export class AddHorseComponent {
       size: '',
       tyrePositions: ''
     });
+  }
+
+  removeAccessory(index) {
+    if (this.horseAccessories.length) {
+      this.horseAccessories.splice(index, 1);
+    }
   }
   onFocus(obj, comesa) {
     obj.value = comesa.expiry;

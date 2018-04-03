@@ -10,6 +10,7 @@
 
 .horse-table .mat-cell {
     font-size: 12px;
+    text-transform:uppercase;
 }
 
 .example-container {
@@ -21,6 +22,7 @@
 .mat-table {
     overflow: auto;
     max-height: 500px;
+    text-transform:uppercase;
 }
 
 a {

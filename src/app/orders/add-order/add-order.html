@@ -38,7 +38,7 @@
                         <td colspan="3">
                             <select placeholder="Truck Number" name="truckId" [(ngModel)]="getData.truckId" required value="{{getData.truckId}}">
                                 <option [value]="undefined" selected="selected">Select Truck Id </option>
-                                <option *ngFor="let getData of trucksData" value="{{getData.truckId}}">{{getData.truckId}}(123-567)</option>
+                                <option *ngFor="let getData of trucksData" value="{{getData.truckId}}">{{getData.truckId}}</option>
                             </select>
                         </td>
 

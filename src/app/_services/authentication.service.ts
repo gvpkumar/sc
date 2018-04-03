@@ -55,7 +55,7 @@ export class AuthenticationService implements OnInit {
             // tslint:disable-next-line:prefer-const
             let Access_token = response.headers.get('access_token');
             // var Access_token1 = JSON.parse(Access_token);
-            console.log('Access_token1', Access_token);
+            console.log('Access_token1', loginResponse);
             // tslint:disable-next-line:prefer-const
             let expiery = response.headers.get('expiery');
 
@@ -63,9 +63,12 @@ export class AuthenticationService implements OnInit {
                 this.loginDetails = {
                     isLoggedIn: true,
                     userDetails: {
-                        userName: loginResponse.user.userName
+                        userName: loginResponse.user.userName,
+                        role: loginResponse.user.type;
                     }
                 };
+
+                localStorage.setItem('userRole', loginResponse.user.type);
                 // tslint:disable-next-line:prefer-const
                 let currentUser: any = localStorage.setItem('currentUser', JSON.stringify(this.loginDetails));
                 let access_token: any = localStorage.setItem('access_token', Access_token);

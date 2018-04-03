@@ -66,7 +66,8 @@ export class AddCouponStep3Component implements OnInit {
 
 
   ngOnInit() {
-    this.distanceValues = [5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25]
+    this.model.couponIssuedBy = this.authenticationService.loginDetails.userDetails.userName;
+    this.distanceValues = [5, 6, 7, 8]
     this.couponData = this.orderService.getDispatchDatafromService();
     console.log(this.couponData);
   }

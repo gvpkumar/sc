@@ -27,7 +27,7 @@
                         <td colspan="2"> <input type="text" name="driverPassport" placeholder="Passport" [(ngModel)]="getData.driverPassport" value="{{getData.driverPassport}}">
                         </td>
                     </tr>
-                    <tr>
+                    <!-- <tr>
                         <td colspan="2">Contact Number</td>
                         <td colspan="2"> <input type="text" name="driverContactNumber" placeholder="Contact Number" [(ngModel)]="getData.driverContactNumber" value="{{getData.driverContactNumber}}">
                         </td>
@@ -35,16 +35,67 @@
                         <td colspan="2">Alter Native Phone Number</td>
                         <td colspan="2"> <input type="text" name="driverAlternateContact" placeholder="Alter Native Phone Number" [(ngModel)]="getData.driverAlternateContact" value="{{getData.driverAlternateContact}}">
                         </td>
-                    </tr>
+                    </tr> -->
                     <tr>
                         <td colspan="2">License Number</td>
                         <td colspan="2"> <input type="text" name="driverLicenseNumber" placeholder="License Number" [(ngModel)]="getData.driverLicenseNumber" value="{{getData.driverLicenseNumber}}">
                         </td>
                         &nbsp;&nbsp;
                         <td colspan="2">License Expiry</td>
-                        <td colspan="2"> <input type="date" name="driverLicenseExpiry" placeholder="License Expiry" [(ngModel)]="getData.driverLicenseExpiry" value="{{getData.driverLicenseExpiry}}">
+                        <td colspan="2"> <input type="date" [min]="today" name="driverLicenseExpiry" placeholder="License Expiry" [(ngModel)]="getData.driverLicenseExpiry" value="{{getData.driverLicenseExpiry}}">
                         </td>
                     </tr>
+                    <tr>
+                            <td colspan="2">Contact Number</td>
+                            <td>
+                                <input style="width:30%" type="text" maxlength="5" pattern="\d+$" name="countryCode" placeholder="Country Code" [(ngModel)]="getData.countryCode"
+                                    #countryCode="ngModel" class="form-control">
+                                <input style="width:48.5%" type="text" maxlength="10" pattern="\d+$" name="phoneNumber" placeholder="Contact Number" [(ngModel)]="getData.phoneNumber"
+                                    #phoneNumber="ngModel" class="form-control">
+                                <div *ngIf="countryCode.invalid && (countryCode.dirty || countryCode.touched)" class="alert alert-danger" style="color:red">
+                                    <div *ngIf="countryCode.errors.required">
+                                        Country Code is required.
+                                    </div>
+                                    <div *ngIf="countryCode.errors.pattern">
+                                        Country Code should be number.
+                                    </div>
+                                </div>
+                                <div *ngIf="phoneNumber.invalid && (phoneNumber.dirty || phoneNumber.touched)" class="alert alert-danger" style="color:red">
+                                    <div *ngIf="phoneNumber.errors.required">
+                                        Contact number is required.
+                                    </div>
+                                    <div *ngIf="phoneNumber.errors.pattern">
+                                        Contact number should be number.
+                                    </div>
+                                </div>
+                            </td>
+                            </tr>
+                            <tr>
+                            <td colspan="2">Alter Native Phone Number</td>
+                            <td colspan="2">
+                                    <input style="width:30%" type="text" maxlength="5" pattern="\d+$" name="altcountryCode" placeholder="Country Code" [(ngModel)]="getData.altcountryCode"
+                                    #altcountryCode="ngModel" class="form-control">
+                                <input style="width:48.5%" type="text" maxlength="10" pattern="\d+$" name="altphoneNumber" placeholder="Contact Number" [(ngModel)]="getData.altphoneNumber"
+                                    #altphoneNumber="ngModel" class="form-control">
+                                <div *ngIf="altcountryCode.invalid && (altcountryCode.dirty || countryCode.touched)" class="alert alert-danger" style="color:red">
+                                    <div *ngIf="altcountryCode.errors.required">
+                                        Country Code is required.
+                                    </div>
+                                    <div *ngIf="altcountryCode.errors.pattern">
+                                        Country Code should be number.
+                                    </div>
+                                </div>
+                                <div *ngIf="altphoneNumber.invalid && (altphoneNumber.dirty || altphoneNumber.touched)" class="alert alert-danger" style="color:red">
+                                    <div *ngIf="altphoneNumber.errors.required">
+                                        Contact number is required.
+                                    </div>
+                                    <div *ngIf="altphoneNumber.errors.pattern">
+                                        Contact number should be number.
+                                    </div>
+                                </div>
+                            </td>
+    
+                        </tr>
                     <tr>
                         <td colspan="2">Address</td>
                         <td colspan="6"> <textarea type="text" rows="5" cols="30" name="driverAddress" placeholder="Address" [(ngModel)]="getData.driverAddress" value="{{getData.driverAddress}}"></textarea>
@@ -67,7 +118,7 @@
                     </tr>
                     <tr>
                         <td colspan="2">Date of Birth</td>
-                        <td colspan="6"> <input type="date" name="driverDateOfBirth" placeholder="Date of Birth" [(ngModel)]="getData.driverDateOfBirth" value="{{getData.driverDateOfBirth}}">
+                        <td colspan="6"> <input type="date" [max]="today" name="driverDateOfBirth" placeholder="Date of Birth" [(ngModel)]="getData.driverDateOfBirth" value="{{getData.driverDateOfBirth}}">
                         </td>
                     </tr>
 

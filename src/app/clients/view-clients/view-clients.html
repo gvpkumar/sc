@@ -39,7 +39,7 @@
             <!-- Color Column -->
             <ng-container matColumnDef="customerPhone">
                 <mat-header-cell *matHeaderCellDef> Phone </mat-header-cell>
-                <mat-cell *matCellDef="let element"> {{element.customerPhone}} </mat-cell>
+                <mat-cell *matCellDef="let element"> {{element.countryCode+element.phoneNumber}} </mat-cell>
             </ng-container>
             <!-- Weight Column -->
             <ng-container matColumnDef="customerType">

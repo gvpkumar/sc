@@ -2,17 +2,17 @@ import { Injectable } from '@angular/core';
 import { SidenavItem } from './sidenav-item/sidenav-item.model';
 import { BehaviorSubject, Observable } from 'rxjs';
 import * as _ from 'lodash';
-import {MatSnackBar, MatSnackBarConfig} from '@angular/material';
+import { MatSnackBar, MatSnackBarConfig } from '@angular/material';
 
 @Injectable()
 export class SidenavService {
 
   private _itemsSubject: BehaviorSubject<SidenavItem[]> = new BehaviorSubject<SidenavItem[]>([]);
-  private _items: SidenavItem[] = [ ];
+  private _items: SidenavItem[] = [];
   items$: Observable<SidenavItem[]> = this._itemsSubject.asObservable();
 
   private _currentlyOpenSubject: BehaviorSubject<SidenavItem[]> = new BehaviorSubject<SidenavItem[]>([]);
-  private _currentlyOpen: SidenavItem[] = [ ];
+  private _currentlyOpen: SidenavItem[] = [];
   currentlyOpen$: Observable<SidenavItem[]> = this._currentlyOpenSubject.asObservable();
 
   isIconSidenav: boolean;
@@ -21,39 +21,43 @@ export class SidenavService {
     snackbar: MatSnackBar
   ) {
     const menu = this;
+    const userRole = localStorage.getItem('userRole');
+
+    const allowAddOrder = (userRole === 'Admin' || userRole === 'OrderAgent') ? true : false;
+    const allowAddCouponAndDispatch = (userRole === 'Admin' || userRole === 'DispatchAgent') ? true : false;
 
     // let dashboard = menu.addItem('Dashboard', 'dashboard', '/', 1);
 
-    const trucks =  menu.addItem('Trucks', 'local_shipping', null, 1);
+    const trucks = menu.addItem('Trucks', 'local_shipping', null, 1);
     menu.addSubItem(trucks, 'View Trucks', '/trucks', 1);
     menu.addSubItem(trucks, 'Horses', '/horses', 2);
     menu.addSubItem(trucks, 'Trailers', '/trailers', 3);
 
-    const Drivers =  menu.addItem('Drivers', 'account_box', null, 2);
+    const Drivers = menu.addItem('Drivers', 'account_box', null, 2);
     menu.addSubItem(Drivers, 'Add', '/add-driver', 1);
     menu.addSubItem(Drivers, 'View All', '/drivers', 2);
 
-    const Customers =  menu.addItem('Customers', 'account_circle', null, 3);
+    const Customers = menu.addItem('Customers', 'account_circle', null, 3);
     menu.addSubItem(Customers, 'Add', '/add-customer', 1);
     menu.addSubItem(Customers, 'View All', '/customers', 2);
 
-    const Coupons =  menu.addItem('Coupons', 'credit_card', null, 4);
-    menu.addSubItem(Coupons, 'Add', '/add-coupon', 1);
+    const Coupons = menu.addItem('Coupons', 'credit_card', null, 4);
+    if (allowAddCouponAndDispatch) { menu.addSubItem(Coupons, 'Add', '/add-coupon', 1); }
     menu.addSubItem(Coupons, 'View All', '/coupons', 2);
 
-    const Dispatch =  menu.addItem('Dispatch', 'layers', null, 5);
-    menu.addSubItem(Dispatch, 'Add', '/add-dispatch', 1);
+    const Dispatch = menu.addItem('Dispatch', 'layers', null, 5);
+    if (allowAddCouponAndDispatch) { menu.addSubItem(Dispatch, 'Add', '/add-dispatch', 1); }
     menu.addSubItem(Dispatch, 'View All', '/dispatch', 2);
 
-    const Orders =  menu.addItem('Orders', 'layers', null, 6);
-    menu.addSubItem(Orders, 'Add', '/add-order', 1);
+    const Orders = menu.addItem('Orders', 'layers', null, 6);
+    if (allowAddOrder) { menu.addSubItem(Orders, 'Add', '/add-order', 1); }
     menu.addSubItem(Orders, 'View All', '/orders', 2);
 
-    const ServiceInformation =  menu.addItem('Services', 'layers', null, 7);
+    const ServiceInformation = menu.addItem('Services', 'layers', null, 7);
     menu.addSubItem(ServiceInformation, 'Horse Service', '/horse-services', 1);
     menu.addSubItem(ServiceInformation, 'Trailer Service', '/trailer-services', 2);
 
-    const JobCard  = menu.addItem('Job Card', 'layers', null, 8);
+    const JobCard = menu.addItem('Job Card', 'layers', null, 8);
     menu.addSubItem(JobCard, 'JobCard', '/add-jobcard', 1);
     menu.addSubItem(JobCard, 'View JobCards', '/view-jobcards', 2);
 
@@ -71,7 +75,7 @@ export class SidenavService {
       const dynamicMenu = menu.addItem('Dynamic Menu Item', 'extension', dynamicFunction, 12);
     };
 
-   // let addMenu = menu.addItem('Add Menu Item', 'add', dynamicMenuFunctionDemo, 99, null, null, 'add-dynamic-menu');
+    // let addMenu = menu.addItem('Add Menu Item', 'add', dynamicMenuFunctionDemo, 99, null, null, 'add-dynamic-menu');
   }
 
   addItem(name: string, icon: string, route: any, position: number, badge?: string, badgeColor?: string, customClass?: string) {
@@ -79,7 +83,7 @@ export class SidenavService {
       name: name,
       icon: icon,
       route: route,
-      subItems: [ ],
+      subItems: [],
       position: position || 99,
       badge: badge || null,
       badgeColor: badgeColor || null,
@@ -97,7 +101,7 @@ export class SidenavService {
       name: name,
       route: route,
       parent: parent,
-      subItems: [ ],
+      subItems: [],
       position: position || 99
     });
 
@@ -127,7 +131,7 @@ export class SidenavService {
       if (currentlyOpen.length > 1) {
         currentlyOpen.length = this._currentlyOpen.indexOf(item);
       } else {
-        currentlyOpen = [ ];
+        currentlyOpen = [];
       }
     } else {
       currentlyOpen = this.getAllParents(item);
@@ -137,8 +141,8 @@ export class SidenavService {
     this._currentlyOpenSubject.next(currentlyOpen);
   }
 
-  getAllParents(item: SidenavItem, currentlyOpen: SidenavItem[] = [ ]) {
-    currentlyOpen.unshift( item );
+  getAllParents(item: SidenavItem, currentlyOpen: SidenavItem[] = []) {
+    currentlyOpen.unshift(item);
 
     if (item.hasParent()) {
       return this.getAllParents(item.parent, currentlyOpen);
@@ -153,7 +157,7 @@ export class SidenavService {
   }
 
   nextCurrentlyOpenByRoute(route: string) {
-    let currentlyOpen = [ ];
+    let currentlyOpen = [];
 
     const item = this.findByRouteRecursive(route, this._items);
 

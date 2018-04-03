@@ -1,90 +1,80 @@
 <div fxLayoutAlign="center center" style="margin:30px 0px;">
     <mat-card fxFlex="90%" fxFlex.xs="95%">
-
         <div class="header">Generate Coupon</div>
-
         <div class="formex main-div">
-
             <form #couponForm="ngForm">
                 <table style="width:100%">
                     <tr>
                         <td>Dispatch Trip Number </td>
                         <td colspan="6">
-                            <select placeholder="Dispatch Trip Number" name="dispatchTripNumber" [(ngModel)]="getData.dispatchTripNumber" required value="{{getData.dispatchTripNumber}}"
-                                (change)="getDispatchDatabyId(getData.dispatchTripNumber)">
-                                <option [value]="undefined" selected="selected">Select Dispatch Trip Number </option>
-                                <option *ngFor="let getData of dispatchData" value="{{getData.dispatchTripNumber}}">{{getData.dispatchTripNumber}}</option>
+                            <select placeholder="Dispatch Trip Number" required name="dispatchTripNumber" [(ngModel)]="model.dispatchTripNumber" required
+                                value="{{model.dispatchTripNumber}}" (change)="getDispatchDatabyId(model.dispatchTripNumber)">
+                                <option [value]="0" selected="selected">Select Dispatch Trip Number </option>
+                                <option *ngFor="let dispatch of dispatchData" value="{{dispatch.dispatchTripNumber}}">{{dispatch.dispatchTripNumber}}</option>
                             </select>
-
                         </td>
                     </tr>
                     <tr>
                         <td>Filling Station </td>
                         <td colspan="6">
-                            <select name="couponFillingStation" [(ngModel)]="model.couponFillingStation" placeholder="Select Filling Station">
-                                <option [value]="undefined" selected="selected">--Select-- </option>
-                                <option *ngFor="let couponFillingStation of stations" [value]="couponFillingStation">{{couponFillingStation}}</option>
+                            <select name="couponFillingStation" required value={{model.couponFillingStation}} [(ngModel)]="couponFillingStation" placeholder="Select Filling Station">
+                                <option [value]='undefined' selected="selected">Select Filling Station </option>
+                                <option *ngFor="let station of stations" [value]="station">{{station}}</option>
                             </select>
                         </td>
                     </tr>
                     <tr>
                         <td>Start Location</td>
                         <td colspan="6">
-                            <input type="text" id="source" name="couponStartLocation" placeholder="Start Location" [(ngModel)]="this.data.dispatchSource"
-                                required value="{{this.data.dispatchSource}}">
+                            <input type="text" id="source" name="couponStartLocation" placeholder="Start Location" [(ngModel)]="model.couponStartLocation"
+                                required value="{{model.couponStartLocation}}">
                         </td>
                     </tr>
                     <span *ngIf="this.showError" style="color:red;font-size:12px">{{errorMessage1}}</span>
                     <tr>
                         <td>End Location</td>
                         <td colspan="5">
-                            <input type="text" id="destination" name="couponEndLocation " placeholder="End Location" [(ngModel)]="this.data.dispatchDestination"
-                                required value="{{this.data.dispatchDestination}}">
+                            <input type="text" id="destination" name="couponEndLocation " placeholder="End Location" [(ngModel)]="model.couponEndLocation"
+                                required value="{{model.couponEndLocation}}">
                             <button mat-raised-button type="submit" color="accent" class="route-btn" value="Get Route" onclick="get_rout()">Get Route</button>
                         </td>
                     </tr>
                     <span *ngIf="this.showError" style="color:red;font-size:12px">{{errorMessage2}}</span>
                     <tr>
-                        <td>Distance in Kms</td>
-
+                        <td>Issued by</td>
                         <td colspan="3">
-                            <input type="text" value="" class="distance">
+                            <input type="text" name="couponIssuedBy" readonly disabled placeholder="Issed By" [(ngModel)]="model.couponIssuedBy" value="{{model.couponIssuedBy}}">
+                        </td>
 
-                            <td>Mileage in (Kms)</td>
-                            <td colspan="3">
+                        <td>Requested by(Driver)</td>
+                        <td colspan="3">
+                            <input type="text" name="couponRequestedBy" readonly disabled placeholder="Requested By" [(ngModel)]="model.couponRequestedBy"
+                                value="{{model.couponRequestedBy}}">
 
-                                <select name="couponMileage" [(ngModel)]="model.couponMileage" (change)="onChange($event)" placeholder="Mileage in Kms">
-                                    <option [value]="undefined" selected="selected">--Select-- </option>
-                                    <option *ngFor="let kms of distanceValues" [value]="kms">{{kms}}</option>
-                                </select>
-
-                            </td>
                     </tr>
-
                     <tr>
-                        <td>Coupon Value</td>
-
+                        <td>Selected Truck</td>
                         <td colspan="3">
-                            <input type="text" name="couponValue" placeholder="Coupon Value" [(ngModel)]="model.couponValue" value="{{couponValue}}">
+                            <input type="text" readonly disabled name="couponHorseNumber" placeholder="Selected Truck" [(ngModel)]="model.couponHorseNumber"
+                                readonly value="{{model.couponHorseNumber}}">
                         </td>
-                        <td>Coupon Date</td>
+                        <td>Approved by</td>
+                        <td colspan="6">
+                            <input type="text" name="couponApprovedBy" placeholder="Approved By" [(ngModel)]="model.couponApprovedBy">
 
-                        <td colspan="3">
-                            <input type="date" name="couponDate" placeholder="Coupon Date" [(ngModel)]="model.couponDate" value="{{couponDate}}">
-                        </td>
                     </tr>
                     <tr>
                         <td>Opening Meter</td>
                         <td colspan="3">
-                            <input type="text" pattern="^\d+$" name="couponOpeningMeter" placeholder="Opening Meter" [(ngModel)]="model.couponOpeningMeter"
-                                required #couponOpeningMeter="ngModel">
+                            <input type="text" pattern="^\d+$" name="couponOpeningMeter" placeholder="Opening Meter" [(ngModel)]="couponOpeningMeter"
+                                required #couponOpenMeter="ngModel">
 
                         </td>
 
                         <td>Closing Meter</td>
                         <td colspan="3">
-                            <input type="text" pattern="^\d+$" name="couponClosingMeter" placeholder="Closing Meter" [(ngModel)]="model.couponClosingMeter"
-                                #couponClosingMeter="ngModel" required>
+                            <input type="text" pattern="^\d+$" name="couponClosingMeter" placeholder="Closing Meter" [(ngModel)]="couponClosingMeter"
+                                #couponCloseMeter="ngModel" required>
 
                         </td>
 
@@ -117,39 +107,72 @@
                             </div>
                         </td>
                     </tr>
+
                     <tr>
-                        <td>Issued by</td>
+                        <td>Distance in Kms</td>
                         <td colspan="3">
-                            <input type="text" name="couponIssuedBy" readonly placeholder="Issed By" [(ngModel)]="model.couponIssuedBy" value="{{this.currentUserData}}">
+                            <input type="text" name="distance" required value="" class="distance">
                         </td>
-
-                        <td>Requested by(Driver)</td>
+                        <td>Mileage(Kms)</td>
                         <td colspan="3">
-                            <input type="text" name="couponRequestedBy" placeholder="Requested By" [(ngModel)]="model.couponRequestedBy" readonly value="{{this.data.dispatchDriverFirstname}}">
+                            <select name="couponMileage" required [(ngModel)]="model.couponMileage" (change)="onChange($event)" placeholder="Mileage(Kms)">
+                                <option [value]="0" selected="selected">--Select-- </option>
+                                <option *ngFor="let kms of distanceValues" [value]="kms">{{kms}}</option>
+                            </select>
+                        </td>
+                    </tr>
+                    <!-- <tr>
+                        <td></td>
+                        <td colspan="3">
+                            <div *ngIf="distance.invalid && (distance.dirty || distance.touched)" class="alert alert-danger" style="color:red;">
 
+                                <div *ngIf="distance.errors.required">
+                                    Distance is required.
+                                </div>
+                                <div *ngIf="distance.errors.pattern">
+                                    Distance should be number.
+                                </div>
+                            </div>
+                        </td>
+                        <td></td>
+                        <td colspan="3">
+                            <div *ngIf="(couponMileage.dirty || couponMileage.touched) && couponMileage.invalid" class="alert alert-danger" style="color:red">
+
+                                <div *ngIf="couponMileage.errors.required">
+                                    Mileage is required.
+                                </div>
+                            </div>
+                        </td>
+                    </tr> -->
+                    <tr>
+                        <td>Coupon Value</td>
+
+                        <td colspan="3">
+                            <input type="text" name="couponValue" placeholder="Coupon Value" [(ngModel)]="couponValue" value="{{couponValue}}">
+                        </td>
+                        <td>Coupon Date</td>
+
+                        <td colspan="3">
+                            <input type="date" [min]="today" name="couponDate" placeholder="Coupon Date" [(ngModel)]="model.couponDate" value="{{model.couponDate}}"
+                                required>
+                        </td>
                     </tr>
 
-                    <tr>
-                        <td>Approved by</td>
-                        <td colspan="6">
-                            <input type="text" name="couponApprovedBy" placeholder="Approved By" [(ngModel)]="model.couponApprovedBy">
 
-                    </tr>
                     <tr>
-                        <td>Select Truck Information</td>
-                        <td colspan="3">
-                            <input type="text" name="couponHorseNumber" placeholder="Issed By" [(ngModel)]="model.couponHorseNumber" readonly value="{{this.data.dispatchHorseNumber}}">
-                        </td>
+
 
                         <td>Status</td>
                         <td colspan="3">
-                            <select name="couponStatus" [(ngModel)]="model.couponStatus" placeholder="Select Status">
+                            <select name="couponStatus" [(ngModel)]="couponStatus" required placeholder="Select Status">
                                 <option [value]="undefined" selected="selected">Select Status </option>
                                 <option *ngFor="let couponStatus of status" [value]="couponStatus">{{couponStatus}}</option>
                             </select>
                         </td>
 
                     </tr>
+
+
                 </table>
                 <div style="text-align:right">
                     <button mat-raised-button type="submit" [disabled]="!couponForm.form.valid" (click)="submit()" color="primary" style="border-radius:4px">Generate</button>

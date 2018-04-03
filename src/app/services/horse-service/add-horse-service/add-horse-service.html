@@ -25,12 +25,12 @@
                     </tr>
                     <tr>
                         <td>Service Date</td>
-                        <td> <input type="text" onfocus="(this.type='date')" onblur="(this.type='text')" name="horseServiceDate" placeholder="Service Date" [(ngModel)]="model.horseServiceDate">
+                        <td> <input type="text" [max]="today" onfocus="(this.type='date')" onblur="(this.type='text')" name="horseServiceDate" placeholder="Service Date" [(ngModel)]="model.horseServiceDate">
                         </td>
                     </tr>
                     <tr>
                         <td>Next Service Due</td>
-                        <td> <input type="text" onfocus="(this.type='date')" onblur="(this.type='text')" name="horseServiceNextDueDate" placeholder="Next Due Date" [(ngModel)]="model.horseServiceNextDueDate">
+                        <td> <input type="text" [min]="today" onfocus="(this.type='date')" onblur="(this.type='text')" name="horseServiceNextDueDate" placeholder="Next Due Date" [(ngModel)]="model.horseServiceNextDueDate">
                         </td>
                     </tr>
                     <tr>

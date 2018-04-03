@@ -1,0 +1,93 @@
+<div fxLayout="column" style="margin:2em 10px" fxLayoutGap="10px">
+
+    <div style="text-align:right">
+        <a [routerLink]="['../add-jobcard']">
+            <button mat-raised-button color="primary">Add</button>
+        </a>
+    </div>
+
+    <div class="mat-elevation-z8" fxFlex="98W%" fxFlex.xs="98%" style="margin-top:10px">
+
+        <div align="end" style="padding:0px 10px;">
+            <b>Search :</b>
+            <mat-form-field class="inputline">
+                <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Enter your text..">
+            </mat-form-field>
+        </div>
+        <mat-table #table [dataSource]="dataSource" class="cargo-table">
+
+            <ng-container matColumnDef="customColumn1">
+                <mat-header-cell *matHeaderCellDef class="table-header">S.No </mat-header-cell>
+                <mat-cell *matCellDef="let row; let i = index;">
+                    <div *ngIf="!pageEvent"> {{i+1}}</div>
+                    <div *ngIf="pageEvent"> {{5*(pageEvent.pageIndex)+i+1}}</div>
+                </mat-cell>
+            </ng-container>
+
+            <ng-container matColumnDef="jobNo">
+                <mat-header-cell *matHeaderCellDef> Jobcard No </mat-header-cell>
+                <mat-cell *matCellDef="let element"> {{element.jobNo}} </mat-cell>
+            </ng-container>
+
+            <ng-container matColumnDef="truckNo">
+                <mat-header-cell *matHeaderCellDef> Truck No </mat-header-cell>
+                <mat-cell *matCellDef="let element"> {{element.truckNo}} </mat-cell>
+            </ng-container>
+
+            <ng-container matColumnDef="jobDate">
+                <mat-header-cell *matHeaderCellDef> Date </mat-header-cell>
+                <mat-cell *matCellDef="let element"> {{element.jobDate | date : 'dd/MM/yyyy'}} </mat-cell>
+            </ng-container>
+
+            <ng-container matColumnDef="dateClosed">
+                <mat-header-cell *matHeaderCellDef> Date Closed </mat-header-cell>
+                <mat-cell *matCellDef="let element"> {{element.dateClosed | date : 'dd/MM/yyyy'}} </mat-cell>
+            </ng-container>
+            <ng-container matColumnDef="driver_name">
+                <mat-header-cell *matHeaderCellDef> Driver </mat-header-cell>
+                <mat-cell *matCellDef="let element"> {{element.driver_name}} </mat-cell>
+            </ng-container>
+            <ng-container matColumnDef="mechanicName">
+                <mat-header-cell *matHeaderCellDef>Mechaanic </mat-header-cell>
+                <mat-cell *matCellDef="let element"> {{element.mechanicName}} </mat-cell>
+            </ng-container>
+            <ng-container matColumnDef="arrivalFrom">
+                <mat-header-cell *matHeaderCellDef> Arrival From </mat-header-cell>
+                <mat-cell *matCellDef="let element"> {{element.arrivalFrom}} </mat-cell>
+            </ng-container>
+            <ng-container matColumnDef="workshops">
+                <mat-header-cell *matHeaderCellDef> workshops </mat-header-cell>
+                <mat-cell *matCellDef="let element"> {{element.workshops}} </mat-cell>
+            </ng-container>
+
+            <ng-container matColumnDef="jobCard">
+                <mat-header-cell *matHeaderCellDef> Jobcard </mat-header-cell>
+                <mat-cell *matCellDef="let element"> 
+                <a href="data:application/octet-stream;charset=utf-16le;base64,{{element.jobCard}}">
+                    <i class="material-icons">file_download</i>
+                </a>
+                    
+                     </mat-cell>
+            </ng-container>
+
+            <!-- <ng-container matColumnDef="edit">
+                <mat-header-cell *matHeaderCellDef> </mat-header-cell>
+                <mat-cell *matCellDef="let element">
+                    <a [routerLink]="['/edit-order-details',element.orderId]">
+                        <button mat-raised-button class="icons-edit">
+                            <mat-icon> mode_edit</mat-icon>
+                        </button>
+                    </a>
+                    <button mat-raised-button class="icons-delete">
+                        <mat-icon mat-light (click)="openDialog(element.orderId)"> delete</mat-icon>
+                    </button>
+                </mat-cell>
+            </ng-container> -->
+            <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+            <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+        </mat-table>
+
+        <mat-paginator #paginator (page)="pageEvent = $event" [pageSize]="5" [pageSizeOptions]="[5, 10, 20]">
+        </mat-paginator>
+    </div>
+</div>

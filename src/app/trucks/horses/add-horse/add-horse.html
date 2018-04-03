@@ -9,8 +9,8 @@
           <tr>
             <td>Horse Ref</td>
             <td>
-              <input pattern="[a-zA-Z0-9]+" type="text" name="horseNumber" placeholder="Horse Number" [(ngModel)]="model.horseNumber"
-                #horseNumber="ngModel" required>
+              <input pattern="[a-zA-Z0-9]+" type="text" name="horseNumber" placeholder="Horse Number"  [(ngModel)]="model.horseNumber" #horseNumber="ngModel"
+                required>
               <div *ngIf="horseNumber.invalid && (horseNumber.dirty || horseNumber.touched)" class="alert alert-danger" style="color:red">
 
                 <div *ngIf="horseNumber.errors.required">
@@ -25,36 +25,34 @@
           <tr>
             <td>Fitness</td>
             <td>
-              <input type="text" onfocus="(this.type='date')" onblur="(this.type='text')" name="Fitness" placeholder="Fitness"
+              <input type="text" [min]="today" onfocus="(this.type='date')" onblur="(this.type='text')" name="Fitness" placeholder="Fitness"
                 [(ngModel)]="model.fitness">
             </td>
           </tr>
           <tr>
             <td>Road Tax</td>
             <td>
-              <input type="text" onfocus="(this.type='date')" onblur="(this.type='text')" name="roadTax" placeholder="Road Tax"
+              <input type="text" [min]='today' onfocus="(this.type='date')" onblur="(this.type='text')" name="roadTax" placeholder="Road Tax"
                 [(ngModel)]="model.roadTax">
             </td>
           </tr>
           <tr>
             <td>Identity</td>
             <td>
-              <input type="text" onfocus="(this.type='date')" onblur="(this.type='text')" name="identity" placeholder="Identity"
-                [(ngModel)]="model.identity">
+              <input type="text" onfocus="(this.type='date')" onblur="(this.type='text')" name="identity" placeholder="Identity" [(ngModel)]="model.identity">
             </td>
           </tr>
           <tr>
             <td>Insurance</td>
             <td>
-              <input type="text" onfocus="(this.type='date')" onblur="(this.type='text')" name="insurance" placeholder="Insurance"
+              <input type="text" [min]="today" onfocus="(this.type='date')" onblur="(this.type='text')" name="insurance" placeholder="Insurance"
                 [(ngModel)]="model.insurance">
             </td>
           </tr>
           <tr>
             <td>Comesa</td>
             <td>
-              <input type="text" onfocus="(this.type='date')" onblur="(this.type='text')" name="comesa" placeholder="Source"
-                [(ngModel)]="model.comesa">
+              <input type="text" onfocus="(this.type='date')" onblur="(this.type='text')" name="comesa" placeholder="Source" [(ngModel)]="model.comesa">
             </td>
           </tr>
           <!-- <tr>
@@ -83,7 +81,7 @@
               <div class='contry_expiry_Unit'>
                 <div class="comesaCountry" [ngClass]="{'comesaSelected':comesa.isSelected}" (click)="comesa.isSelected = !comesa.isSelected;comesa.visibility = comesa.isSelected ? 'visible' : 'hidden'">{{comesa.country}}</div>
                 <div [ngStyle]="{'visibility': comesa.visibility}">
-                  <input type="text" value="{comesa.expiry}" required onfocus="(this.type='date')" (blur)="onFocus(this,comesa)"
+                  <input type="text" [min]="today" value="{comesa.expiry}" required onfocus="(this.type='date')" (blur)="onFocus(this,comesa)"
                     name="crossborderExpiry" placeholder="Cross Border Expiry" [(ngModel)]="comesa.expiry">
                 </div>
               </div>
@@ -96,41 +94,43 @@
         <div style="text-align:right">
           <button mat-raised-button type="submit" (click)="addHorseAccessories()" color="accent" style="border-radius:4px">Add Accessories +</button>
         </div>
-        <div *ngFor="let data of this.horseAccessories;let i=index">
+        <div>
           <table>
-            <tr>
+            <tr *ngFor="let data of this.horseAccessories;let i=index; trackBy: index">
 
               <!--td>Tyre Positions</td-->
               <td>
                 <span>Tyre Positions</span>
-                <input type="text" name="tyrePositions-{{i}}" placeholder="Tyre Positions" [(ngModel)]="data.tyrePositions">
+                <input type="text" name="tyrePositions-{{i}}" placeholder="Tyre Positions"  [(ngModel)]="data.tyrePositions">
               </td>
 
               <!--td>Make</td-->
               <td>
                 <span>Make</span>
-                <input type="text" name="make-{{i}}" placeholder="Make" [(ngModel)]="data.make">
+                <input type="text" name="make-{{i}}" placeholder="Make"  [(ngModel)]="data.make">
               </td>
 
               <!--td>Number</td-->
               <td>
                 <span>Number</span>
-                <input type="text" name="number-{{i}}" placeholder="Number" [(ngModel)]="data.number">
+                <input type="text" name="number-{{i}}" placeholder="Number"  [(ngModel)]="data.number">
               </td>
 
               <!--td>Size</td-->
               <td>
                 <span>Size</span>
-                <input type="text" name="size-{{i}}" placeholder="Size" [(ngModel)]="data.size">
+                <input type="text" name="size-{{i}}" placeholder="Size"  [(ngModel)]="data.size">
               </td>
 
               <!--td>Date Fitted</td-->
               <td>
                 <span>Date Fitted</span>
-                <input onfocus="(this.type='date')" onblur="(this.type='text')" type="text" name="dateFitted-{{i}}" placeholder="Date Fitted"
+                <input onfocus="(this.type='date')" [min]="today" onblur="(this.type='text')" type="text" name="dateFitted-{{i}}" placeholder="Date Fitted"
                   [(ngModel)]="data.dateFitted">
               </td>
-
+              <td style="text-align:center;font-size: 60px;color: red;">
+                <span (click)="removeAccessory(i)">-</span>
+              </td>
             </tr>
           </table>
         </div>

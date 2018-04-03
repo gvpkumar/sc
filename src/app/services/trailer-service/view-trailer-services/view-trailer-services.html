@@ -24,12 +24,12 @@
             </ng-container>
             <ng-container matColumnDef="trailerServiceDate">
                 <mat-header-cell *matHeaderCellDef> Service Date </mat-header-cell>
-                <mat-cell *matCellDef="let element"> {{element.trailerServiceDate | date}} </mat-cell>
+                <mat-cell *matCellDef="let element"> {{element.trailerServiceDate | date : 'dd/MM/yyyy'}} </mat-cell>
             </ng-container>
             <!-- Weight Column -->
             <ng-container matColumnDef="trailerServiceNextDueDate">
                 <mat-header-cell *matHeaderCellDef> Next Service Due </mat-header-cell>
-                <mat-cell *matCellDef="let element"> {{element.trailerServiceNextDueDate | date }} </mat-cell>
+                <mat-cell *matCellDef="let element"> {{element.trailerServiceNextDueDate | date: 'dd/MM/yyyy' }} </mat-cell>
             </ng-container>
             <ng-container matColumnDef="trailerServiceServicedby">
                 <mat-header-cell *matHeaderCellDef> Serviced By </mat-header-cell>

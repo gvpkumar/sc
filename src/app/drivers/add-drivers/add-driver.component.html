@@ -8,85 +8,124 @@
                 <table style="width:100%">
                     <tr>
                         <td colspan="2">Driver Id</td>
-                        <td colspan="6"> <input type="text" pattern="[a-zA-Z0-9]+" name="driverId" placeholder="Driver Details Id" [(ngModel)]="model.driverId"></td>
+                        <td colspan="6">
+                            <input type="text" pattern="[a-zA-Z0-9]+" name="driverId" placeholder="Driver Details Id" [(ngModel)]="model.driverId">
+                        </td>
                     </tr>
                     <tr>
                         <td colspan="2"> Firstname</td>
-                        <td colspan="2"> <input type="text" name="driverFirstName" placeholder="First Name" [(ngModel)]="model.driverFirstName"></td>
+                        <td colspan="2">
+                            <input type="text" name="driverFirstName" placeholder="First Name" [(ngModel)]="model.driverFirstName">
+                        </td>
 
                         <td colspan="2">Last Name</td>
-                        <td colspan="2"> <input type="text" name="driverLastName" placeholder="Last Name" [(ngModel)]="model.driverLastName">
+                        <td colspan="2">
+                            <input type="text" name="driverLastName" placeholder="Last Name" [(ngModel)]="model.driverLastName">
                         </td>
                     </tr>
                     <tr>
                         <td colspan="2">NRC No</td>
-                        <td colspan="2"> <input type="text" pattern="[a-zA-Z0-9]+" name="driverNrcNumber" placeholder="NRC No" [(ngModel)]="model.driverNrcNumber" style="margin-right:5px">
+                        <td colspan="2">
+                            <input type="text" pattern="[a-zA-Z0-9]+" name="driverNrcNumber" placeholder="NRC No" [(ngModel)]="model.driverNrcNumber"
+                                style="margin-right:5px">
                         </td>
 
                         <td colspan="2">Passport</td>
-                        <td colspan="2"> <input type="text" pattern="[a-zA-Z0-9]+" name="driverPassport" placeholder="Passport" [(ngModel)]="model.driverPassport">
+                        <td colspan="2">
+                            <input type="text" pattern="[a-zA-Z0-9]+" name="driverPassport" placeholder="Passport" [(ngModel)]="model.driverPassport">
                         </td>
                     </tr>
+                    <tr>
+                            <td colspan="2">License Number</td>
+                            <td colspan="2">
+                                <input type="text" name="driverLicenseNumber" placeholder="License Number" [(ngModel)]="model.driverLicenseNumber">
+                            </td>
+    
+                            <td colspan="2">License Expiry</td>
+                            <td colspan="2">
+                                <input type="date" [min]="today" name="driverLicenseExpiry" placeholder="License Expiry" [(ngModel)]="model.driverLicenseExpiry">
+                            </td>
+                        </tr>
                     <tr>
                         <td colspan="2">Contact Number</td>
-                        <td colspan="2"> <input type="text" name="driverContactNumber" placeholder="Contact Number" [(ngModel)]="model.driverContactNumber" #driverContactNumber="ngModel" class="form-control" pattern="^\d+$" required>
-                            <div *ngIf="driverContactNumber.invalid && (driverContactNumber.dirty || driverContactNumber.touched)" class="alert alert-danger" style="color:red">
-
-                                <div *ngIf="driverContactNumber.errors.required">
+                        <td>
+                            <input style="width:30%" type="text" maxlength="5" pattern="\d+$" name="countryCode" placeholder="Country Code" [(ngModel)]="model.countryCode"
+                                #countryCode="ngModel" class="form-control">
+                            <input style="width:48.5%" type="text" maxlength="10" pattern="\d+$" name="phoneNumber" placeholder="Contact Number" [(ngModel)]="model.phoneNumber"
+                                #phoneNumber="ngModel" class="form-control">
+                            <div *ngIf="countryCode.invalid && (countryCode.dirty || countryCode.touched)" class="alert alert-danger" style="color:red">
+                                <div *ngIf="countryCode.errors.required">
+                                    Country Code is required.
+                                </div>
+                                <div *ngIf="countryCode.errors.pattern">
+                                    Country Code should be number.
+                                </div>
+                            </div>
+                            <div *ngIf="phoneNumber.invalid && (phoneNumber.dirty || phoneNumber.touched)" class="alert alert-danger" style="color:red">
+                                <div *ngIf="phoneNumber.errors.required">
                                     Contact number is required.
                                 </div>
-                                <div *ngIf="driverContactNumber.errors.pattern">
+                                <div *ngIf="phoneNumber.errors.pattern">
                                     Contact number should be number.
                                 </div>
-
-
                             </div>
                         </td>
+                        </tr>
+                        <tr>
                         <td colspan="2">Alter Native Phone Number</td>
-                        <td colspan="2"> <input maxlength="11" type="text" name="driverAlternateContact" placeholder="Alter Native Phone Number" [(ngModel)]="model.driverAlternateContact" #driverAlternateContact="ngModel" class="form-control" pattern="^\d+$">
-                            <div *ngIf="driverAlternateContact.invalid && (driverAlternateContact.dirty || driverAlternateContact.touched)" class="alert alert-danger" style="color:red">
-
-                                <div *ngIf="driverAlternateContact.errors.pattern">
+                        <td colspan="2">
+                                <input style="width:30%" type="text" maxlength="5" pattern="\d+$" name="altcountryCode" placeholder="Country Code" [(ngModel)]="model.altcountryCode"
+                                #altcountryCode="ngModel" class="form-control">
+                            <input style="width:48.5%" type="text" maxlength="10" pattern="\d+$" name="altphoneNumber" placeholder="Contact Number" [(ngModel)]="model.altphoneNumber"
+                                #altphoneNumber="ngModel" class="form-control">
+                            <div *ngIf="altcountryCode.invalid && (altcountryCode.dirty || countryCode.touched)" class="alert alert-danger" style="color:red">
+                                <div *ngIf="altcountryCode.errors.required">
+                                    Country Code is required.
+                                </div>
+                                <div *ngIf="altcountryCode.errors.pattern">
+                                    Country Code should be number.
+                                </div>
+                            </div>
+                            <div *ngIf="altphoneNumber.invalid && (altphoneNumber.dirty || altphoneNumber.touched)" class="alert alert-danger" style="color:red">
+                                <div *ngIf="altphoneNumber.errors.required">
+                                    Contact number is required.
+                                </div>
+                                <div *ngIf="altphoneNumber.errors.pattern">
                                     Contact number should be number.
                                 </div>
-
-
                             </div>
                         </td>
 
                     </tr>
-                    <tr>
-                        <td colspan="2">License Number</td>
-                        <td colspan="2"> <input type="text" name="driverLicenseNumber" placeholder="License Number" [(ngModel)]="model.driverLicenseNumber">
-                        </td>
-
-                        <td colspan="2">License Expiry</td>
-                        <td colspan="2"> <input type="date" name="driverLicenseExpiry" placeholder="License Expiry" [(ngModel)]="model.driverLicenseExpiry">
-                        </td>
-                    </tr>
+                    
                     <tr>
                         <td colspan="2">Address</td>
-                        <td colspan="6"> <textarea type="text" rows="5" cols="30" name="driverAddress" placeholder="Address" [(ngModel)]="model.driverAddress"></textarea>
+                        <td colspan="6">
+                            <textarea type="text" rows="5" cols="30" name="driverAddress" placeholder="Address" [(ngModel)]="model.driverAddress"></textarea>
                         </td>
                     </tr>
                     <tr>
                         <td colspan="2">Date of Joining</td>
-                        <td colspan="6"> <input type="date" name="driverDateOfJoining" placeholder="Date of Joining" [(ngModel)]="model.driverDateOfJoining">
+                        <td colspan="6">
+                            <input type="date" [max]="today" name="driverDateOfJoining" placeholder="Date of Joining" [(ngModel)]="model.driverDateOfJoining">
                         </td>
                     </tr>
                     <tr>
                         <td colspan="2">Accident History</td>
-                        <td colspan="6"> <input type="text" name="driverAccidentHistory" placeholder="Accident History" [(ngModel)]="model.driverAccidentHistory">
+                        <td colspan="6">
+                            <input type="text" name="driverAccidentHistory" placeholder="Accident History" [(ngModel)]="model.driverAccidentHistory">
                         </td>
                     </tr>
                     <tr>
                         <td colspan="2">Driver work suite</td>
-                        <td colspan="6"> <input type="date" name="driverWorksuiteDate" placeholder="Driver work suite" [(ngModel)]="model.driverWorksuiteDate">
+                        <td colspan="6">
+                            <input type="date" name="driverWorksuiteDate" placeholder="Driver work suite" [(ngModel)]="model.driverWorksuiteDate">
                         </td>
                     </tr>
                     <tr>
                         <td colspan="2">Date of Birth</td>
-                        <td colspan="6"> <input type="date" name="driverDateOfBirth" placeholder="Date of Birth" [(ngModel)]="model.driverDateOfBirth">
+                        <td colspan="6">
+                            <input type="date" [max]="today" name="driverDateOfBirth" placeholder="Date of Birth" [(ngModel)]="model.driverDateOfBirth">
                         </td>
                     </tr>
 
@@ -97,7 +136,8 @@
                                 <div class="fileUpload btn btn-primary">
                                     <span>Select File</span>
                                     <!--input type="file" name="document" class="upload" (change)=" changeListener(event)" accept="image/*,.pdf,.doc,.docx," /-->
-                                    <input type="file" name="driverAttachments" class="upload" placeholder="Upload file..." accept="image/*" (change)="changeListener1($event)" />
+                                    <input type="file" name="driverAttachments" class="upload" placeholder="Upload file..." accept="image/*" (change)="changeListener1($event)"
+                                    />
                                 </div>
                                 <span style="font-size:14px;padding-top:20px" *ngIf="this.filename1==''"> Choose file to upload</span>
                                 <span style="font-size:14px;padding-top:20px" *ngIf="this.filename1!=''">{{this.filename1}}</span>
@@ -113,7 +153,8 @@
                                 <div class="fileUpload btn btn-primary">
                                     <span>Select File</span>
                                     <!--input type="file" name="document" class="upload" (change)=" changeListener(event)" accept="image/*,.pdf,.doc,.docx," /-->
-                                    <input type="file" name="driverPhoto" class="upload" placeholder="Upload file..." accept="image/*" (change)="changeListener2($event)" />
+                                    <input type="file" name="driverPhoto" class="upload" placeholder="Upload file..." accept="image/*" (change)="changeListener2($event)"
+                                    />
                                 </div>
                                 <span style="font-size:14px;padding-top:20px" *ngIf="this.filename2==''"> Choose file to upload</span>
                                 <span style="font-size:14px;padding-top:20px" *ngIf="this.filename2!=''">{{this.filename2}}</span>

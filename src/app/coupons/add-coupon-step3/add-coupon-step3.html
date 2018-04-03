@@ -99,7 +99,7 @@
                     </tr>
                     <tr>
                         <td>Issued by</td>
-                        <td colspan="3"> <input type="text" name="couponIssuedBy" readonly placeholder="Issed By" [(ngModel)]="this.authenticationService.loginDetails.userDetails.userName" value="{{this.authenticationService.loginDetails.userDetails.userName}}"></td>
+                        <td colspan="3"> <input type="text" name="couponIssuedBy" readonly placeholder="Issed By" [(ngModel)]="model.couponIssuedBy" value="{{model.couponIssuedBy}}"></td>
                         <td>Requested by(Driver)</td>
                         <td colspan="3"> <input type="text" name="couponRequestedBy" placeholder="Requested By" [(ngModel)]="model.couponRequestedBy" readonly value="{{this.data.dispatchDriverFirstname}}">
 

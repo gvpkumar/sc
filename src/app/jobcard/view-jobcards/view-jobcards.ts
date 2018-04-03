@@ -1,4 +1,4 @@
-import { Component, ViewChild } from '@angular/core';
+import { Component, ViewChild, OnInit } from '@angular/core';
 import { MatPaginator, MatTableDataSource, PageEvent } from '@angular/material';
 import { HttpClient } from '@angular/common/http';
 import { Router } from '@angular/router';
@@ -10,25 +10,22 @@ import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/startWith';
 import 'rxjs/add/operator/switchMap';
 import { AuthenticationService, UserService, LoggerService } from '../../_services/index';
-import { DialogOrderComponent } from '../dialogService';
 import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
+import { DialogOrderComponent } from '../../orders/dialogService';
 @Component({
-  selector: 'orders',
-  styleUrls: ['view-order.scss'],
-  templateUrl: 'view-order.html',
+  // tslint:disable-next-line:component-selector
+  selector: 'jobcards',
+  styleUrls: ['view-jobcards.scss'],
+  templateUrl: 'view-jobcards.html',
 })
-export class OrderComponent {
+export class ViewJobcardsComponent implements OnInit {
 
-  userRole: string;
-  orderStatus = 'All';
-  isLoggedIn: boolean = false;
-  statusList = ['All', 'Open', 'Closed', 'Pending', 'Cancel'];
+  isLoggedIn = false;
   getData;
   pageEvent: PageEvent;
 
-  displayedColumns = [/* 'customColumn1', */'orderNo', 'orderCustomerName', 'orderConsignee',
-    , 'orderSource', 'orderDestination', 'orderStartDate',
-    'orderEndDate', 'orderDriverFirstName', 'orderHorseDetails', 'orderStatus', 'orderTripCost', 'edit'];
+  displayedColumns = ['customColumn1', 'jobNo', 'truckNo', 'jobDate', /* 'dateClosed', */ 'driver_name',
+    'mechanicName', 'arrivalFrom', 'workshops'/* , 'jobCard' */];
   exampleDatabase: ExampleHttpDao | null;
   dataSource = new MatTableDataSource();
 
@@ -43,27 +40,19 @@ export class OrderComponent {
     private authenticationService: AuthenticationService,
     private userService: UserService,
     public loggerService: LoggerService,
-    public dialog: MatDialog) {
-    this.userRole = localStorage.getItem('userRole');
-
-  }
+    public dialog: MatDialog) { }
   /**
    * Set the paginator after the view init since this component will
    * be able to query its view for the initialized paginator.
    */
   ngOnInit() {
     this.isLoadingResults = true;
-    let currentUser = localStorage.getItem('currentUser');
-    this.loggerService.log(currentUser, "currentUser");
+    const currentUser = localStorage.getItem('currentUser');
+    this.loggerService.log(currentUser, 'currentUser');
     this.authenticationService.loginDetails = JSON.parse(currentUser);
-    console.log(this.orderStatus)
-    this.getOrderData(this.orderStatus);
+    this.getJobcards();
   }
 
-  onStatusChange(status) {
-    this.orderStatus = status;
-    this.getOrderData(status);
-  }
   applyFilter(filterValue: string) {
     filterValue = filterValue.trim(); // Remove whitespace
     filterValue = filterValue.toLowerCase(); // MatTableDataSource defaults to lowercase matches
@@ -71,7 +60,7 @@ export class OrderComponent {
   }
   openDialog(id): void {
     console.log(id);
-    let dialogRef = this.dialog.open(DialogOrderComponent, {
+    const dialogRef = this.dialog.open(DialogOrderComponent, {
       width: '400px',
       height: '160px',
       data: { id: id }
@@ -79,18 +68,18 @@ export class OrderComponent {
 
     dialogRef.afterClosed().subscribe(result => {
       setTimeout(() => {
-        this.getOrderData(this.orderStatus);
+        this.getJobcards();
       });
     });
   }
-  getOrderData(status) {
+  getJobcards() {
     this.exampleDatabase = new ExampleHttpDao(this.http, this.authenticationService, this.userService);
 
     Observable.merge()
       .startWith(null)
       .switchMap(() => {
         this.isLoadingResults = true;
-        return this.exampleDatabase!.getCustomUrlsCreatedList(status);
+        return this.exampleDatabase!.getCustomUrlsCreatedList();
       })
       .map(data => {
         // Flip flag to show that loading has finished.
@@ -106,6 +95,7 @@ export class OrderComponent {
         return Observable.of([]);
       })
       .subscribe(data => {
+        data.pop();
         this.dataSource.data = data;
         this.loggerService.log(this.dataSource.data);
         this.dataSource.paginator = this.paginator;
@@ -116,7 +106,7 @@ export class OrderComponent {
 
 }
 
-export interface customUrlInfo {
+export interface CustomUrlInfo {
   name: string;
   position: number;
   address: string;
@@ -130,7 +120,7 @@ export class ExampleHttpDao {
 
   model: any = {
   };
-  urldetails: customUrlInfo[];
+  urldetails: CustomUrlInfo[];
 
   constructor(private http: HttpClient,
     public authenticationService: AuthenticationService,
@@ -138,15 +128,10 @@ export class ExampleHttpDao {
 
   }
 
+  // Api call to Fetch all the created url Links.
 
-
-  //Api call to Fetch all the created url Links.
-
-  getCustomUrlsCreatedList(status): Observable<customUrlInfo[]> {
+  getCustomUrlsCreatedList(): Observable<CustomUrlInfo[]> {
     // this.model.userId = "sravanthi@smartrobos.com";
-
-    return this.userService.getOrderData(status);
-
+    return this.userService.getJobcards();
   }
-
 }

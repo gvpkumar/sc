@@ -1,6 +1,6 @@
 <div fxLayout="column" style="margin:2em 10px" fxLayoutGap="10px">
 
-    <div style="text-align:right">
+    <div style="text-align:right" *ngIf="userRole === 'Admin' || userRole === 'OrderAgent'">
         <a [routerLink]="['/add-order']"><button mat-raised-button color="primary">Add</button></a>
     </div>
     
@@ -22,13 +22,13 @@
             <mat-header-cell *matHeaderCellDef> No. </mat-header-cell>
             <mat-cell *matCellDef="let element"> {{element.position}} </mat-cell>
         </ng-container-->
-            <ng-container matColumnDef="customColumn1">
+            <!-- <ng-container matColumnDef="customColumn1">
                 <mat-header-cell *matHeaderCellDef class="table-header">S.No </mat-header-cell>
                 <mat-cell *matCellDef="let row; let i = index;">
                     <div *ngIf="!pageEvent"> {{i+1}}</div>
                     <div *ngIf="pageEvent"> {{5*(pageEvent.pageIndex)+i+1}}</div>
                 </mat-cell>
-            </ng-container>
+            </ng-container> -->
             <!-- Name Column -->
             <!--ng-container matColumnDef="cargoGrnumber">
             <mat-header-cell *matHeaderCellDef> Name </mat-header-cell>
@@ -40,10 +40,14 @@
                 <mat-header-cell *matHeaderCellDef> Order Id </mat-header-cell>
                 <mat-cell *matCellDef="let element"> {{element.orderId}} </mat-cell>
             </ng-container-->
-            <ng-container matColumnDef="orderCustomerName">
-                <mat-header-cell *matHeaderCellDef> Customer Name </mat-header-cell>
-                <mat-cell *matCellDef="let element"> {{element.orderCustomerName}} </mat-cell>
+            <ng-container matColumnDef="orderNo">
+                <mat-header-cell *matHeaderCellDef> Order No </mat-header-cell>
+                <mat-cell *matCellDef="let element"> {{element.orderId}} </mat-cell>
             </ng-container>
+            <ng-container matColumnDef="orderCustomerName">
+                    <mat-header-cell *matHeaderCellDef> Customer Name </mat-header-cell>
+                    <mat-cell *matCellDef="let element"> {{element.orderCustomerName}} </mat-cell>
+                </ng-container>
             <!-- Color Column -->
             <ng-container matColumnDef="orderConsignee">
                 <mat-header-cell *matHeaderCellDef> Consignee </mat-header-cell>
@@ -63,11 +67,11 @@
             </ng-container>
             <ng-container matColumnDef="orderStartDate">
                 <mat-header-cell *matHeaderCellDef> Satrt Date </mat-header-cell>
-                <mat-cell *matCellDef="let element"> {{element.orderStartDate | date}} </mat-cell>
+                <mat-cell *matCellDef="let element"> {{element.orderStartDate | date:'dd/MM/yyyy'}} </mat-cell>
             </ng-container>
             <ng-container matColumnDef="orderEndDate">
                 <mat-header-cell *matHeaderCellDef> End Date </mat-header-cell>
-                <mat-cell *matCellDef="let element"> {{element.orderEndDate | date}} </mat-cell>
+                <mat-cell *matCellDef="let element"> {{element.orderEndDate | date:'dd/MM/yyyy'}} </mat-cell>
             </ng-container>
             <ng-container matColumnDef="orderDriverFirstName">
                 <mat-header-cell *matHeaderCellDef> Driver Name </mat-header-cell>

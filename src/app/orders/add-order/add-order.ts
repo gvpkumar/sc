@@ -27,7 +27,7 @@ export class AddOrderComponent implements OnInit {
     public router: Router,
     public loggerService: LoggerService,
     private orderService: OrderService) {
-    this.model.orderConsignor = "SHAANN CARRIERS";
+    this.model.orderConsignor = 'SHAANN CARRIERS';
   }
 
   ngOnInit() {

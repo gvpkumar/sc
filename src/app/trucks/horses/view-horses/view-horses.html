@@ -40,21 +40,21 @@
             </ng-container>
             <ng-container matColumnDef="fitness">
                 <mat-header-cell *matHeaderCellDef> Fitness </mat-header-cell>
-                <mat-cell *matCellDef="let element"> {{element.fitness |date}} </mat-cell>
+                <mat-cell *matCellDef="let element"> {{element.fitness |date: 'dd/MM/yyyy'}} </mat-cell>
             </ng-container>
             <!-- Color Column -->
             <ng-container matColumnDef="roadTax">
                 <mat-header-cell *matHeaderCellDef> Road Tax </mat-header-cell>
-                <mat-cell *matCellDef="let element"> {{element.roadTax | date}} </mat-cell>
+                <mat-cell *matCellDef="let element"> {{element.roadTax | date : 'dd/MM/yyyy'}} </mat-cell>
             </ng-container>
             <ng-container matColumnDef="identity">
                 <mat-header-cell *matHeaderCellDef> Identity </mat-header-cell>
-                <mat-cell *matCellDef="let element"> {{element.identity | date}} </mat-cell>
+                <mat-cell *matCellDef="let element"> {{element.identity | date: "dd/MM/yyyy"}} </mat-cell>
             </ng-container>
 
             <ng-container matColumnDef="insurance">
                 <mat-header-cell *matHeaderCellDef> Insurance</mat-header-cell>
-                <mat-cell *matCellDef="let element"> {{element.insurance |date}} </mat-cell>
+                <mat-cell *matCellDef="let element"> {{element.insurance |date: "dd/MM/yyyy"}} </mat-cell>
             </ng-container>
 
             <ng-container matColumnDef="crossborderCountry">
@@ -63,11 +63,11 @@
             </ng-container>
             <ng-container matColumnDef="crossborderExpiry">
                 <mat-header-cell *matHeaderCellDef> Cross Border Expiry </mat-header-cell>
-                <mat-cell *matCellDef="let element"><div *ngFor="let key of keys(element)">{{element.crossBorder[key] | date}}</div> </mat-cell>
+                <mat-cell *matCellDef="let element"><div *ngFor="let key of keys(element)">{{element.crossBorder[key] | date:"dd/MM/yyyy"}}</div> </mat-cell>
             </ng-container>
             <ng-container matColumnDef="comesa">
                 <mat-header-cell *matHeaderCellDef> Comesa </mat-header-cell>
-                <mat-cell *matCellDef="let element"> {{element.comesa |date}} </mat-cell>
+                <mat-cell *matCellDef="let element"> {{element.comesa |date:"dd/MM/yyyy"}} </mat-cell>
             </ng-container>
             <ng-container matColumnDef="edit">
                 <mat-header-cell *matHeaderCellDef> </mat-header-cell>

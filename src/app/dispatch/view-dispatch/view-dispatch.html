@@ -15,15 +15,14 @@
             <mat-header-cell *matHeaderCellDef> No. </mat-header-cell>
             <mat-cell *matCellDef="let element"> {{element.position}} </mat-cell>
         </ng-container-->
-        <ng-container matColumnDef="customColumn1">
+        <!-- <ng-container matColumnDef="customColumn1">
             <mat-header-cell *matHeaderCellDef class="table-header">S.No </mat-header-cell>
             <mat-cell *matCellDef="let row; let i = index;">
                 <div *ngIf="!pageEvent"> {{i+1}}</div>
                 <div *ngIf="pageEvent"> {{5*(pageEvent.pageIndex)+i+1}}</div>
             </mat-cell>
-        </ng-container>
+        </ng-container> -->
         <!-- Name Column -->
-
 
         <ng-container matColumnDef="dispatchTripNumber">
             <mat-header-cell *matHeaderCellDef>Dispatch Id </mat-header-cell>
@@ -40,7 +39,7 @@
         </ng-container>
         <ng-container matColumnDef="dispatchDate">
             <mat-header-cell *matHeaderCellDef> Date </mat-header-cell>
-            <mat-cell *matCellDef="let element"> {{element.dispatchDate | date}} </mat-cell>
+            <mat-cell *matCellDef="let element"> {{element.dispatchDate | date : 'dd/MM/YYYY'}} </mat-cell>
         </ng-container>
         <ng-container matColumnDef="dispatchOrderId">
             <mat-header-cell *matHeaderCellDef> Order Id </mat-header-cell>
@@ -59,7 +58,7 @@
         <!-- Color Column -->
         <ng-container matColumnDef="dispatchDeliveryDate">
             <mat-header-cell *matHeaderCellDef> Delivery Date </mat-header-cell>
-            <mat-cell *matCellDef="let element"> {{element.dispatchDeliveryDate | date}} </mat-cell>
+            <mat-cell *matCellDef="let element"> {{element.dispatchDeliveryDate | date : 'dd/MM/YYYY'}} </mat-cell>
         </ng-container>
         <ng-container matColumnDef="dispatchHorseNumber">
             <mat-header-cell *matHeaderCellDef> Truck number </mat-header-cell>

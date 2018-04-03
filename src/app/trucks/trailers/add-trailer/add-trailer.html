@@ -25,13 +25,15 @@
                     <tr>
                         <td>Fitness</td>
                         <td>
-                            <input type="text" onfocus="(this.type='date')" onblur="(this.type='text')" name="fitness" placeholder="fitness" [(ngModel)]="model.fitness">
+                            <input type="text" [min]="today" onfocus="(this.type='date')" onblur="(this.type='text')" name="fitness" placeholder="fitness"
+                                [(ngModel)]="model.fitness">
                         </td>
                     </tr>
                     <tr>
                         <td>Road Tax</td>
                         <td>
-                            <input type="text" onfocus="(this.type='date')" onblur="(this.type='text')" name="roadTax" placeholder="Road Tax" [(ngModel)]="model.roadTax">
+                            <input type="text" [min]="today" onfocus="(this.type='date')" onblur="(this.type='text')" name="roadTax" placeholder="Road Tax"
+                                [(ngModel)]="model.roadTax">
                         </td>
                     </tr>
                     <tr>
@@ -43,7 +45,8 @@
                     <tr>
                         <td>Insurance</td>
                         <td>
-                            <input type="text" onfocus="(this.type='date')" onblur="(this.type='text')" name="insurance" placeholder="Insurance" [(ngModel)]="model.insurance">
+                            <input type="text" [min]="today" onfocus="(this.type='date')" onblur="(this.type='text')" name="insurance" placeholder="Insurance"
+                                [(ngModel)]="model.insurance">
                         </td>
                     </tr>
                     <!-- <tr>
@@ -71,9 +74,9 @@
                 <div style="text-align:right">
                     <button mat-raised-button type="submit" (click)="addTrailerAccessories()" color="accent" style="border-radius:4px">Add Accessories +</button>
                 </div>
-                <div *ngFor="let data of this.trailerAccessories;let i=index">
+                <div>
                     <table>
-                        <tr>
+                        <tr *ngFor="let data of this.trailerAccessories;let i=index;trackBy: index">
                             <!--td>Tyre Positions</td-->
                             <td>
                                 <span>Tyre Positions</span>
@@ -100,8 +103,11 @@
                             <!--td>Date Fitted</td-->
                             <td>
                                 <span>Date Fitted</span>
-                                <input onfocus="(this.type='date')" onblur="(this.type='text')" type="text" name="dateFitted-{{i}}" placeholder="Date Fitted"
+                                <input onfocus="(this.type='date')" [min]="today" onblur="(this.type='text')" type="text" name="dateFitted-{{i}}" placeholder="Date Fitted"
                                     [(ngModel)]="data.dateFitted">
+                            </td>
+                            <td style="text-align:center;font-size: 60px;color: red;">
+                                <span (click)="removeAccessory(i)">-</span>
                             </td>
 
                         </tr>

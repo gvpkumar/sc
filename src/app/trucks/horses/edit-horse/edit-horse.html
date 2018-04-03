@@ -9,20 +9,20 @@
                     <tr>
                         <td>Horse No</td>
                         <td>
-                            <input type="text" name="horseNumber" placeholder="Horse Number" [(ngModel)]="getData.horseNumber"
-                                value="{{getData.horseNumber}}" readonly>
+                            <input type="text" name="horseNumber" placeholder="Horse Number" [(ngModel)]="getData.horseNumber" value="{{getData.horseNumber}}"
+                                readonly>
                         </td>
                     </tr>
                     <tr>
                         <td>Fitness</td>
                         <td>
-                            <input type="date" name="fitness" placeholder="fitness" [(ngModel)]="getData.fitness" value="{{getData.fitness}}">
+                            <input type="date" [min]="today" name="fitness" placeholder="fitness" [(ngModel)]="getData.fitness" value="{{getData.fitness}}">
                         </td>
                     </tr>
                     <tr>
                         <td>Road Tax</td>
                         <td>
-                            <input type="date" name="roadTax" placeholder="Road Tax" [(ngModel)]="getData.roadTax" value="{{getData.roadTax}}">
+                            <input type="date" [min]="today" name="roadTax" placeholder="Road Tax" [(ngModel)]="getData.roadTax" value="{{getData.roadTax}}">
                         </td>
                     </tr>
                     <tr>
@@ -34,7 +34,7 @@
                     <tr>
                         <td>Insurance</td>
                         <td>
-                            <input type="date" name="insurance" placeholder="Insurance" [(ngModel)]="getData.insurance" value="{{getData.insurance}}">
+                            <input type="date" [min]="today" name="insurance" placeholder="Insurance" [(ngModel)]="getData.insurance" value="{{getData.insurance}}">
                         </td>
                     </tr>
                     <!-- <tr>
@@ -68,8 +68,8 @@
                             <div class='contry_expiry_Unit'>
                                 <div class="comesaCountry" [ngClass]="{'comesaSelected':comesa.isSelected}" (click)="comesa.isSelected = !comesa.isSelected;comesa.visibility = comesa.isSelected ? 'visible' : 'hidden'">{{comesa.country}}</div>
                                 <div [ngStyle]="{'visibility': comesa.visibility}">
-                                    <input type="text" value="{comesa.expiry}" required onfocus="(this.type='date')" (blur)="onFocus(this,comesa)" name="crossborderExpiry"
-                                        placeholder="Cross Border Expiry" [(ngModel)]="comesa.expiry">
+                                    <input type="text" [min]="today" value="{comesa.expiry}" required onfocus="(this.type='date')" (blur)="onFocus(this,comesa)"
+                                        name="crossborderExpiry" placeholder="Cross Border Expiry" [(ngModel)]="comesa.expiry">
                                 </div>
                             </div>
                         </li>
@@ -80,9 +80,9 @@
                 <div style="text-align:right">
                     <button mat-raised-button type="submit" (click)="addHorseAccessories()" color="accent" style="border-radius:4px">Add Accessories +</button>
                 </div>
-                <div *ngFor="let data of this.getData.horseAccessories;let i=index" style="padding-top:20px">
+                <div style="padding-top:20px">
                     <table>
-                        <tr>
+                        <tr  *ngFor="let data of this.getData.horseAccessories;let i=index;trackBy: index">
                             <!--td>Date Fitted</td-->
 
                             <td>
@@ -108,8 +108,11 @@
                             </td>
                             <td>
                                 <span>Date Fitted</span>
-                                <input onfocus="(this.type='date')" onblur="(this.type='text')" type="text" name="dateFitted-{{i}}" placeholder="Date Fitted"
+                                <input onfocus="(this.type='date')" [min]="today" onblur="(this.type='text')" type="text" name="dateFitted-{{i}}" placeholder="Date Fitted"
                                     [(ngModel)]="data.dateFitted">
+                            </td>
+                            <td style="text-align:center;font-size: 60px;color: red;">
+                                <span (click)="removeAccessory(i)">-</span>
                             </td>
                             <!--td>Tyre Positions</td-->
                         </tr>

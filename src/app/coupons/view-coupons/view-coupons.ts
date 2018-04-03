@@ -1,4 +1,4 @@
-import { Component, ViewChild } from '@angular/core';
+import { Component, ViewChild, OnInit } from '@angular/core';
 import { MatPaginator, MatTableDataSource, PageEvent } from '@angular/material';
 import { HttpClient } from '@angular/common/http';
 import { Router } from '@angular/router';
@@ -16,14 +16,15 @@ import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
  * @title Table with pagination
  */
 @Component({
+  // tslint:disable-next-line:component-selector
   selector: 'coupons',
   styleUrls: ['view-coupons.scss'],
   templateUrl: 'view-coupons.html',
 })
-export class CouponsComponent {
+export class CouponsComponent implements OnInit {
   couponStatus = 'All';
   statusList = ['All', 'Open', 'Closed', 'Pending', 'In Progress', 'Cancel'];
-  isLoggedIn: boolean = false;
+  isLoggedIn = false;
   getData;
   /**
    * Set the paginator after the view init since this component will
@@ -56,14 +57,14 @@ export class CouponsComponent {
    */
   ngOnInit() {
     this.isLoadingResults = true;
-    let currentUser = localStorage.getItem('currentUser');
-    this.loggerService.log(currentUser, "currentUser");
+    const currentUser = localStorage.getItem('currentUser');
+    this.loggerService.log(currentUser, 'currentUser');
     this.authenticationService.loginDetails = JSON.parse(currentUser);
     this.getCouponData(this.couponStatus);
   }
   openDialog(id): void {
     console.log(id);
-    let dialogRef = this.dialog.open(DialogCouponComponent, {
+    const dialogRef = this.dialog.open(DialogCouponComponent, {
       width: '400px',
       height: '160px',
       data: { id: id }
@@ -76,7 +77,7 @@ export class CouponsComponent {
     });
   }
 
-  onStatusChange(status){
+  onStatusChange(status) {
     this.couponStatus = status;
     this.getCouponData(status);
   }
@@ -91,7 +92,7 @@ export class CouponsComponent {
 
     // If the user changes the sort order, reset back to the first page.
 
-    //this.sort.sortChange, this.paginator.page
+    // this.sort.sortChange, this.paginator.page
     Observable.merge()
       .startWith(null)
       .switchMap(() => {
@@ -121,48 +122,35 @@ export class CouponsComponent {
   }
 
   print(id) {
-
     // this.data=data;
     // console.log(data);
     // this.router.navigate(['/dashboard']);
     //  window.location.href="http://13.58.228.52:8080/VisaService/visaApplicationService/getPDF?id="+id;
-    window.open("http://18.219.240.57:8080/Carrier/coupon/generateCoupon/" + id, "_blank");
+    window.open('http://18.219.240.57:8080/Carrier/coupon/generateCoupon/' + id, '_blank');
   }
 
 }
 
-export interface customUrlInfo {
+export interface CustomUrlInfo {
   name: string;
   position: number;
   address: string;
   phone: string;
 }
 
-
-
 /** An example database that the data source uses to retrieve data for the table. */
 export class ExampleHttpDao {
-
   model: any = {
   };
-  urldetails: customUrlInfo[];
+  urldetails: CustomUrlInfo[];
 
   constructor(private http: HttpClient,
     public authenticationService: AuthenticationService,
     private userService: UserService, ) {
-
   }
-
-
-
-  //Api call to Fetch all the created url Links.
-
-  getCustomUrlsCreatedList(status): Observable<customUrlInfo[]> {
+  // Api call to Fetch all the created url Links.
+  getCustomUrlsCreatedList(status): Observable<CustomUrlInfo[]> {
     // this.model.userId = "sravanthi@smartrobos.com";
-
     return this.userService.getCouponData(status);
-
   }
-
-
 }
